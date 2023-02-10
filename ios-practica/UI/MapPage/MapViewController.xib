@@ -3,13 +3,15 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="ios_practica" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="ios_practica" customModuleProvider="target">
             <connections>
+                <outlet property="mapView" destination="uHF-Jt-8fh" id="aQu-6b-pBf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,18 +20,18 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="II3-2f-2hy">
-                    <rect key="frame" x="165" y="415.66666666666669" width="63" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uHF-Jt-8fh">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <standardMapConfiguration key="preferredConfiguration"/>
+                </mapView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="II3-2f-2hy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cjx-7U-c2Y"/>
-                <constraint firstItem="II3-2f-2hy" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="llb-UH-bwY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="uHF-Jt-8fh" secondAttribute="bottom" id="YIR-ED-c1s"/>
+                <constraint firstItem="uHF-Jt-8fh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="YiA-3g-jbg"/>
+                <constraint firstItem="uHF-Jt-8fh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="vQA-hN-ocF"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uHF-Jt-8fh" secondAttribute="trailing" id="wX7-Vt-Klk"/>
             </constraints>
             <point key="canvasLocation" x="138" y="20"/>
         </view>
