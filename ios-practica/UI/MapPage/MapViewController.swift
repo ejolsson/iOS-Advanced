@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class MapViewController: UIViewController {
     
@@ -14,13 +15,36 @@ class MapViewController: UIViewController {
     
     var locationManager: CLLocationManager?
     
+    let latitude = 40.4155
+    let longitude = 3.7074
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
+        locationManager?.delegate = self
+        
+        mapView.showsUserLocation = true
+        mapView.mapType = .standard
+        
+        moveToCoordinates(self.latitude, self.longitude)//(40.4155, 3.7074)//(0,0)
     }
 
+    func moveToCoordinates(_ latitude: Double, _ longitude: Double) {
+        
+        let center = CLLocationCoordinate2D(latitude: latitude,
+                                            longitude: longitude)
+        
+        let span = MKCoordinateSpan(latitudeDelta: 15.0,
+                                    longitudeDelta: 15.0)
+        
+        let region = MKCoordinateRegion(center: center,
+                                         span: span)
+        
+        mapView.setRegion(region, animated: true)
+        
+    }
 }
 
 extension MapViewController: CLLocationManagerDelegate {
