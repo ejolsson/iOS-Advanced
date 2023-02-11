@@ -28,7 +28,7 @@ class MapViewController: UIViewController {
         mapView.showsUserLocation = true
         mapView.mapType = .standard
         
-        moveToCoordinates(self.latitude, self.longitude)//(40.4155, 3.7074)//(0,0)
+        moveToCoordinates(self.latitude, self.longitude)//(40.4155, 3.7074)//(0,0) // removed ".self" and made no difference
     }
 
     func moveToCoordinates(_ latitude: Double, _ longitude: Double) {
@@ -36,11 +36,11 @@ class MapViewController: UIViewController {
         let center = CLLocationCoordinate2D(latitude: latitude,
                                             longitude: longitude)
         
-        let span = MKCoordinateSpan(latitudeDelta: 15.0,
-                                    longitudeDelta: 15.0)
+        let span = MKCoordinateSpan(latitudeDelta: 40,
+                                    longitudeDelta: 60)
         
         let region = MKCoordinateRegion(center: center,
-                                         span: span)
+                                        span: span)
         
         mapView.setRegion(region, animated: true)
         
@@ -70,7 +70,7 @@ extension MapViewController: CLLocationManagerDelegate {
     } // complete
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-
+        
         switch manager.authorizationStatus {
         case .notDetermined:
             debugPrint("Not determined")
