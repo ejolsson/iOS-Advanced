@@ -16,7 +16,6 @@ class MapViewController: UIViewController {
     var locationManager: CLLocationManager?
     
     let heroPlaces = [
-//        Place(name: "Bilbao", latitude: 43.2630018, longitude: -2.9350039, image: "https://photo980x880.mnstatic.com/37f93c7924cb320de906a1f1b9f4e12a/la-gran-via-de-madrid-1072541.jpg"),
 
 //        Place(name: "España", latitude: 39.3260685, longitude: -4.8379791, image: "https://photo980x880.mnstatic.com/37f93c7924cb320de906a1f1b9f4e12a/la-gran-via-de-madrid-1072541.jpg"),
 
@@ -50,6 +49,8 @@ class MapViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.delegate = self
+        
+        mapView.delegate = self
         
         mapView.showsUserLocation = true
         mapView.mapType = .standard
