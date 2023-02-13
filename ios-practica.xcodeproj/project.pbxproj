@@ -35,6 +35,8 @@
 		4A26A2B7296C0E32008EE2E6 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26A2B6296C0E32008EE2E6 /* Transformation.swift */; };
 		4A26A2B8296C0ECB008EE2E6 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26A2B6296C0E32008EE2E6 /* Transformation.swift */; };
 		4A9316BC299A52EF00E49AA5 /* CustomMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */; };
+		4A9316C0299A84E100E49AA5 /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9316BE299A84E100E49AA5 /* LogoutViewController.swift */; };
+		4A9316C1299A84E100E49AA5 /* LogoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9316BF299A84E100E49AA5 /* LogoutViewController.xib */; };
 		4A968458296EA6730020A804 /* TransformationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968456296EA6730020A804 /* TransformationsViewController.swift */; };
 		4A968459296EA6730020A804 /* TransformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A968457296EA6730020A804 /* TransformationViewController.xib */; };
 		4AE84F022997EE03002384E6 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F012997EE03002384E6 /* Place.swift */; };
@@ -95,6 +97,8 @@
 		4A26A2B3296C0201008EE2E6 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		4A26A2B6296C0E32008EE2E6 /* Transformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
 		4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarker.swift; sourceTree = "<group>"; };
+		4A9316BE299A84E100E49AA5 /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
+		4A9316BF299A84E100E49AA5 /* LogoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoutViewController.xib; sourceTree = "<group>"; };
 		4A968456296EA6730020A804 /* TransformationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationsViewController.swift; sourceTree = "<group>"; };
 		4A968457296EA6730020A804 /* TransformationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransformationViewController.xib; sourceTree = "<group>"; };
 		4AE84F012997EE03002384E6 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 				4A968455296E9C210020A804 /* TransformationsView */,
 				4A223123297351BD004A7CE7 /* TransformationDetails */,
 				4A1B07BB295B762D00BDFB1F /* MapPage */,
+				4A9316BD299A84A700E49AA5 /* LogoutPage */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -285,6 +290,15 @@
 				4A26A2B3296C0201008EE2E6 /* DetailsViewController.xib */,
 			);
 			path = DetailsView;
+			sourceTree = "<group>";
+		};
+		4A9316BD299A84A700E49AA5 /* LogoutPage */ = {
+			isa = PBXGroup;
+			children = (
+				4A9316BE299A84E100E49AA5 /* LogoutViewController.swift */,
+				4A9316BF299A84E100E49AA5 /* LogoutViewController.xib */,
+			);
+			path = LogoutPage;
 			sourceTree = "<group>";
 		};
 		4A968455296E9C210020A804 /* TransformationsView */ = {
@@ -424,6 +438,7 @@
 				4AFE5D88295E276900CD1184 /* LoginViewController.xib in Resources */,
 				4A1B07BA295B6D3B00BDFB1F /* MapViewController.xib in Resources */,
 				4A968459296EA6730020A804 /* TransformationViewController.xib in Resources */,
+				4A9316C1299A84E100E49AA5 /* LogoutViewController.xib in Resources */,
 				4A26A2B5296C0201008EE2E6 /* DetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,6 +468,7 @@
 				4AFE5D87295E276900CD1184 /* LoginViewController.swift in Sources */,
 				4A1B07AE295B679000BDFB1F /* HeroListViewController.swift in Sources */,
 				4A1B077A295B666A00BDFB1F /* AppDelegate.swift in Sources */,
+				4A9316C0299A84E100E49AA5 /* LogoutViewController.swift in Sources */,
 				4A1B07C6295B7D9E00BDFB1F /* HeroSample.swift in Sources */,
 				4A1B077C295B666A00BDFB1F /* SceneDelegate.swift in Sources */,
 				4A968458296EA6730020A804 /* TransformationsViewController.swift in Sources */,

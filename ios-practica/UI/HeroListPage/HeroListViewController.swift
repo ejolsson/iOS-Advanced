@@ -46,6 +46,8 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
                 print("Error fetching heros: ", error?.localizedDescription ?? "")
             }
         }
+        
+        configureItems()
     }
     
     // table rows creation
@@ -85,6 +87,23 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         // empty
     }
     
+    private func configureItems() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Logout", image: UIImage(systemName: "person.circle"), target: self, action: #selector(didTapLogoutButton2)
+        )
+    }
+    
+    @objc func didTapLogoutButton() {
+        print("didTapLogoutButton pressed\n")
+        let vc = UIViewController() // LogoutViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func didTapLogoutButton2() {
+        print("didTapLogoutButton pressed\n")
+        let vc = UIViewController() // LogoutViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension UIImageView {
