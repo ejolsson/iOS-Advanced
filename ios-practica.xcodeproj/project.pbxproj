@@ -34,12 +34,14 @@
 		4A26A2B5296C0201008EE2E6 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A26A2B3296C0201008EE2E6 /* DetailsViewController.xib */; };
 		4A26A2B7296C0E32008EE2E6 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26A2B6296C0E32008EE2E6 /* Transformation.swift */; };
 		4A26A2B8296C0ECB008EE2E6 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26A2B6296C0E32008EE2E6 /* Transformation.swift */; };
+		4A9316BC299A52EF00E49AA5 /* CustomMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */; };
 		4A968458296EA6730020A804 /* TransformationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968456296EA6730020A804 /* TransformationsViewController.swift */; };
 		4A968459296EA6730020A804 /* TransformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A968457296EA6730020A804 /* TransformationViewController.xib */; };
 		4AE84F022997EE03002384E6 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F012997EE03002384E6 /* Place.swift */; };
 		4AE84F042997EF3F002384E6 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F032997EF3F002384E6 /* Annotation.swift */; };
 		4AE84F062997F0F4002384E6 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F052997F0F4002384E6 /* AnnotationView.swift */; };
 		4AE84F092997F4D7002384E6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE84F082997F4D7002384E6 /* Kingfisher */; };
+		4AE84F0B2998CDF3002384E6 /* Callout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F0A2998CDF3002384E6 /* Callout.swift */; };
 		4AFE5D83295D7DD200CD1184 /* LocalDataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFE5D82295D7DD200CD1184 /* LocalDataLayer.swift */; };
 		4AFE5D87295E276900CD1184 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFE5D85295E276900CD1184 /* LoginViewController.swift */; };
 		4AFE5D88295E276900CD1184 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFE5D86295E276900CD1184 /* LoginViewController.xib */; };
@@ -92,11 +94,13 @@
 		4A26A2B2296C0201008EE2E6 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		4A26A2B3296C0201008EE2E6 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		4A26A2B6296C0E32008EE2E6 /* Transformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
+		4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarker.swift; sourceTree = "<group>"; };
 		4A968456296EA6730020A804 /* TransformationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationsViewController.swift; sourceTree = "<group>"; };
 		4A968457296EA6730020A804 /* TransformationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransformationViewController.xib; sourceTree = "<group>"; };
 		4AE84F012997EE03002384E6 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		4AE84F032997EF3F002384E6 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		4AE84F052997F0F4002384E6 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		4AE84F0A2998CDF3002384E6 /* Callout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callout.swift; sourceTree = "<group>"; };
 		4AFE5D82295D7DD200CD1184 /* LocalDataLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataLayer.swift; sourceTree = "<group>"; };
 		4AFE5D85295E276900CD1184 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4AFE5D86295E276900CD1184 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -230,6 +234,8 @@
 				4A1B07B8295B6D3B00BDFB1F /* MapViewController.xib */,
 				4AE84F032997EF3F002384E6 /* Annotation.swift */,
 				4AE84F052997F0F4002384E6 /* AnnotationView.swift */,
+				4AE84F0A2998CDF3002384E6 /* Callout.swift */,
+				4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */,
 			);
 			path = MapPage;
 			sourceTree = "<group>";
@@ -456,9 +462,11 @@
 				4A1B07B1295B6C0E00BDFB1F /* Notes.swift in Sources */,
 				4A1B07BF295B79A400BDFB1F /* TableViewCell.swift in Sources */,
 				4A1B07C9295C372F00BDFB1F /* NetworkLayer.swift in Sources */,
+				4A9316BC299A52EF00E49AA5 /* CustomMarker.swift in Sources */,
 				4A223126297351ED004A7CE7 /* TransformationDetailViewController.swift in Sources */,
 				4AFE5D83295D7DD200CD1184 /* LocalDataLayer.swift in Sources */,
 				4AE84F062997F0F4002384E6 /* AnnotationView.swift in Sources */,
+				4AE84F0B2998CDF3002384E6 /* Callout.swift in Sources */,
 				4A26A2B4296C0201008EE2E6 /* DetailsViewController.swift in Sources */,
 				4AE84F042997EF3F002384E6 /* Annotation.swift in Sources */,
 				4A1B07B9295B6D3B00BDFB1F /* MapViewController.swift in Sources */,

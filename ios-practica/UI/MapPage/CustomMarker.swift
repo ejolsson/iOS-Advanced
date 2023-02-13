@@ -1,18 +1,17 @@
 //
-//  AnnotationView.swift
+//  CustomMarker.swift
 //  ios-practica
 //
-//  Created by Eric Olsson on 2/11/23.
+//  Created by Eric Olsson on 2/13/23.
 //
 
+import UIKit
 import MapKit
 
-class AnnotationView: MKMarkerAnnotationView {
+class CustomMarker: MKAnnotationView {
+    
     override var annotation: MKAnnotation? {
         willSet {
-            guard let value = newValue as? Annotation else { return }
-            detailCalloutAccessoryView = Callout(annotation: value)
-            
             let pinImage = UIImage(named: "marker-blue")
             let size = CGSize(width: 40, height: 40)
             UIGraphicsBeginImageContext(size)
@@ -20,12 +19,7 @@ class AnnotationView: MKMarkerAnnotationView {
             
             let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
             
-            // add image
             self.image = resizedImage
         }
-    }
-    
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
     }
 }
