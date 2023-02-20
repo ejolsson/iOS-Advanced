@@ -44,6 +44,7 @@
 		4AE84F062997F0F4002384E6 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F052997F0F4002384E6 /* AnnotationView.swift */; };
 		4AE84F092997F4D7002384E6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE84F082997F4D7002384E6 /* Kingfisher */; };
 		4AE84F0B2998CDF3002384E6 /* Callout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F0A2998CDF3002384E6 /* Callout.swift */; };
+		4AED4C27299E1E5C005F4393 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AED4C26299E1E5C005F4393 /* KeychainManager.swift */; };
 		4AFE5D83295D7DD200CD1184 /* LocalDataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFE5D82295D7DD200CD1184 /* LocalDataLayer.swift */; };
 		4AFE5D87295E276900CD1184 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFE5D85295E276900CD1184 /* LoginViewController.swift */; };
 		4AFE5D88295E276900CD1184 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFE5D86295E276900CD1184 /* LoginViewController.xib */; };
@@ -105,6 +106,7 @@
 		4AE84F032997EF3F002384E6 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		4AE84F052997F0F4002384E6 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		4AE84F0A2998CDF3002384E6 /* Callout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callout.swift; sourceTree = "<group>"; };
+		4AED4C26299E1E5C005F4393 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		4AFE5D82295D7DD200CD1184 /* LocalDataLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataLayer.swift; sourceTree = "<group>"; };
 		4AFE5D85295E276900CD1184 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4AFE5D86295E276900CD1184 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			children = (
 				4A1B07C8295C372F00BDFB1F /* NetworkLayer.swift */,
 				4AFE5D82295D7DD200CD1184 /* LocalDataLayer.swift */,
+				4AED4C26299E1E5C005F4393 /* KeychainManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				4A1B07C3295B7D1E00BDFB1F /* Hero.swift in Sources */,
 				4A1B07B5295B6CE300BDFB1F /* TabBarController.swift in Sources */,
 				4AE84F022997EE03002384E6 /* Place.swift in Sources */,
+				4AED4C27299E1E5C005F4393 /* KeychainManager.swift in Sources */,
 				4A1B07B1295B6C0E00BDFB1F /* Notes.swift in Sources */,
 				4A1B07BF295B79A400BDFB1F /* TableViewCell.swift in Sources */,
 				4A1B07C9295C372F00BDFB1F /* NetworkLayer.swift in Sources */,

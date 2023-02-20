@@ -9,11 +9,17 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    public var userEmail:String = ""
+    let keychain = KeychainManager()
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
     @IBAction func loginButtonTapped(_ sender: Any) {
+        
+        userEmail = emailTextField.text ?? ""
+        
         guard let email = emailTextField.text, !email.isEmpty else {
             print("No email provided")
             return
@@ -27,8 +33,12 @@ class LoginViewController: UIViewController {
         NetworkLayer.shared.login(email: email, password: password) { token, error in
             if let token = token {
                 LocalDataLayer.shared.save(token: token)
-                print("Token valid")
-                print(token)
+                print("Token valid during login")
+                print("User email = \(email)")
+                print("User token = \(token)")
+                
+                self.keychain.saveData(email: email, token: token)
+//                KeychainManager.saveData(email: email, token: token)
                 
                 DispatchQueue.main.async {
                     UIApplication
@@ -42,6 +52,8 @@ class LoginViewController: UIViewController {
                 print("Login error: ", error?.localizedDescription ?? "")
             }
         }
+        
+        
     }
     
     override func viewDidLoad() {

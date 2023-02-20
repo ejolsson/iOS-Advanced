@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         // window?.rootViewController = TabBarController() // whichever VC is listed, will be the entry VC to the app
         // enable condidtional logic based on login status
-        if LocalDataLayer.shared.isUserLoggedIn() {
+        if LocalDataLayer.shared.isUserLoggedIn2() { // moving from .isUserLoggedIn() to .isUserLoggedIn2()
             window?.rootViewController = TabBarController()
         } else {
             window?.rootViewController = LoginViewController()

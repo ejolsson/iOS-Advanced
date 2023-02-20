@@ -13,19 +13,40 @@ final class LocalDataLayer {
     private static let heros = "heros"
     
     static let shared = LocalDataLayer()
+    let keychain = KeychainManager()
     
+    // TODO: - Replace UserDefaults with Core Data
     func save(token: String) {
         return UserDefaults.standard.set(token, forKey: Self.token)
-    } // complete
+    } // user token is saved to user defaults
     
+    // TODO: - Replace UserDefaults with Core Data
     func getToken() -> String {
         return UserDefaults.standard.string(forKey: Self.token) ?? ""
-    } // complete
+    }
+    // Used in: HerosListViewVC
+    // Purpose: Fetch & prep token for api call, get heros
+    // Impleme: Reads value fm UserDefaults
+    // Status: Works
+    
+    func getToken2() -> String { // purpose:
+        return keychain.readData(email: "") ?? "" // Data("ejolsson@gmail".utf8)
+    }
+    // Used in: HerosListViewVC — NOT YET!!! ⚠️
+    // Purpose: Fetch & prep token for api call, get heros
+    // Observations: putting any email in "" after the ?? seems to enable login persistence after rerunning. ANS: See func isUserLoggedIn()... IF "not empty", THEN show HerosListViewVC
     
     func isUserLoggedIn() -> Bool {
         return !getToken().isEmpty
     } // complete
-    
+
+    func isUserLoggedIn2() -> Bool {
+        return !getToken2().isEmpty
+    }
+    // Used in: SceneDelegate
+    // Purpose: IF stmt → choose HeroListVC or LoginVC
+    // uses keychain storage
+
     func save(heros: [Hero]) {
         if let encodedHeros = try? JSONEncoder().encode(heros) {
             UserDefaults.standard.set(encodedHeros, forKey: Self.heros)

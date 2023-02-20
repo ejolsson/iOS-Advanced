@@ -29,7 +29,10 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         let xib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: "customTableCell")
         
+        // load token, fm UserDefaults storage, prior to api call
         let token = LocalDataLayer.shared.getToken()
+        // load token fm keychain, prior to
+        // let token2 =
         
         NetworkLayer.shared.fetchHeros(token: token) { [weak self] allHeros, error in
             guard let self = self else { return }
@@ -88,9 +91,13 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func configureItems() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+        self.navigationItem.rightBarButtonItems = [ UIBarButtonItem(
             title: "Logout", image: UIImage(systemName: "person.circle"), target: self, action: #selector(didTapLogoutButton2)
-        )
+        ),
+            UIBarButtonItem(
+            title: "test", image: UIImage(systemName: "play"), target: self, action: #selector(didTapTestButton)
+            )
+        ]
     }
     
     @objc func didTapLogoutButton() {
@@ -100,10 +107,21 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func didTapLogoutButton2() {
-        print("didTapLogoutButton pressed\n")
+        print("didTapTestButton pressed\n")
         let vc = UIViewController() // LogoutViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func didTapTestButton() {
+        
+        // Test functions below
+        print("didTapLogoutButton pressed\n")
+        print("\(UserDefaults.standard.string(forKey: "token"))\n")
+        print("\(UserDefaults.standard.string(forKey: "email"))\n")
+        print("\(UserDefaults.standard.string(forKey: "password"))\n")
+        //KeyChainManager.readData(LoginViewController.userEmail)
+    }
+
 }
 
 extension UIImageView {

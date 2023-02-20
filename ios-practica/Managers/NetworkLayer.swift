@@ -144,4 +144,8 @@ final class NetworkLayer {
         task.resume()
     }
     
+    // TODO: - Add fetch locations call -
+    func fetchLocations (){
+        
+    }
 }
