@@ -26,6 +26,8 @@ class KeychainManager {
         print("email = \(email)\n")
         print("token = \(token)\n")
         
+        print("Reading fm UserDefaults: \(UserDefaults.standard.string(forKey: "token"))\n")
+        
         let attributes: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: email,
@@ -40,12 +42,13 @@ class KeychainManager {
         }
     }
     
-    func readData(email: String) -> String? { // email: Data or String???
+//    func readData(email: String) -> String?
+    func readData() {//}-> String? { // email: Data or String???
         
         // Prep query
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: email,
+//            kSecAttrAccount as String: email,
             kSecMatchLimit as String: kSecMatchLimitOne,
             kSecReturnAttributes as String: true,
             kSecReturnData as String: true
@@ -53,30 +56,32 @@ class KeychainManager {
         
         var item: CFTypeRef?
         
-        var result: String? //AnyObject?
+        //var result: String? //AnyObject?
         
         let status = SecItemCopyMatching(query as CFDictionary, &item)
         
-        print("Read status: \(status)")
-        return result //as? Data
+        print("Keychain readData status: \(status)")
+//        print("Email read fm keychain: \(email)")
+        //print("Token read fm keychain: \(token)")
+        //return result //as? Data
         
         
         // extract info // KEEPCODING METHOD
-//        if SecItemCopyMatching(query as CFDictionary, &item) == noErr {
-//
-//            if let existingItem = item as? [String: Any],
-//               let email = existingItem[kSecAttrAccount as String] as? String,
-//               let tokenData = existingItem[kSecValueData as String] as? Data,
-//               let token = String(data: tokenData, encoding: .utf8) {
-//
-//                debugPrint("The info is: \(email) - \(token)")
-//                return token
-//            }
-//
-//        } else {
-//            debugPrint("A username error was produced")
-//            return nil
-//        }
+        if SecItemCopyMatching(query as CFDictionary, &item) == noErr {
+
+            if let existingItem = item as? [String: Any],
+               let email = existingItem[kSecAttrAccount as String] as? String,
+               let tokenData = existingItem[kSecValueData as String] as? Data,
+               let token = String(data: tokenData, encoding: .utf8) {
+
+                debugPrint("The info is: \(email) - \(token)")
+                //return token
+            }
+
+        } else {
+            debugPrint("A username error was produced")
+            //return nil
+        }
 //        return token
     }
     

@@ -12,10 +12,21 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    lazy var coreDataManager: CoreDataManager = .init(modelName: "Heros")
+    
+    static let sharedAppDelegate: AppDelegate = {
+        
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError("Error during app delegation creation")
+        }
+        
+        return delegate
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
+        // https://stackoverflow.com/questions/10239634/how-can-i-check-what-is-stored-in-my-core-data-database
         return true
     }
 

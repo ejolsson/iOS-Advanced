@@ -14,5 +14,7 @@ let heroSample1 = Hero (
     name: "Goku",
     photo: "",
     description: "",
-    favorite: false
+    favorite: false,
+    latitude: 0.00,
+    longitude: 0.00
 )

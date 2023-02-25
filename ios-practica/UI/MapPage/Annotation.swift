@@ -12,11 +12,13 @@ class Annotation: NSObject, MKAnnotation {
     
     let coordinate: CLLocationCoordinate2D
     let name: String
-    let image: String
+//    let image: String
+//    let dateShow: String
     
     init(place: Place) {
-        coordinate = CLLocationCoordinate2D(latitude: place.latitude, longitude:   place.longitude)
-        name = place.name
-        image = place.image
+        coordinate = CLLocationCoordinate2D(latitude: Double(place.latitud) ?? 0.0, longitude:   Double(place.longitud) ?? 0.0)
+        name = place.id
+//        image = place.image
+//        dateShow = place.dateShow
     }
 }

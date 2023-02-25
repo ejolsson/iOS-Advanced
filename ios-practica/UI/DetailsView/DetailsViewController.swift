@@ -22,7 +22,7 @@ class DetailsViewController: UIViewController {
         navigationController?.pushViewController(transView, animated: true)
     } // complete
     
-    var hero: Hero!
+    var hero: HeroCD!
     var transformations: [Transformation] = []
     
     override func viewDidLoad() {
@@ -31,12 +31,12 @@ class DetailsViewController: UIViewController {
         title = hero.name
         transformationButton.alpha = 0
         
-        heroImageView.setImage(url: hero.photo)
+        heroImageView.setImage(url: hero.photo ?? "")
         heroTitleLabel.text = hero.name
         heroDescLabel.text = hero.description
         //heroDescLabel.sizeToFit() // attempting to align text to top of label
         
-        let token = LocalDataLayer.shared.getToken()
+        let token = LocalDataLayer.shared.getTokenFmUserDefaults()
         
         NetworkLayer
             .shared

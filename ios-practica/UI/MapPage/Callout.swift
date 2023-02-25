@@ -62,7 +62,7 @@ class Callout: UIView {
     }
     
     private func setupImageView() {
-        imageView.kf.setImage(with: URL(string: annotation.image))
+//        imageView.kf.setImage(with: URL(string: annotation.image))
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         addSubview(imageView)

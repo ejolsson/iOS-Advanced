@@ -16,12 +16,12 @@ final class LocalDataLayer {
     let keychain = KeychainManager()
     
     // TODO: - Replace UserDefaults with Core Data
-    func save(token: String) {
+    func saveTokenToUserDefaults(token: String) {
         return UserDefaults.standard.set(token, forKey: Self.token)
     } // user token is saved to user defaults
     
     // TODO: - Replace UserDefaults with Core Data
-    func getToken() -> String {
+    func getTokenFmUserDefaults() -> String {
         return UserDefaults.standard.string(forKey: Self.token) ?? ""
     }
     // Used in: HerosListViewVC
@@ -29,29 +29,31 @@ final class LocalDataLayer {
     // Impleme: Reads value fm UserDefaults
     // Status: Works
     
-    func getToken2() -> String { // purpose:
-        return keychain.readData(email: "") ?? "" // Data("ejolsson@gmail".utf8)
+    func getTokenFmKeychain() {//}-> String { // purpose:
+        return keychain.readData() //?? "" // Data("ejolsson@gmail".utf8)
     }
     // Used in: HerosListViewVC — NOT YET!!! ⚠️
     // Purpose: Fetch & prep token for api call, get heros
     // Observations: putting any email in "" after the ?? seems to enable login persistence after rerunning. ANS: See func isUserLoggedIn()... IF "not empty", THEN show HerosListViewVC
     
     func isUserLoggedIn() -> Bool {
-        return !getToken().isEmpty
+        return !getTokenFmUserDefaults().isEmpty
     } // complete
 
-    func isUserLoggedIn2() -> Bool {
-        return !getToken2().isEmpty
-    }
+//    func isUserLoggedIn2() -> Bool {
+//        return !getToken2().isEmpty
+//    }
     // Used in: SceneDelegate
     // Purpose: IF stmt → choose HeroListVC or LoginVC
     // uses keychain storage
 
-    func save(heros: [Hero]) {
+    func saveHerosToUserDefaults(heros: [Hero]) {
         if let encodedHeros = try? JSONEncoder().encode(heros) {
             UserDefaults.standard.set(encodedHeros, forKey: Self.heros)
         }
-    } // complete
+    } // this is the magic save func for UserDefaults
+    
+
     
     func getHeros() -> [Hero] {
         if let savedHerosData = UserDefaults.standard.object(forKey: Self.heros) as? Data {
@@ -66,4 +68,11 @@ final class LocalDataLayer {
             return []
         }
     } // complete
+    
+//    func getHeros2() {
+//        let hero = HeroCD(context: context)
+//        
+//        hero.id = id
+//        hero.name = name
+//    }
 }

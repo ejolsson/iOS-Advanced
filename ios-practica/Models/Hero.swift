@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Hero: Codable {
+struct Hero: Codable { // was codable...
     let id: String
     let name: String
     let photo: String
@@ -15,7 +15,6 @@ struct Hero: Codable {
     let favorite: Bool
 //    let dateShow: String
 //    let idLocation: String
-//    let latitude: Double
-//    let longitude: Double
-
+    var latitude: Double? // optional since values not present in heros api call
+    var longitude: Double?
 }

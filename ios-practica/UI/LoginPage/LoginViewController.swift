@@ -32,13 +32,13 @@ class LoginViewController: UIViewController {
         
         NetworkLayer.shared.login(email: email, password: password) { token, error in
             if let token = token {
-                LocalDataLayer.shared.save(token: token)
+                LocalDataLayer.shared.saveTokenToUserDefaults(token: token)
                 print("Token valid during login")
                 print("User email = \(email)")
                 print("User token = \(token)")
                 
                 self.keychain.saveData(email: email, token: token)
-//                KeychainManager.saveData(email: email, token: token)
+                self.keychain.readData()//(email: email)
                 
                 DispatchQueue.main.async {
                     UIApplication
