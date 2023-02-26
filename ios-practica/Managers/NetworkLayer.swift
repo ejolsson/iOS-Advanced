@@ -62,7 +62,7 @@ final class NetworkLayer {
         task.resume()
     } // Oscar style
     
-    func fetchHeros(token: String?, completion: @escaping ([Hero]?, Error?) -> Void) {
+    func fetchHeros(token: String?, completion: @escaping ([HeroModel]?, Error?) -> Void) {
         
         // local function definitions
         guard let url = URL(string: "https://dragonball.keepcoding.education/api/heros/all") else {
@@ -89,7 +89,7 @@ final class NetworkLayer {
                 return
             }
             
-            guard let heros = try? JSONDecoder().decode([Hero].self, from: data) else {
+            guard let heros = try? JSONDecoder().decode([HeroModel].self, from: data) else {
                 completion(nil, NetworkError.decodingFailed)
                 return
             }
@@ -189,7 +189,7 @@ final class NetworkLayer {
         task.resume()
     } // My style, Oscar-based.
     
-    func getHeroes(token: String?, completion: @escaping ([Hero], Error?) -> Void) {
+    func getHeroes(token: String?, completion: @escaping ([HeroModel], Error?) -> Void) {
         guard let url = URL(string: "https://dragonball.keepcoding.education/api/heros/all") else {
             completion([], NetworkError.malformedURL)
             return
@@ -214,7 +214,7 @@ final class NetworkLayer {
                 return
             }
             
-            guard let response = try? JSONDecoder().decode([Hero].self, from: data) else {
+            guard let response = try? JSONDecoder().decode([HeroModel].self, from: data) else {
                 completion([], NetworkError.decodingFailed)
                 return
             }

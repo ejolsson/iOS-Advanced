@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Hero: Codable { // was codable...
+struct HeroModel: Codable { // was codable...
     let id: String
     let name: String
     let photo: String

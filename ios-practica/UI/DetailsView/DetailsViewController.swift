@@ -22,7 +22,7 @@ class DetailsViewController: UIViewController {
         navigationController?.pushViewController(transView, animated: true)
     } // complete
     
-    var hero: HeroCD!
+    var hero: HeroModel!
     var transformations: [Transformation] = []
     
     override func viewDidLoad() {

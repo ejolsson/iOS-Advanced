@@ -9,7 +9,7 @@ import Foundation
 
 // Hard code data to support UI development
 
-let heroSample1 = Hero (
+let heroSample1 = HeroModel (
     id: "0",
     name: "Goku",
     photo: "",

@@ -16,12 +16,15 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    var heros: [HeroCD] = [] // ⭐️ Changing fm [Hero] to [HeroCD]
-    var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
-    var currentHero: HeroCD?
-    
-    var hero: HeroCD! // ⭐️ Changing fm Hero! to HeroCD!
+    var herosModel: [HeroModel] = [] // Oscar
     var places: [Place] = []
+    
+    var herosCD: [HeroCD] = []
+//    var heroApi: HeroModel!
+    var heroCD: HeroCD!
+    
+    var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
+    let loginInfo = LoginViewController() // use this to get user token
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,88 +37,97 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         let xib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: "customTableCell")
         
-        // load token, fm UserDefaults storage, prior to api call
-        let token = LocalDataLayer.shared.getTokenFmUserDefaults() // load token prior to api calls
-
+        let tokenFmUD = LocalDataLayer.shared.getTokenFmUserDefaults() // load token prior to api calls
+        let tokenFmKC = loginInfo.getToken(account: UserDefaults.standard.string(forKey: "email") ?? "")
         
-        if heros.isEmpty { // copied this chunk fm CoreDataEjemplo > EmployeesViewController > ViewDidLoad()
-            // 1.- llamar al api rest
-            // 2.- guardar la info en coredata
-            // getEmployeesFromApi { employee
-            // mapeo del json a Employee
-            // }
-        }
-        
-        
-        NetworkLayer.shared.fetchHeros(token: token) { [weak self] allHeros, error in
+        // Oscar start
+        NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] allHeros, error in
             guard let self = self else { return }
             
             if let allHeros = allHeros {
-                self.heros = allHeros
+                self.herosModel = allHeros
                 
-//                LocalDataLayer.shared.saveHerosToUserDefaults(heros: allHeros) // old save way
-                self.saveHerosToCoreData(heros: allHeros) // desired way, this had no impact. del app, reran w/ this commmented and heros showed just fine. ⚠️ Need to find out where/how tableview is getting painted... Update: I commented out this entire block and finally the hero data didn't show.
-                //print("\(allHeros)\n")
+                LocalDataLayer.shared.saveHerosToUserDefaults(heros: allHeros)
+                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             } else {
                 print("Error fetching heros: ", error?.localizedDescription ?? "")
             }
-        }
+        } // Oscar end
         
-        configureItems()
-        
-        // ----------- below imported fm wait example ----------------------
-        
-//        let updateFullItems = {(heros: [Hero]) -> Void in
+//        if herosCD.isEmpty { // copied this chunk fm CoreDataEjemplo > EmployeesViewController > ViewDidLoad()
+//            debugPrint("herosCD isEmpty")
 //
-//            var fullItems: [Hero] = []
+//            NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] herosFmApi, error in
+//                guard let self = self else { return }
 //
-//            let group = DispatchGroup() // https://developer.apple.com/documentation/dispatch/dispatchgroup
+////                print("herosFmApi = \(String(describing: herosFmApi))\n") // works
 //
-//        //    DispatchGroup() - Groups allow you to aggregate a set of tasks and synchronize behaviors on the group. You attach multiple work items to a group and schedule them for asynchronous execution on the same queue or different queues. When all work items finish executing, the group executes its completion handler. You can also wait synchronously for all tasks in the group to finish executing.
+////                LocalDataLayer.shared.saveHerosToUserDefaults(heros: herosFmApi ?? []) // old save way
 //
-//            for hero in heros {
-//                group.enter() // INDICA QUE LA OPERACIÓN COMIENZA // Apple Docs: Explicitly indicates that a block has entered the group.
+//                let group1 = DispatchGroup()
+////                let group2 = DispatchGroup()
 //
-//                NetworkLayer.shared.getLocalization(token: token, with: hero.id) { heroLocations, error in
-//                    var fullHero = hero
-//                    if let firstLocation = heroLocations.first {
-//                        fullHero.latitude = Double(firstLocation.latitud)
-//                        fullHero.longitude = Double(firstLocation.longitud)
-//                    } else {
-//                        fullHero.latitude = 0.0
-//                        fullHero.longitude = 0.0
+//                // map api values into Core Data
+//                if let herosForMapping = self.heroCD { // this block fails
+//
+//                    print("Hi\n")
+//
+//                    herosFmApi?.forEach { hero in
+//                        group1.enter()
+//                        print("Hero loop: \(String(describing: herosFmApi))")
+//                        herosForMapping.id = hero.id
+//                        herosForMapping.name = hero.name
+//                        herosForMapping.desc = hero.description
+//                        herosForMapping.photo = hero.photo
+//                        herosForMapping.favorite = hero.favorite
+//
+//                        NetworkLayer.shared.fetchLocations(token: tokenFmUD, heroId: hero.id) { heroLocations, error in
+//                            var heroWithLocation = hero
+//
+//                            if let firstLocation = heroLocations?.first {
+//                                herosForMapping.latitude = Double(firstLocation.latitud) ?? 0.0
+//                                herosForMapping.longitude = Double(firstLocation.longitud) ?? 0.0
+//                            } else {
+//                                heroWithLocation.latitude = 0.0
+//                                heroWithLocation.longitude = 0.0
+//                            }
+//                            group1.leave()
+//                        }
+//
 //                    }
-//                    fullItems.append(fullHero)
-//                    group.leave() // INDICA QUE LA OPERACIÓN TERMINA
+//
+//                    group1.notify(queue: .main) {
+//                        print("Group 1 tasks done\n")
+//                    }
+//
+//                    print("\(herosForMapping)\n")
+////                    self.saveHerosToCoreData(heros: herosForMapping)
+//
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                    }
+//                } else {
+//                    print("Error fetching heros: ", error?.localizedDescription ?? "") // this error is firing...
 //                }
 //            }
 //
-//            group.notify(queue: .main) {
 //
-//                // CUANDO TODAS LAS TAREAS DEL GRUPO TERMINEN, SE EJECUTA LA SIGUIENTE FUNCIÓN
-//                self.moveToMain(fullItems)
 //
-//            }
+//        } else {
+//            debugPrint("heros is NOT empty")
 //        }
-
-//        NetworkLayer.shared.getHeroes(token: token) { heros, error in
-//
-//            if error == nil {
-//                updateFullItems(heros) // UNA VEZ TENGO LA LISTA DE HÉROES, COMIENZO LAS
-//            }
-//
-//        }
-
-        // ----------- above imported fm wait example ----------------------
         
-//        saveHerosToCoreData(heros: heros) // moved inside 'fetchHeros' above
+        // Read fm HeroCD & map to HeroModel
+        
+        configureItems() // load bar buttons
+        
         
     } // End viewDidLoad
     
-    let moveToMain = { (heros: [Hero]) -> Void in
+    let moveToMain = { (heros: [HeroModel]) -> Void in
         debugPrint("Reciviendo toda la info")
 
         debugPrint("Número de héroes: \(heros.count)\n")
@@ -138,9 +150,10 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
 //        }
 //    }
     
-    func saveHerosToCoreData(heros: [HeroCD]) { // my code, taking model matching api service. Switch fm Hero to HeroCD
+    func saveHerosToCoreData(heros: HeroModel) {
 //        if let encodedHeros = try? JSONEncoder().encode(heros) { // 'encodedHeros not used as written...
-            let heros = HeroCD(context: context)
+        
+        let heros = HeroCD(context: context)
             do {
                 try context.save()
 //                try CoreDataManager.saveContext(<#T##self: CoreDataManager##CoreDataManager#>)
@@ -177,7 +190,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     // table rows creation
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return heros.count
+        return herosModel.count
     } // should be complete
     
     // table cell UI creation
@@ -185,7 +198,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "customTableCell", for: indexPath) as! TableViewCell
         
         // updated to accept API data
-        let hero = heros[indexPath.row]
+        let hero = herosModel[indexPath.row]
         
         cell.iconImageView.setImage(url: hero.photo ?? "") // need to write extension
         cell.titleLabel.text = hero.name
@@ -196,45 +209,45 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     } // should be complete
 
-    // table row height???
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
-    } // should be complete
+    }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { // enables detailsView viewing
-        let hero = heros[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let hero = herosModel[indexPath.row]
         let detailsView = DetailsViewController()
         detailsView.hero = hero
         navigationController?.pushViewController(detailsView, animated: true)
-    }
+    } // enables detailsView viewing
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         // empty
     }
-    
+        
     private func configureItems() {
         self.navigationItem.rightBarButtonItems = [ UIBarButtonItem(
-            title: "Logout", image: UIImage(systemName: "person.circle"), target: self, action: #selector(didTapLogoutButton2)
+            title: "Logout", image: UIImage(named: ""), target: self, action: #selector(didTapLogoutButton2) // person.cirle, ipad.and.arrow.forward, images: marker-blue, exit,
         ),
             UIBarButtonItem(
             title: "test", image: UIImage(systemName: "play"), target: self, action: #selector(didTapTestButton)
             )
         ]
-    }
-    
-    @objc func didTapLogoutButton() {
-        print("didTapLogoutButton pressed\n")
-        let vc = UIViewController() // LogoutViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
+    } // logout & test buttons
     
     @IBAction func didTapLogoutButton2() {
-        print("didTapTestButton pressed\n")
-        let vc = UIViewController() // LogoutViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        
+        var window: UIWindow?
+        let loginVC = LoginViewController()
+        
+        UserDefaults.standard.set(false, forKey: "login status") // set login status
+        print("Login status: \(UserDefaults.standard.bool(forKey: "login status"))\n")
+        
+        loginInfo.deleteTokens(service: "token mgmt", account: UserDefaults.standard.string(forKey: "email") ?? "")
+        
+        self.present(loginVC, animated: true) // modal pop up, works, not secure/effective
+//        window?.rootViewController = LoginViewController()
+//        VcSelector.updateRootVC() // call vc selector
     }
-    
-
     
     @IBAction func didTapTestButton() {
         
@@ -243,9 +256,9 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         
         print("Context = \(context)\n")
         
-        print("HerosListVC > heros: [Hero] = \(heros)\n")
+        print("HerosListVC > herosModel: [HeroModel] = \(herosModel)\n")
         
-        print("HerosListVC > hero: Hero! = \(String(describing: hero ?? nil))\n")
+//        print("HerosListVC > hero: Hero! = \(String(describing: heroCD ?? nil))\n")
         
         print("Token fm UserDefaults = \(String(describing: UserDefaults.standard.string(forKey: "token")))\n")
         print("Email fm UserDefaults = \(String(describing: UserDefaults.standard.string(forKey: "email")))\n")
@@ -307,4 +320,11 @@ extension UIImageView {
     }
     
     
+}
+
+extension UIBarButtonItem {
+    func addTargetForAction(target: AnyObject, action: Selector) {
+        self.target = target
+        self.action = action
+    }
 }

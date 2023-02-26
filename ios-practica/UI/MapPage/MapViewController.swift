@@ -15,7 +15,7 @@ class MapViewController: UIViewController {
     
     var locationManager: CLLocationManager?
     
-    let heroPlaces = [
+    let heroPlaces = [ // TODO: Replace this array with one from Core Data
 
         Place(id: "AB3A873C-37B4-4FDE-A50F -8014D40D94FE", latitud: "39.3260685", longitud: "-4.8379791"),//, dateShow: "2022-09-11T00: 00:00Z", name: "Test"),
 

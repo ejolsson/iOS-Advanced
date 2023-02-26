@@ -9,8 +9,14 @@ import Foundation
 import CoreData
 
 @objc(HeroCD)
-public class HeroCD: NSManagedObject {
+public class HeroCD: NSManagedObject { // had Codable
+//    public required init(from decoder: Decoder) throws {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
+//    public required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
 }
 
 public extension HeroCD {
@@ -24,7 +30,8 @@ public extension HeroCD {
     @NSManaged var desc: String?
     @NSManaged var photo: String?
     @NSManaged var favorite: Bool
-    
+    @NSManaged var latitude: Double
+    @NSManaged var longitude: Double
 }
 
 extension HeroCD: Identifiable {}

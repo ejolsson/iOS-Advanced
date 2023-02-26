@@ -22,8 +22,8 @@
 		4A1B07BA295B6D3B00BDFB1F /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1B07B8295B6D3B00BDFB1F /* MapViewController.xib */; };
 		4A1B07BF295B79A400BDFB1F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07BD295B79A400BDFB1F /* TableViewCell.swift */; };
 		4A1B07C0295B79A400BDFB1F /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1B07BE295B79A400BDFB1F /* TableViewCell.xib */; };
-		4A1B07C3295B7D1E00BDFB1F /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07C2295B7D1E00BDFB1F /* Hero.swift */; };
-		4A1B07C4295B7D7C00BDFB1F /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07C2295B7D1E00BDFB1F /* Hero.swift */; };
+		4A1B07C3295B7D1E00BDFB1F /* HeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07C2295B7D1E00BDFB1F /* HeroModel.swift */; };
+		4A1B07C4295B7D7C00BDFB1F /* HeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07C2295B7D1E00BDFB1F /* HeroModel.swift */; };
 		4A1B07C6295B7D9E00BDFB1F /* HeroSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07C5295B7D9E00BDFB1F /* HeroSample.swift */; };
 		4A1B07C9295C372F00BDFB1F /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07C8295C372F00BDFB1F /* NetworkLayer.swift */; };
 		4A22312029730BD0004A7CE7 /* HeroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A22311F29730BD0004A7CE7 /* HeroTests.swift */; };
@@ -34,6 +34,7 @@
 		4A26A2B5296C0201008EE2E6 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A26A2B3296C0201008EE2E6 /* DetailsViewController.xib */; };
 		4A26A2B7296C0E32008EE2E6 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26A2B6296C0E32008EE2E6 /* Transformation.swift */; };
 		4A26A2B8296C0ECB008EE2E6 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26A2B6296C0E32008EE2E6 /* Transformation.swift */; };
+		4A927F9229AB85140041F80F /* VcSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A927F9129AB85140041F80F /* VcSelector.swift */; };
 		4A9316BC299A52EF00E49AA5 /* CustomMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */; };
 		4A9316C0299A84E100E49AA5 /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9316BE299A84E100E49AA5 /* LogoutViewController.swift */; };
 		4A9316C1299A84E100E49AA5 /* LogoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9316BF299A84E100E49AA5 /* LogoutViewController.xib */; };
@@ -91,7 +92,7 @@
 		4A1B07B8295B6D3B00BDFB1F /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		4A1B07BD295B79A400BDFB1F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		4A1B07BE295B79A400BDFB1F /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
-		4A1B07C2295B7D1E00BDFB1F /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
+		4A1B07C2295B7D1E00BDFB1F /* HeroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroModel.swift; sourceTree = "<group>"; };
 		4A1B07C5295B7D9E00BDFB1F /* HeroSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSample.swift; sourceTree = "<group>"; };
 		4A1B07C8295C372F00BDFB1F /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		4A22311F29730BD0004A7CE7 /* HeroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroTests.swift; sourceTree = "<group>"; };
@@ -101,6 +102,7 @@
 		4A26A2B2296C0201008EE2E6 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		4A26A2B3296C0201008EE2E6 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		4A26A2B6296C0E32008EE2E6 /* Transformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
+		4A927F9129AB85140041F80F /* VcSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VcSelector.swift; sourceTree = "<group>"; };
 		4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarker.swift; sourceTree = "<group>"; };
 		4A9316BE299A84E100E49AA5 /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		4A9316BF299A84E100E49AA5 /* LogoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoutViewController.xib; sourceTree = "<group>"; };
@@ -268,7 +270,7 @@
 		4A1B07C1295B7CE400BDFB1F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4A1B07C2295B7D1E00BDFB1F /* Hero.swift */,
+				4A1B07C2295B7D1E00BDFB1F /* HeroModel.swift */,
 				4A1B07C5295B7D9E00BDFB1F /* HeroSample.swift */,
 				4A26A2B6296C0E32008EE2E6 /* Transformation.swift */,
 				4AE84F012997EE03002384E6 /* Place.swift */,
@@ -338,6 +340,7 @@
 			children = (
 				4AFE5D85295E276900CD1184 /* LoginViewController.swift */,
 				4AFE5D86295E276900CD1184 /* LoginViewController.xib */,
+				4A927F9129AB85140041F80F /* VcSelector.swift */,
 			);
 			path = LoginPage;
 			sourceTree = "<group>";
@@ -495,11 +498,12 @@
 				4A1B07C6295B7D9E00BDFB1F /* HeroSample.swift in Sources */,
 				4A1B077C295B666A00BDFB1F /* SceneDelegate.swift in Sources */,
 				4A968458296EA6730020A804 /* TransformationsViewController.swift in Sources */,
-				4A1B07C3295B7D1E00BDFB1F /* Hero.swift in Sources */,
+				4A1B07C3295B7D1E00BDFB1F /* HeroModel.swift in Sources */,
 				4A1B07B5295B6CE300BDFB1F /* TabBarController.swift in Sources */,
 				4AE84F022997EE03002384E6 /* Place.swift in Sources */,
 				4AB8985229A52771009CE481 /* Heros.xcdatamodeld in Sources */,
 				4AED4C27299E1E5C005F4393 /* KeychainManager.swift in Sources */,
+				4A927F9229AB85140041F80F /* VcSelector.swift in Sources */,
 				4A1B07B1295B6C0E00BDFB1F /* Notes.swift in Sources */,
 				4A1B07BF295B79A400BDFB1F /* TableViewCell.swift in Sources */,
 				4A1B07C9295C372F00BDFB1F /* NetworkLayer.swift in Sources */,
@@ -521,7 +525,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A1B07C4295B7D7C00BDFB1F /* Hero.swift in Sources */,
+				4A1B07C4295B7D7C00BDFB1F /* HeroModel.swift in Sources */,
 				4A26A2B8296C0ECB008EE2E6 /* Transformation.swift in Sources */,
 				4A22312029730BD0004A7CE7 /* HeroTests.swift in Sources */,
 				4A223122297313C6004A7CE7 /* TransformationTests.swift in Sources */,
