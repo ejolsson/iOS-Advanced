@@ -44,7 +44,8 @@ class Callout: UIView {
     private func setupSubtitle() {
         subtitleLabel.font = UIFont.systemFont(ofSize: 14)
         subtitleLabel.textColor = .gray
-        subtitleLabel.text = "Show details"
+//        subtitleLabel.text = "Show details"
+        subtitleLabel.text = annotation.desc
         
         subtitleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDetails)))
         
@@ -58,16 +59,15 @@ class Callout: UIView {
     
     @objc func showDetails() {
         debugPrint("Showing the details")
-        print("Hi\n") 
     }
     
     private func setupImageView() {
-//        imageView.kf.setImage(with: URL(string: annotation.image))
+        imageView.kf.setImage(with: URL(string: annotation.image))
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 8).isActive = true
+        imageView.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 58).isActive = true
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true

@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  ios-practica
 //
-//  Created by Eric Olsson on 12/27/22.
+//  Created by Eric Olsson on 2/11/23.
 //
 
 import UIKit
@@ -14,10 +14,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        // window?.rootViewController = TabBarController() // whichever VC is listed, will be the entry VC to the app
+        
+        // window?.rootViewController = TabBarController()
+        
         // enable condidtional logic based on login status
-        if LocalDataLayer.shared.isUserLoggedIn() { // moving from .isUserLoggedIn() to .isUserLoggedIn2()
+        if LocalDataLayer.shared.isUserLoggedIn() {
             window?.rootViewController = TabBarController()
+//            window?.rootViewController = MapViewController()
         } else {
             window?.rootViewController = LoginViewController()
         }

@@ -2,7 +2,7 @@
 //  MapViewController.swift
 //  ios-practica
 //
-//  Created by Eric Olsson on 12/27/22.
+//  Created by Eric Olsson on 2/11/23.
 //
 
 import UIKit
@@ -15,12 +15,15 @@ class MapViewController: UIViewController {
     
     var locationManager: CLLocationManager?
     
-    let heroPlaces = [ // TODO: Replace this array with one from Core Data
-
-        Place(id: "AB3A873C-37B4-4FDE-A50F -8014D40D94FE", latitud: "39.3260685", longitud: "-4.8379791"),//, dateShow: "2022-09-11T00: 00:00Z", name: "Test"),
+    let heroPlaces = [
+        
+//        HeroModel(id: "AB3A873C-37B4-4FDE-A50F -8014D40D94FE", latitud: "39.3260685", longitud: "-4.8379791"),
+        HeroModel(id: "D13A40E5-4418-4223-9CE6-D2F9A28EBE94", name: "Goku", photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/goku1.jpg?width=300", description: "Sobran las presentaciones cuando se habla de Goku. El Saiyan fue enviado al planeta Tierra, pero hay dos versiones sobre el origen del personaje. Según una publicación especial, cuando Goku nació midieron su poder y apenas llegaba a dos unidades, siendo el Saiyan más débil. Aun así se pensaba que le bastaría para conquistar el planeta. Sin embargo, la versión más popular es que Freezer era una amenaza para su planeta natal y antes de que fuera destruido, se envió a Goku en una incubadora para salvarle.", favorite: true, latitude: 39.326, longitude: -4.83),
+        HeroModel(id: "D88BE50B-913D-4EA8-AC42-04D3AF1434E3", name: "Krilin", photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/08/Krilin.jpg?width=300", description: "This is Krilin...", favorite: false, latitude: 40.0, longitude: -5.0)
+        
+//        Place(id: "AB3A873C-37B4-4FDE-A50F -8014D40D94FE", latitud: "39.3260685", longitud: "-4.8379791"),//, dateShow: "2022-09-11T00: 00:00Z", name: "Test"),
 
 //        Place(name: "España", latitude: 39.3260685, longitude: -4.8379791, image: "http://i.annihil.us/u/prod/marvel/i/mg/b/c0/553a9abceb412/portrait_incredible.jpg"),
-
 //        Place(id: "Bilbao", latitud: 43.2630018, longitud: -2.9350039, image: "http://i.annihil.us/u/prod/marvel/i/mg/b/c0/553a9abceb412/portrait_incredible.jpg"),
 //        Place(id: "A Coruna", latitud: 43.3709703, longitud: -8.3959425, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/06/Roshi.jpg?width=300"),
 //        Place(id: "Barcelona", latitud: 41.3828939, longitud: 2.1774322, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/06/dragon-ball-satan.jpg?width=300"),
@@ -40,12 +43,16 @@ class MapViewController: UIViewController {
 //        Place(id: "Salamanca", latitud: 40.9651572, longitud: -5.6640182, image: "https://wallpaperaccess.com/full/1130512.jpg"),
     ]
     
+    var heroLocations: [HeroModel] = []
+    
     let latitude = 40.4155
     let longitude = -3.7074
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print("\(heroPlaces)\n")
+        
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.delegate = self
@@ -59,23 +66,25 @@ class MapViewController: UIViewController {
         
         mapView.register(AnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
-        let annotations = heroPlaces.map { Annotation(place: $0) }
+//        let annotations = heroLocations.map { Annotation(place: $0) }
+        let annotations = heroPlaces.map { Annotation(place: $0) } // this now shows hardcoded item
         
         mapView.showAnnotations(annotations, animated: true)
     }
 
-    func createAnnotation(_ place: Place) {
+    func createAnnotation(_ place: HeroModel) {
         let annotation = MKPointAnnotation()
         
-        annotation.coordinate = CLLocationCoordinate2D(latitude: Double(place.latitud) ?? 0.0, longitude: Double(place.longitud) ?? 0.0)
-        annotation.title = place.id
+        annotation.coordinate = CLLocationCoordinate2D(latitude: Double(place.latitude ?? 0.0), longitude: Double(place.longitude ?? 0.0))
+        annotation.title = place.name // was .id
         annotation.subtitle = "You are seeing \(place.id)"
         
         mapView.addAnnotation(annotation)
     }
     
-    func createAnnotations(_ places: [Place]) {
-        places.forEach(createAnnotation)
+    func createAnnotations(_ heros: [HeroModel]) {
+//        heroLocations.forEach(createAnnotation)
+        heroPlaces.forEach(createAnnotation) // this now shows hardcoded item
     }
 
     func moveToCoordinates(_ latitude: Double, _ longitude: Double) {

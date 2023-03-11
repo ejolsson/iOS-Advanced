@@ -2,8 +2,8 @@
 //  LocalDataLayer.swift
 //  ios-practica
 //
-//  Created by Eric Olsson on 12/29/22.
-//  Tokenize & persist login // complete ✅
+//  Created by Eric Olsson on 2/11/23.
+//  
 
 import Foundation
 
@@ -28,20 +28,17 @@ final class LocalDataLayer {
     func getTokenFmUserDefaults() -> String {
         return UserDefaults.standard.string(forKey: Self.token) ?? ""
     }
-    // Used in: HerosListViewVC, fetches token for api call, get heros
         
+    // TODO: - create getTokenFmKeychain function to replace getTokenFmUserDefaults()
 //    func getTokenFmKeychain() {//}-> String { // purpose:
 //        return keychain.readData(service: "", account: <#T##String#>) //?? "" // Data("ejolsson@gmail".utf8)
 //        return keychain.readData(service: <#T##String#>, account: )
 //        return LoginViewController.getToken(<#T##self: LoginViewController##LoginViewController#>)
 //    }
-    // Used in: HerosListViewVC — NOT YET!!! ⚠️
-    // Purpose: Fetch & prep token for api call, get heros
-    // Observations: putting any email in "" after the ?? seems to enable login persistence after rerunning. ANS: See func isUserLoggedIn()... IF "not empty", THEN show HerosListViewVC
+
     
     func isUserLoggedIn() -> Bool {
         return !getTokenFmUserDefaults().isEmpty
-//        return !login.getToken(account: )
     }
 
 
@@ -49,8 +46,7 @@ final class LocalDataLayer {
         if let encodedHeros = try? JSONEncoder().encode(heros) {
             UserDefaults.standard.set(encodedHeros, forKey: Self.heros)
         }
-    } // this is the magic save func for UserDefaults
-    
+    } // used for UserDefaults, need to move away from this
 
     
     func getHeros() -> [HeroModel] {
@@ -65,12 +61,6 @@ final class LocalDataLayer {
         } else {
             return []
         }
-    } // Oscar func, uses Hero, not used as of 2/25 commit
-    
-//    func getHeros2() {
-//        let hero = HeroCD(context: context)
-//        
-//        hero.id = id
-//        hero.name = name
-//    }
-}
+    } // not used
+ 
+   }

@@ -2,10 +2,12 @@
 //  HeroListViewController.swift
 //  ios-practica
 //
-//  Created by Eric Olsson on 12/27/22.
+//  Created by Eric Olsson on 2/11/23.
 //
 
 import UIKit
+
+let tokenHardCode = "eyJraWQiOiJwcml2YXRlIiwiYWxnIjoiSFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZGVudGlmeSI6IkI4M0I1NjZCLUY2NEItNENGNi1CQzI1LUIwQTAxNkQzNkIzMiIsImVtYWlsIjoiZWpvbHNzb25AZ21haWwuY29tIiwiZXhwaXJhdGlvbiI6NjQwOTIyMTEyMDB9.fBTvAWVKbqaJoDAFvpLlO6YY5gjCPVwxJbXvCQMKiBw"
 
 struct HeroCellItem {
     let image: UIImage
@@ -17,18 +19,22 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     var herosModel: [HeroModel] = [] // Oscar
+    var heroModel: HeroModel!
     var places: [Place] = []
+    var place: Place! // w/o !, error "no initializers"
     
     var herosCD: [HeroCD] = []
-//    var heroApi: HeroModel!
     var heroCD: HeroCD!
     
     var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
     let loginInfo = LoginViewController() // use this to get user token
+    let keychain = KeychainManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureItems() // load bar buttons
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -38,131 +44,53 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.register(xib, forCellReuseIdentifier: "customTableCell")
         
         let tokenFmUD = LocalDataLayer.shared.getTokenFmUserDefaults() // load token prior to api calls
-        let tokenFmKC = loginInfo.getToken(account: UserDefaults.standard.string(forKey: "email") ?? "")
+//        let tokenFmKC = loginInfo.getToken(account: UserDefaults.standard.string(forKey: "email") ?? "")
         
-        // Oscar start
+        let tokenRaw: () = loginInfo.getTokenSimple(account: "tokenSimple")
+
+        print("userToken: \(loginInfo.userToken)\n")
+        let tokenBig: () = keychain.readDataBigToken(username: "token-manager")
+//        let tokenString = String(decoding: tokenBig, as: UTF8.self)
+        
+        
+
         NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] allHeros, error in
             guard let self = self else { return }
-            
+
             if let allHeros = allHeros {
                 self.herosModel = allHeros
-                
+//                print("Check out herosModel INSIDE api call: \(self.herosModel)\n")
                 LocalDataLayer.shared.saveHerosToUserDefaults(heros: allHeros)
-                
+
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             } else {
                 print("Error fetching heros: ", error?.localizedDescription ?? "")
             }
-        } // Oscar end
+        } // save to UserDefaults
         
-//        if herosCD.isEmpty { // copied this chunk fm CoreDataEjemplo > EmployeesViewController > ViewDidLoad()
-//            debugPrint("herosCD isEmpty")
-//
-//            NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] herosFmApi, error in
-//                guard let self = self else { return }
-//
-////                print("herosFmApi = \(String(describing: herosFmApi))\n") // works
-//
-////                LocalDataLayer.shared.saveHerosToUserDefaults(heros: herosFmApi ?? []) // old save way
-//
-//                let group1 = DispatchGroup()
-////                let group2 = DispatchGroup()
-//
-//                // map api values into Core Data
-//                if let herosForMapping = self.heroCD { // this block fails
-//
-//                    print("Hi\n")
-//
-//                    herosFmApi?.forEach { hero in
-//                        group1.enter()
-//                        print("Hero loop: \(String(describing: herosFmApi))")
-//                        herosForMapping.id = hero.id
-//                        herosForMapping.name = hero.name
-//                        herosForMapping.desc = hero.description
-//                        herosForMapping.photo = hero.photo
-//                        herosForMapping.favorite = hero.favorite
-//
-//                        NetworkLayer.shared.fetchLocations(token: tokenFmUD, heroId: hero.id) { heroLocations, error in
-//                            var heroWithLocation = hero
-//
-//                            if let firstLocation = heroLocations?.first {
-//                                herosForMapping.latitude = Double(firstLocation.latitud) ?? 0.0
-//                                herosForMapping.longitude = Double(firstLocation.longitud) ?? 0.0
-//                            } else {
-//                                heroWithLocation.latitude = 0.0
-//                                heroWithLocation.longitude = 0.0
-//                            }
-//                            group1.leave()
-//                        }
-//
-//                    }
-//
-//                    group1.notify(queue: .main) {
-//                        print("Group 1 tasks done\n")
-//                    }
-//
-//                    print("\(herosForMapping)\n")
-////                    self.saveHerosToCoreData(heros: herosForMapping)
-//
-//                    DispatchQueue.main.async {
-//                        self.tableView.reloadData()
-//                    }
-//                } else {
-//                    print("Error fetching heros: ", error?.localizedDescription ?? "") // this error is firing...
-//                }
-//            }
-//
-//
-//
-//        } else {
-//            debugPrint("heros is NOT empty")
-//        }
+        
+        NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] herosModel, error in
+            CoreDataManager.saveApiDataToCoreData(herosModel ?? [])
+        }
+        
+
         
         // Read fm HeroCD & map to HeroModel
-        
-        configureItems() // load bar buttons
+
+        NetworkLayer.shared.getHeroes(token: tokenFmUD) { herosModel, error in
+            if error == nil {
+                print("Step 1: NetworkLayer.shared.getHeroes\n")
+                self.updateFullItems(herosModel) // UNA VEZ TENGO LA LISTA DE HÉROES, COMIENZO LAS
+            }
+            debugPrint("NetworkLayer.shared.getHeroes(token: tokenFmUD)... \n")
+            print("Called updateFullItems(herosModel)\n")
+//            debugPrint("\nFinal código principal\n")
+        }
         
         
     } // End viewDidLoad
-    
-    let moveToMain = { (heros: [HeroModel]) -> Void in
-        debugPrint("Reciviendo toda la info")
-
-        debugPrint("Número de héroes: \(heros.count)\n")
-
-        heros.forEach { debugPrint("La localización para el item \($0.id) es: [\($0.latitude!),\($0.longitude!)]") }
-    } // printer func
-
-//    func saveHerosToUserDefaults(heros: [Hero]) {
-//        if let encodedHeros = try? JSONEncoder().encode(heros) {
-//            UserDefaults.standard.set(encodedHeros, forKey: Self.heros)
-//        }
-//    } // this is the magic save func for UserDefaults
-    
-//    private func saveInCoreDataWith(array: [[String: AnyObject]]) { // Tutorial code adapted
-//        //_ = array.map{self.createPhotoEntityFrom(dictionary: $0)}
-//        do {
-//            try CoreDataManager.sharedInstance.persistentContainerF.viewContext.save()
-//        } catch let error {
-//            print(error)
-//        }
-//    }
-    
-    func saveHerosToCoreData(heros: HeroModel) {
-//        if let encodedHeros = try? JSONEncoder().encode(heros) { // 'encodedHeros not used as written...
-        
-        let heros = HeroCD(context: context)
-            do {
-                try context.save()
-//                try CoreDataManager.saveContext(<#T##self: CoreDataManager##CoreDataManager#>)
-            } catch let error {
-                debugPrint(error)
-                showError()
-            }
-        //}
-    }
     
     
     private func showError() {
@@ -188,26 +116,24 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         self.present(alert, animated: true, completion: nil)
     } // imported fm CoreDataEjemplo
     
-    // table rows creation
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return herosModel.count
-    } // should be complete
+    }
     
-    // table cell UI creation
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customTableCell", for: indexPath) as! TableViewCell
         
         // updated to accept API data
         let hero = herosModel[indexPath.row]
         
-        cell.iconImageView.setImage(url: hero.photo ?? "") // need to write extension
+        cell.iconImageView.setImage(url: hero.photo ) // need to write extension
         cell.titleLabel.text = hero.name
         cell.descriptionLabel.text = hero.description // connected label to TableViewCell
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
                 
         return cell
-    } // should be complete
+    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
@@ -242,7 +168,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         UserDefaults.standard.set(false, forKey: "login status") // set login status
         print("Login status: \(UserDefaults.standard.bool(forKey: "login status"))\n")
         
-        loginInfo.deleteTokens(service: "token mgmt", account: UserDefaults.standard.string(forKey: "email") ?? "")
+        loginInfo.deleteKeychainItem(service: "token mgmt", account: UserDefaults.standard.string(forKey: "email") ?? "")
         
         self.present(loginVC, animated: true) // modal pop up, works, not secure/effective
 //        window?.rootViewController = LoginViewController()
@@ -252,47 +178,81 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func didTapTestButton() {
         
         // Test functions below
-        print("didTapLogoutButton pressed\n")
-        
-        print("Context = \(context)\n")
-        
-        print("HerosListVC > herosModel: [HeroModel] = \(herosModel)\n")
-        
+//        print("didTapLogoutButton pressed\n")
+//        print("Context = \(context)\n")
+//        print("HerosListVC > herosModel: [HeroModel] = \(herosModel)\n")
 //        print("HerosListVC > hero: Hero! = \(String(describing: heroCD ?? nil))\n")
-        
-        print("Token fm UserDefaults = \(String(describing: UserDefaults.standard.string(forKey: "token")))\n")
-        print("Email fm UserDefaults = \(String(describing: UserDefaults.standard.string(forKey: "email")))\n")
-        print("Password fm UserDefaults = \(String(describing: UserDefaults.standard.string(forKey: "password")))\n")
+//        print("Token fm UserDefaults = \(String(describing: UserDefaults.standard.string(forKey: "token")))\n")
+//        print("Email fm UserDefaults = \(String(describing: UserDefaults.standard.string(forKey: "email")))\n")
+//        print("Password fm UserDefaults = \(String(describing: UserDefaults.standard.string(forKey: "password")))\n")
         //KeyChainManager.readData(LoginViewController.userEmail)
         
         let token = LocalDataLayer.shared.getTokenFmUserDefaults()
+        let email = "ejolsson@gmail.com"
 
-        // Using 1st implementation attempt
-//        NetworkLayer
-//            .shared
-//            .fetchLocations(token: token, heroId: hero.id) { [weak self] allPlaces, error in
-//                guard let self = self else { return }
-//
-//                if let allPlaces = allPlaces {
-//
-//                    self.places = allPlaces
-//
-//                    print("Places count: ", allPlaces.count)
-//
-//                    if !self.places.isEmpty {
-//                        DispatchQueue.main.async {
-//                            //self.didTapTestButton.alpha = 1
-//                            debugPrint("places is empty")
-//                        }
-//                    }
-//                } else {
-//                    print("Error fetching places: ", error?.localizedDescription ?? "")
-//                }
-//            }
-        
+        loginInfo.deleteKeychainItem(service: "token mgmt", account: email) //pass
+        loginInfo.deleteKeychainItem(service: "password mgmt", account: email) // fail
+        loginInfo.deleteKeychainItem(service: "password mgmt", account: "ejolsson@gmail.com") //fail
+        loginInfo.deleteKeychainItem(service: "password mgmt", account: "tokenSimple") // pass
+        loginInfo.deleteKeychainItem(service: "", account: "tokenSimple") // fail
     }
 
-}
+    
+    let updateFullItems = {(heroes: [HeroModel]) -> Void in
+        print("Step 2: let updateFullItems\n")
+        var fullItems: [HeroModel] = []
+    //    var heroCD: HeroCD!
+    //    var herosCD: [HeroCD]
+        
+        let group = DispatchGroup() // https://developer.apple.com/documentation/dispatch/dispatchgroup
+        
+        for hero in heroes { // loop through all heros found in api call
+            group.enter() // INDICA QUE LA OPERACIÓN COMIENZA // Apple Docs: Explicitly indicates that a block has entered the group.
+            
+            NetworkLayer.shared.getLocalization(token: tokenHardCode, with: hero.id) { heroLocations, error in
+                var fullHero = hero // instantiate hero, using the " hero loop index"
+                // use if let due to case when lat/long nil
+                if let firstLocation = heroLocations.first { // only grab first hero location
+                    fullHero.latitude = Double(firstLocation.latitud)
+                    fullHero.longitude = Double(firstLocation.longitud)
+                } else { // error case... put position in 0,0
+                    fullHero.latitude = 0.0
+                    fullHero.longitude = 0.0
+                }
+                fullItems.append(fullHero)
+                group.leave() // INDICA QUE LA OPERACIÓN TERMINA
+            }
+        }
+        
+        group.notify(queue: .main) {
+    //        print("fullItems = \(fullItems)\n")
+    //            herosModel = fullItems
+            // CUANDO TODAS LAS TAREAS DEL GRUPO TERMINEN, SE EJECUTA LA SIGUIENTE FUNCIÓN
+            print("Step 3: let updateFullItems > group.notify\n")
+            moveToMain(fullItems)
+            
+        }
+    } // end updateFullItems
+
+    
+} // end class HeroListVC
+
+
+
+let moveToMain = { (heros: [HeroModel]) -> Void in
+    
+    print("Step 4\n")
+    var herosCD: [HeroCD] // HeroCD Declared In Heros+CoreDataClass.swift
+    var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
+    
+    debugPrint("Receiving all the info")
+    debugPrint("Hero count: \(heros.count)\n")
+    
+    heros.forEach { debugPrint("Location for item \($0.id) is: [\($0.name),\($0.id),\($0.latitude!),\($0.longitude!)]") }
+    
+    
+    
+} // end moveToMain
 
 extension UIImageView {
     
@@ -320,7 +280,7 @@ extension UIImageView {
     }
     
     
-}
+} // end extension UIImageView
 
 extension UIBarButtonItem {
     func addTargetForAction(target: AnyObject, action: Selector) {
@@ -328,3 +288,4 @@ extension UIBarButtonItem {
         self.action = action
     }
 }
+

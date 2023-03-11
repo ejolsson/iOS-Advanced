@@ -12,20 +12,23 @@ import Security
 // https://stackoverflow.com/questions/68209016/store-accesstoken-in-ios-keychain
 // https://developer.apple.com/documentation/security/ksecattrtokenid
 
-
-// PUT KEYCHAIN LOGIC IN LOCAL DATA LAYER
-
 class KeychainManager {
+    
     enum KeychainError: Error {
         case duplicateEntry
         case unknown (OSStatus)
     }
     
-    static func savePasswordInKeychain(
-        service: String,
-        account: String,
-        password: Data
-    ) throws {
+    /*
+     Pedro:
+     
+     Obtuve las siguientes 3 funciones de un video de YouTube. Fue más fácil para mí entender ya que las funciones tenían un valor de "retorno".
+     
+     Posible problema: la contraseña y el token usan el tipo de datos "data" y no la cadena. Esta podría ser la fuente de mis problemas anteriores...
+     */
+    
+    // savePassword Opt 1, credit: https://youtu.be/cQjgBIJtMbw
+    static func savePasswordInKeychain(service: String, account: String, password: Data) throws {
         let query: [String: AnyObject] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service as AnyObject,
@@ -49,6 +52,8 @@ class KeychainManager {
         print("Service, account, & PASSWORD saved successfully in Keychain" )
     }
     
+    
+    // getPassword Opt 1, credit: https://youtu.be/cQjgBIJtMbw
     static func getPasswordFromKeychain(service: String, account: String) -> Data? {
         let query: [String: AnyObject] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -65,11 +70,11 @@ class KeychainManager {
         return result as? Data
     }
     
-    static func saveTokenInKeychain(
-        service: String,
-        account: String,
-        token: Data // was type "data"
-    ) throws {
+    
+    // ************* TOKEN *************
+    
+    // saveToken Opt 1, adapted directly from savePassword Opt 1
+    static func saveTokenInKeychain(service: String, account: String, token: Data) throws {
         let query: [String: AnyObject] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service as AnyObject,
@@ -90,10 +95,12 @@ class KeychainManager {
             throw KeychainError.unknown (status)
         }
         
-        print("Service, account, & TOKEN saved successfully in Keychain" )
+        print("saveTokenInKeychain(Service: account: token:) succeeded" )
     }
     
-    static func getTokenFromKeychain(service: String, account: String) -> Data? { // was -> Data?
+    
+    // getToken Opt 1, adapted directly from getPassword Opt 1
+    static func getTokenFromKeychain(service: String, account: String) -> Data? {
         
         let query: [String: AnyObject] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -110,7 +117,58 @@ class KeychainManager {
         //print("Result = \(String(describing: result))\n")
         return result as? Data // was String
     }
+
     
+    // saveToken Opt 1.1, removing service parameeter, ** changed token to String **
+    static func saveTokenInKeychainSimple(account: String, token: String) throws {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: account as String,
+            kSecValueData as String: token as String
+        ]
+        
+        let status = SecItemAdd(
+            query as CFDictionary,
+            nil
+        )
+        
+        guard status != errSecDuplicateItem else {
+            throw KeychainError.duplicateEntry
+        }
+        
+        guard status == errSecSuccess else {
+            throw KeychainError.unknown (status)
+        }
+        
+        print("Service, account, & TOKEN saved successfully in KeychainSimple" )
+    }
+    
+    
+    // getToken Opt 1.1, removing service parameeter, ** changed token to String **
+    static func getTokenFromKeychainSimple(account: String) -> Data? {
+        
+        let query: [String: AnyObject] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecReturnData as String: kCFBooleanTrue,
+            kSecMatchLimit as String: kSecMatchLimitOne
+        ]
+        
+        var result: AnyObject?
+        let status = SecItemCopyMatching(query as CFDictionary, &result)
+        
+        print("KeychainSimple token 'get' read status: \(status)")
+        //print("Result = \(String(describing: result))\n")
+        return result as? Data // was String
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    // read password Opt 2
     func readData(service: String, account: String) { // Pedro
         
         // Preparamos la consulta
@@ -136,7 +194,7 @@ class KeychainManager {
             }
             
         } else {
-            debugPrint("Se produjo un error al consultar la información del usuario")
+            debugPrint("An error occurred while querying user information")
         }
         
     } // Pedro
@@ -150,7 +208,7 @@ class KeychainManager {
         if (SecItemDelete(query as CFDictionary)) == noErr {
             print("User info deleted successfully\n")
         } else {
-            print("Deletion error\n")
+            print("deleteKeychainItem error\n")
         }
     }
     
@@ -181,100 +239,56 @@ class KeychainManager {
         
         print("Login status saved successfully in Keychain" )
     }
+    
+    
+    // saveDataBigToken using generic string "token-manager" because I might not have the user email or account to look up. Another option is to fetch user email using UserDefaults (something we are not supposed to do in this case)
+    func saveDataBigToken(token: String) {
+        
+        // definimos un usuario
+        let username = "token-manager"
+        let token = token
+        
+        // Preparamos los atributos necesarios
+        let attributes: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: username,
+            kSecValueData as String: token
+        ]
+
+        if SecItemAdd(attributes as CFDictionary, nil) == noErr {
+            debugPrint("User info saved successfully")
+        } else {
+            debugPrint("Error saving user info")
+        }
+        
+    }
+    
+    // readDataBigToken using generic string "token-manager" because I might not have the user email or account to look up. Another option is to fetch user email using UserDefaults (something we are not supposed to do in this case)
+    func readDataBigToken(username: String) {
+        
+        let username = "token-manager"
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: username,
+            kSecMatchLimit as String: kSecMatchLimitOne,
+            kSecReturnAttributes as String: true,
+            kSecReturnData as String: true
+        ]
+        
+        var item: CFTypeRef?
+        
+        if SecItemCopyMatching(query as CFDictionary, &item) == noErr {
+            
+            if let existingItem = item as? [String: Any],
+               let username = existingItem[kSecAttrAccount as String] as? String,
+               let passwordData = existingItem[kSecValueData as String] as? Data,
+               let password = String(data: passwordData, encoding: .utf8) {
+                
+                debugPrint("La info es: \(username) - \(password)")
+            }
+        } else {
+            debugPrint("An error occurred while querying user information")
+        }
+    }
+    
 }
-
-
-// Credit: https://youtu.be/cQjgBIJtMbw
-
-//class KeychainManager {
-//
-//    func saveData(email: String, token: String) { // remove password: String,
-//
-//        //let token = UserDefaults.standard.string(forKey: LocalDataLayer.token)
-//        print("Preparing to saveData into keychain\n")
-//        print("email = \(email)\n")
-//        print("token = \(token)\n")
-//
-//        print("Reading fm UserDefaults: \(UserDefaults.standard.string(forKey: "token"))\n")
-//
-//        let attributes: [String: Any] = [
-//            kSecClass as String: kSecClassGenericPassword,
-//            kSecAttrAccount as String: email,
-//            //kSecValueData as String: password,
-//            kSecValueData as String: token
-//        ]
-//
-//        if SecItemAdd(attributes as CFDictionary, nil) == noErr {
-//            debugPrint("User information saved successfully into Keychain")
-//        } else {
-//            debugPrint("Error saving user info into Keychain")
-//        }
-//    }
-//
-////    func readData(email: String) -> String?
-//    func readData() {//}-> String? { // email: Data or String???
-//
-//        // Prep query
-//        let query: [String: Any] = [
-//            kSecClass as String: kSecClassGenericPassword,
-////            kSecAttrAccount as String: email,
-//            kSecMatchLimit as String: kSecMatchLimitOne,
-//            kSecReturnAttributes as String: true,
-//            kSecReturnData as String: true
-//        ]
-//
-//        var item: CFTypeRef?
-//
-//        //var result: String? //AnyObject?
-//
-//        let status = SecItemCopyMatching(query as CFDictionary, &item)
-//
-//        print("Keychain readData status: \(status)")
-////        print("Email read fm keychain: \(email)")
-//        //print("Token read fm keychain: \(token)")
-//        //return result //as? Data
-//
-//
-//        // extract info // KEEPCODING METHOD
-//        if SecItemCopyMatching(query as CFDictionary, &item) == noErr {
-//
-//            if let existingItem = item as? [String: Any],
-//               let email = existingItem[kSecAttrAccount as String] as? String,
-//               let tokenData = existingItem[kSecValueData as String] as? Data,
-//               let token = String(data: tokenData, encoding: .utf8) {
-//
-//                debugPrint("The info is: \(email) - \(token)")
-//                //return token
-//            }
-//
-//        } else {
-//            debugPrint("A username error was produced")
-//            //return nil
-//        }
-////        return token
-//    }
-//
-//    static func get(email: String) -> Data? {
-//        let query: [String: AnyObject] = [
-//            kSecClass as String: kSecClassGenericPassword,
-//            //kSecAttrService as String: service as AnyObject,
-//            kSecAttrAccount as String: email as AnyObject,
-//            kSecReturnData as String: kCFBooleanTrue,
-//            kSecMatchLimit as String: kSecMatchLimitOne
-//        ]
-//
-//        var result: AnyObject?
-//        let status = SecItemCopyMatching(query as CFDictionary, &result)
-//
-//        print("Read status: \(status)")
-//        return result as? Data
-//    }
-//
-//    func updateData() {
-//    }
-//
-//    func deleteData() {
-//    }
-//
-//} // old version
-

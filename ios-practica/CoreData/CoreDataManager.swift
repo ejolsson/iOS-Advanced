@@ -9,8 +9,6 @@ import CoreData
 
 class CoreDataManager {
     
-    //static let sharedInstance = CoreDataManager(modelName: String) // fm CD Tutorial
-    
     private let modelName: String
     
     init(modelName: String) {
@@ -39,57 +37,52 @@ class CoreDataManager {
         } catch let error as NSError {
             debugPrint("Error during saving context \(error)")
         }
-    } // gtg, leave closed
+    } // not used
     
-    // ----------- above imported fm employee example ------------------
-    
-    
-    
-
-    
-    
-    
-    // ----------- below imported fm Flickr example --------------------
-    
-    // MARK: - Core Data stack
-    lazy var persistentContainerF: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-         */
-        let container = NSPersistentContainer(name: "CoreDataTutorialPart1Final")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    
-    func saveContextF () {
-        let context = persistentContainerF.viewContext
-        if context.hasChanges {
+    static func saveApiDataToCoreData(_ herosSendToMapping: [HeroModel]) {
+        
+        var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
+        
+        herosSendToMapping.forEach { heroSendToMapping in
+        
+            let heroRecFmMapping = HeroCD(context: context)
+            
+            heroRecFmMapping.id = heroSendToMapping.id
+            heroRecFmMapping.name = heroSendToMapping.name
+            heroRecFmMapping.desc = heroSendToMapping.description
+            heroRecFmMapping.photo = heroSendToMapping.photo
+            heroRecFmMapping.favorite = heroSendToMapping.favorite
+            heroRecFmMapping.latitude = heroSendToMapping.latitude ?? 0.0
+            heroRecFmMapping.longitude = heroSendToMapping.longitude ?? 0.0
+            
             do {
                 try context.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                print("saveApiDataToCoreData successful.\n\(heroRecFmMapping)\n")
+            } catch let error {
+                debugPrint(error)
             }
+        } // end herosSendToMapping.forEach
+    } // end saveApiDataToCoreData
+    
+    // code credit: PracticaResueltalOSAvanzado
+    static func getCoreDataForPresentation() -> [HeroModel] {
+        
+        var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
+        
+        let heroFetch: NSFetchRequest<HeroCD> = HeroCD.fetchRequest()
+        
+        do {
+            let result = try context.fetch(heroFetch)
+            
+            let heroToPresent = result.map {
+                HeroModel.init(id: $0.id ?? "", name: $0.name ?? "", photo: $0.photo ?? "", description: $0.description, favorite: $0.favorite)
+            }
+            
+            return heroToPresent
+        } catch let error as NSError {
+            debugPrint("Error: \(error)")
+            return []
         }
-    }
-}
+    } // end getCoreDataForPresentation()
+    
+} // end CoreDataManager

@@ -2,7 +2,7 @@
 //  NetworkLayer.swift
 //  ios-practica
 //
-//  Created by Eric Olsson on 12/28/22.
+//  Created by Eric Olsson on 2/11/23.
 //  Used for API connection
 
 import Foundation
@@ -13,13 +13,14 @@ enum NetworkError: Error {
     case statusCode(code: Int?)
     case decodingFailed
     case unknown
-} // complete
+}
 
 final class NetworkLayer {
     
     static let shared = NetworkLayer()
     
     func login(email: String, password: String, completion: @escaping (String?, Error?) -> Void) {
+        
         guard let url = URL(string: "https://dragonball.keepcoding.education/api/auth/login") else {
             completion(nil, NetworkError.malformedURL)
             return
@@ -35,9 +36,9 @@ final class NetworkLayer {
 
         let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             
-            guard error == nil else { // if nil, continue
-                completion(nil, error) // if != nil, stop, generate error
-                return // exit function
+            guard error == nil else {
+                completion(nil, error)
+                return
             }
             
             guard let data = data else {
@@ -56,15 +57,14 @@ final class NetworkLayer {
                 return
             }
             
-            completion(token, nil) // L10 3:27:30
+            completion(token, nil)
         }
         
         task.resume()
-    } // Oscar style
+    } // opt 1
     
     func fetchHeros(token: String?, completion: @escaping ([HeroModel]?, Error?) -> Void) {
         
-        // local function definitions
         guard let url = URL(string: "https://dragonball.keepcoding.education/api/heros/all") else {
             completion(nil, NetworkError.malformedURL)
             return
@@ -98,7 +98,7 @@ final class NetworkLayer {
         }
         
         task.resume()
-    } // Oscar style, Used in: HerosListVC, Purpose: api call, grab hero data
+    } // Opt 1, Used in: HerosListVC, Purpose: api call, grab hero data
   
     func fetchTransformations(token: String?, heroId: String?, completion: @escaping ([Transformation]?, Error?) -> Void) {
                 
@@ -143,7 +143,7 @@ final class NetworkLayer {
         }
         
         task.resume()
-    } // Used in: DetailsVC, Purpose: api call, grab data, Oscar style
+    } // Opt 1, Used in: DetailsVC, Purpose: api call, grab data, Oscar style
     
     func fetchLocations (token: String?, heroId: String?, completion: @escaping ([Place]?, Error?) -> Void) {
         
@@ -187,9 +187,12 @@ final class NetworkLayer {
         }
         
         task.resume()
-    } // My style, Oscar-based.
+    } // adapted fm fetchtransformations
     
     func getHeroes(token: String?, completion: @escaping ([HeroModel], Error?) -> Void) {
+        
+        // added token parameter since not hardcoded
+        
         guard let url = URL(string: "https://dragonball.keepcoding.education/api/heros/all") else {
             completion([], NetworkError.malformedURL)
             return
@@ -222,9 +225,10 @@ final class NetworkLayer {
         }
         
         task.resume()
-    } // fm Wait proj
+    } // Opt 2
     
-    func getLocalization(token: String?, with id: String, completion: @escaping ([Place], Error?) -> Void) { // "token: String?" was used before
+    func getLocalization(token: String?, with id: String, completion: @escaping ([Place], Error?) -> Void) {
+        
         guard let url = URL(string: "https://dragonball.keepcoding.education/api/heros/locations") else {
             completion([], NetworkError.malformedURL)
             return
@@ -259,12 +263,5 @@ final class NetworkLayer {
         }
         
         task.resume()
-    } // import this into project
+    } // Opt 2
 }
-
-//struct Place {
-//    let name: String
-//    let latitude: Double
-//    let longitude: Double
-//    let image: String
-//}

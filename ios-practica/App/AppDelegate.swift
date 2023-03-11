@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  ios-practica
 //
-//  Created by Eric Olsson on 12/27/22.
+//  Created by Eric Olsson on 2/11/23.
 //
 
 import UIKit
@@ -12,7 +12,7 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    lazy var coreDataManager: CoreDataManager = .init(modelName: "Heros")
+    lazy var coreDataManager: CoreDataManager = .init(modelName: "Heros") // name of CoreData file
     
     static let sharedAppDelegate: AppDelegate = {
         

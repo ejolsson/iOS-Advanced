@@ -22,16 +22,16 @@ class DetailsViewController: UIViewController {
         navigationController?.pushViewController(transView, animated: true)
     } // complete
     
-    var hero: HeroModel!
+    var hero: HeroModel! // this var carries content value during navigation push...
     var transformations: [Transformation] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("hero =\(String(describing: hero))\n")
         title = hero.name
         transformationButton.alpha = 0
         
-        heroImageView.setImage(url: hero.photo ?? "")
+        heroImageView.setImage(url: hero.photo )
         heroTitleLabel.text = hero.name
         heroDescLabel.text = hero.description
         //heroDescLabel.sizeToFit() // attempting to align text to top of label

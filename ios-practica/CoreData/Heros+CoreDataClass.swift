@@ -9,14 +9,8 @@ import Foundation
 import CoreData
 
 @objc(HeroCD)
-public class HeroCD: NSManagedObject { // had Codable
-//    public required init(from decoder: Decoder) throws {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
-//    public required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+public class HeroCD: NSManagedObject {
+
 }
 
 public extension HeroCD {

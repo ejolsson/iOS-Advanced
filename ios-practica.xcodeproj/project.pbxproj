@@ -15,7 +15,6 @@
 		4A1B079D295B666C00BDFB1F /* ios_practicaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B079C295B666C00BDFB1F /* ios_practicaUITestsLaunchTests.swift */; };
 		4A1B07AE295B679000BDFB1F /* HeroListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07AC295B679000BDFB1F /* HeroListViewController.swift */; };
 		4A1B07AF295B679000BDFB1F /* HeroListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1B07AD295B679000BDFB1F /* HeroListViewController.xib */; };
-		4A1B07B1295B6C0E00BDFB1F /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07B0295B6C0E00BDFB1F /* Notes.swift */; };
 		4A1B07B5295B6CE300BDFB1F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07B3295B6CE300BDFB1F /* TabBarController.swift */; };
 		4A1B07B6295B6CE300BDFB1F /* TabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1B07B4295B6CE300BDFB1F /* TabBarController.xib */; };
 		4A1B07B9295B6D3B00BDFB1F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07B7295B6D3B00BDFB1F /* MapViewController.swift */; };
@@ -24,7 +23,6 @@
 		4A1B07C0295B79A400BDFB1F /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1B07BE295B79A400BDFB1F /* TableViewCell.xib */; };
 		4A1B07C3295B7D1E00BDFB1F /* HeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07C2295B7D1E00BDFB1F /* HeroModel.swift */; };
 		4A1B07C4295B7D7C00BDFB1F /* HeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07C2295B7D1E00BDFB1F /* HeroModel.swift */; };
-		4A1B07C6295B7D9E00BDFB1F /* HeroSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07C5295B7D9E00BDFB1F /* HeroSample.swift */; };
 		4A1B07C9295C372F00BDFB1F /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07C8295C372F00BDFB1F /* NetworkLayer.swift */; };
 		4A22312029730BD0004A7CE7 /* HeroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A22311F29730BD0004A7CE7 /* HeroTests.swift */; };
 		4A223122297313C6004A7CE7 /* TransformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A223121297313C6004A7CE7 /* TransformationTests.swift */; };
@@ -85,7 +83,6 @@
 		4A1B079C295B666C00BDFB1F /* ios_practicaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_practicaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4A1B07AC295B679000BDFB1F /* HeroListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroListViewController.swift; sourceTree = "<group>"; };
 		4A1B07AD295B679000BDFB1F /* HeroListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroListViewController.xib; sourceTree = "<group>"; };
-		4A1B07B0295B6C0E00BDFB1F /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
 		4A1B07B3295B6CE300BDFB1F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4A1B07B4295B6CE300BDFB1F /* TabBarController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarController.xib; sourceTree = "<group>"; };
 		4A1B07B7295B6D3B00BDFB1F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -93,7 +90,6 @@
 		4A1B07BD295B79A400BDFB1F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		4A1B07BE295B79A400BDFB1F /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		4A1B07C2295B7D1E00BDFB1F /* HeroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroModel.swift; sourceTree = "<group>"; };
-		4A1B07C5295B7D9E00BDFB1F /* HeroSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSample.swift; sourceTree = "<group>"; };
 		4A1B07C8295C372F00BDFB1F /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		4A22311F29730BD0004A7CE7 /* HeroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroTests.swift; sourceTree = "<group>"; };
 		4A223121297313C6004A7CE7 /* TransformationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationTests.swift; sourceTree = "<group>"; };
@@ -102,6 +98,7 @@
 		4A26A2B2296C0201008EE2E6 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		4A26A2B3296C0201008EE2E6 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		4A26A2B6296C0E32008EE2E6 /* Transformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
+		4A65362629BA7F3D00A55A1C /* Heros v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Heros v2.xcdatamodel"; sourceTree = "<group>"; };
 		4A927F9129AB85140041F80F /* VcSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VcSelector.swift; sourceTree = "<group>"; };
 		4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarker.swift; sourceTree = "<group>"; };
 		4A9316BE299A84E100E49AA5 /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
@@ -206,7 +203,6 @@
 			children = (
 				4A1B0779295B666A00BDFB1F /* AppDelegate.swift */,
 				4A1B077B295B666A00BDFB1F /* SceneDelegate.swift */,
-				4A1B07B0295B6C0E00BDFB1F /* Notes.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -271,7 +267,6 @@
 			isa = PBXGroup;
 			children = (
 				4A1B07C2295B7D1E00BDFB1F /* HeroModel.swift */,
-				4A1B07C5295B7D9E00BDFB1F /* HeroSample.swift */,
 				4A26A2B6296C0E32008EE2E6 /* Transformation.swift */,
 				4AE84F012997EE03002384E6 /* Place.swift */,
 			);
@@ -495,7 +490,6 @@
 				4A1B07AE295B679000BDFB1F /* HeroListViewController.swift in Sources */,
 				4A1B077A295B666A00BDFB1F /* AppDelegate.swift in Sources */,
 				4A9316C0299A84E100E49AA5 /* LogoutViewController.swift in Sources */,
-				4A1B07C6295B7D9E00BDFB1F /* HeroSample.swift in Sources */,
 				4A1B077C295B666A00BDFB1F /* SceneDelegate.swift in Sources */,
 				4A968458296EA6730020A804 /* TransformationsViewController.swift in Sources */,
 				4A1B07C3295B7D1E00BDFB1F /* HeroModel.swift in Sources */,
@@ -504,7 +498,6 @@
 				4AB8985229A52771009CE481 /* Heros.xcdatamodeld in Sources */,
 				4AED4C27299E1E5C005F4393 /* KeychainManager.swift in Sources */,
 				4A927F9229AB85140041F80F /* VcSelector.swift in Sources */,
-				4A1B07B1295B6C0E00BDFB1F /* Notes.swift in Sources */,
 				4A1B07BF295B79A400BDFB1F /* TableViewCell.swift in Sources */,
 				4A1B07C9295C372F00BDFB1F /* NetworkLayer.swift in Sources */,
 				4A9316BC299A52EF00E49AA5 /* CustomMarker.swift in Sources */,
@@ -872,9 +865,10 @@
 		4AB8985029A52771009CE481 /* Heros.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				4A65362629BA7F3D00A55A1C /* Heros v2.xcdatamodel */,
 				4AB8985129A52771009CE481 /* Heros.xcdatamodel */,
 			);
-			currentVersion = 4AB8985129A52771009CE481 /* Heros.xcdatamodel */;
+			currentVersion = 4A65362629BA7F3D00A55A1C /* Heros v2.xcdatamodel */;
 			path = Heros.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
