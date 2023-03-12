@@ -67,7 +67,7 @@ class CoreDataManager {
     // code credit: PracticaResueltalOSAvanzado
     static func getCoreDataForPresentation() -> [HeroModel] {
         
-        var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
+        let context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
         
         let heroFetch: NSFetchRequest<HeroCD> = HeroCD.fetchRequest()
         
@@ -75,7 +75,11 @@ class CoreDataManager {
             let result = try context.fetch(heroFetch)
             
             let heroToPresent = result.map {
-                HeroModel.init(id: $0.id ?? "", name: $0.name ?? "", photo: $0.photo ?? "", description: $0.description, favorite: $0.favorite)
+                HeroModel.init(id: $0.id ?? "",
+                               name: $0.name ?? "",
+                               photo: $0.photo ?? "",
+                               description: $0.description,
+                               favorite: $0.favorite)
             }
             
             return heroToPresent

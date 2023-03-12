@@ -72,26 +72,12 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         } // save to UserDefaults
         
         
-        NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] herosModel, error in // api call
+        NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] herosModel, error in // hero api call
             
             self?.addLocationsToHeroModel(herosModel ?? []) // location api call
-            
-//            CoreDataManager.saveApiDataToCoreData(herosModel ?? []) // write api data to core data // MISSING LOCATIONS!!!
-        }
-        
 
-        
-        // Read fm HeroCD & map to HeroModel
-
-        NetworkLayer.shared.getHeroes(token: tokenFmUD) { herosModel, error in
-            if error == nil {
-                print("Step 1: NetworkLayer.shared.getHeroes\n")
-                self.addLocationsToHeroModel(herosModel) // UNA VEZ TENGO LA LISTA DE HÉROES, COMIENZO LAS
-            }
-            debugPrint("NetworkLayer.shared.getHeroes(token: tokenFmUD)... \n")
-            print("Called addLocationsToHeroModel(herosModel)\n")
-//            debugPrint("\nFinal código principal\n")
         }
+
         
         
     } // End viewDidLoad
@@ -205,8 +191,6 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     let addLocationsToHeroModel = {(heroes: [HeroModel]) -> Void in // was updateFullItems
         print("Step 2: let addLocationsToHeroModel\n")
         var herosWithLocations: [HeroModel] = []
-    //    var heroCD: HeroCD!
-    //    var herosCD: [HeroCD]
         
         let group = DispatchGroup() // https://developer.apple.com/documentation/dispatch/dispatchgroup
         
@@ -254,7 +238,7 @@ let moveToMain = { (heros: [HeroModel]) -> Void in
     
     heros.forEach { debugPrint("Location for item \($0.id) is: [\($0.name),\($0.id),\($0.latitude!),\($0.longitude!)]") }
     
-    CoreDataManager.saveApiDataToCoreData(heros) // write api data to core data // MISSING LOCATIONS!!!
+    CoreDataManager.saveApiDataToCoreData(heros) // write api data to core data, locations now added!
     
     
 } // end moveToMain
