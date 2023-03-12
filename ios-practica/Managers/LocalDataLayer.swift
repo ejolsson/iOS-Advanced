@@ -48,19 +48,20 @@ final class LocalDataLayer {
         }
     } // used for UserDefaults, need to move away from this
 
+    // BELOW NOT USED!!!
     
-    func getHeros() -> [HeroModel] {
-        if let savedHerosData = UserDefaults.standard.object(forKey: Self.heros) as? Data {
-            do {
-                let savedHeros = try JSONDecoder().decode([HeroModel].self, from: savedHerosData)
-                return savedHeros
-            } catch {
-                print("Error occurred")
-                return []
-            }
-        } else {
-            return []
-        }
-    } // not used
+//    func getHeros() -> [HeroModel] {
+//        if let savedHerosData = UserDefaults.standard.object(forKey: Self.heros) as? Data {
+//            do {
+//                let savedHeros = try JSONDecoder().decode([HeroModel].self, from: savedHerosData)
+//                return savedHeros
+//            } catch {
+//                print("Error occurred")
+//                return []
+//            }
+//        } else {
+//            return []
+//        }
+//    } // not used
  
    }

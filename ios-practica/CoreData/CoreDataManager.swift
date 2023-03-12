@@ -57,7 +57,7 @@ class CoreDataManager {
             
             do {
                 try context.save()
-                print("saveApiDataToCoreData successfull.\n\(heroRecFmMapping)\n")
+//                print("\nsaveApiDataToCoreData successfull.\n\(heroRecFmMapping)\n")
             } catch let error {
                 debugPrint(error)
             }
@@ -81,7 +81,7 @@ class CoreDataManager {
                                description: $0.description,
                                favorite: $0.favorite)
             }
-            
+            print("\nheroToPresent: \(heroToPresent)\n")
             return heroToPresent
         } catch let error as NSError {
             debugPrint("Error: \(error)")

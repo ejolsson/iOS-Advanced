@@ -55,27 +55,44 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         
         
 
-        NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] allHeros, error in
-            guard let self = self else { return }
-
-            if let allHeros = allHeros {
-                self.herosModel = allHeros
-//                print("Check out herosModel INSIDE api call: \(self.herosModel)\n")
-                LocalDataLayer.shared.saveHerosToUserDefaults(heros: allHeros)
-
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+//        NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] allHeros, error in
+//            guard let self = self else { return }
+//
+//            if let allHeros = allHeros {
+//                self.herosModel = allHeros
+////                print("Check out herosModel INSIDE api call: \(self.herosModel)\n")
+//                LocalDataLayer.shared.saveHerosToUserDefaults(heros: allHeros)
+//
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            } else {
+//                print("Error fetching heros: ", error?.localizedDescription ?? "")
+//            }
+//        } // save to UserDefaults
+        
+        print("herosCD check: \(herosCD)\n")
+        
+        if herosCD.isEmpty {
+            NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] herosModelContainer, error in // hero api call
+                guard let self = self else { return }
+                
+                if let herosModelContainer = herosModelContainer {
+                    self.herosModel = herosModelContainer // assign local instance to global variable to be read and used
+                    
+                    self.addLocationsToHeroModel(herosModelContainer) // location api call
+                    
+                    
+                    let herosToShow = CoreDataManager.getCoreDataForPresentation()
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                } else {
+                    print("Error fetching heros: ", error?.localizedDescription ?? "")
                 }
-            } else {
-                print("Error fetching heros: ", error?.localizedDescription ?? "")
             }
-        } // save to UserDefaults
-        
-        
-        NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] herosModel, error in // hero api call
-            
-            self?.addLocationsToHeroModel(herosModel ?? []) // location api call
-
+        } else {
+            let herosToShow = CoreDataManager.getCoreDataForPresentation()
         }
 
         

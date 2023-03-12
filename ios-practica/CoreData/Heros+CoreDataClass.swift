@@ -16,7 +16,7 @@ public class HeroCD: NSManagedObject {
 public extension HeroCD {
     
     @nonobjc class func fetchRequest() -> NSFetchRequest<HeroCD> {
-        return NSFetchRequest<HeroCD>(entityName: "Hero")
+        return NSFetchRequest<HeroCD>(entityName: "HeroCD")
     }
     
     @NSManaged var id: String?
