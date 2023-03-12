@@ -43,6 +43,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         let xib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: "customTableCell")
         
+        // Get Token
         let tokenFmUD = LocalDataLayer.shared.getTokenFmUserDefaults() // load token prior to api calls
 //        let tokenFmKC = loginInfo.getToken(account: UserDefaults.standard.string(forKey: "email") ?? "")
         
@@ -71,8 +72,11 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         } // save to UserDefaults
         
         
-        NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] herosModel, error in
-            CoreDataManager.saveApiDataToCoreData(herosModel ?? [])
+        NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] herosModel, error in // api call
+            
+            self?.addLocationsToHeroModel(herosModel ?? []) // location api call
+            
+//            CoreDataManager.saveApiDataToCoreData(herosModel ?? []) // write api data to core data // MISSING LOCATIONS!!!
         }
         
 
@@ -82,10 +86,10 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         NetworkLayer.shared.getHeroes(token: tokenFmUD) { herosModel, error in
             if error == nil {
                 print("Step 1: NetworkLayer.shared.getHeroes\n")
-                self.updateFullItems(herosModel) // UNA VEZ TENGO LA LISTA DE HÉROES, COMIENZO LAS
+                self.addLocationsToHeroModel(herosModel) // UNA VEZ TENGO LA LISTA DE HÉROES, COMIENZO LAS
             }
             debugPrint("NetworkLayer.shared.getHeroes(token: tokenFmUD)... \n")
-            print("Called updateFullItems(herosModel)\n")
+            print("Called addLocationsToHeroModel(herosModel)\n")
 //            debugPrint("\nFinal código principal\n")
         }
         
@@ -198,9 +202,9 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     
-    let updateFullItems = {(heroes: [HeroModel]) -> Void in
-        print("Step 2: let updateFullItems\n")
-        var fullItems: [HeroModel] = []
+    let addLocationsToHeroModel = {(heroes: [HeroModel]) -> Void in // was updateFullItems
+        print("Step 2: let addLocationsToHeroModel\n")
+        var herosWithLocations: [HeroModel] = []
     //    var heroCD: HeroCD!
     //    var herosCD: [HeroCD]
         
@@ -219,20 +223,20 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
                     fullHero.latitude = 0.0
                     fullHero.longitude = 0.0
                 }
-                fullItems.append(fullHero)
+                herosWithLocations.append(fullHero)
                 group.leave() // INDICA QUE LA OPERACIÓN TERMINA
             }
-        }
+        } // end hero in heros
         
         group.notify(queue: .main) {
     //        print("fullItems = \(fullItems)\n")
     //            herosModel = fullItems
             // CUANDO TODAS LAS TAREAS DEL GRUPO TERMINEN, SE EJECUTA LA SIGUIENTE FUNCIÓN
-            print("Step 3: let updateFullItems > group.notify\n")
-            moveToMain(fullItems)
+            print("Step 3: let addLocationsToHeroModel > group.notify\n")
+            moveToMain(herosWithLocations)
             
         }
-    } // end updateFullItems
+    } // end addLocationsToHeroModel
 
     
 } // end class HeroListVC
@@ -250,6 +254,7 @@ let moveToMain = { (heros: [HeroModel]) -> Void in
     
     heros.forEach { debugPrint("Location for item \($0.id) is: [\($0.name),\($0.id),\($0.latitude!),\($0.longitude!)]") }
     
+    CoreDataManager.saveApiDataToCoreData(heros) // write api data to core data // MISSING LOCATIONS!!!
     
     
 } // end moveToMain
