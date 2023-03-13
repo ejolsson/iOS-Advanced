@@ -78,10 +78,10 @@ class CoreDataManager {
                 HeroModel.init(id: $0.id ?? "",
                                name: $0.name ?? "",
                                photo: $0.photo ?? "",
-                               description: $0.description,
+                               description: $0.desc ?? "",
                                favorite: $0.favorite)
             }
-            print("\nheroToPresent: \(heroToPresent)\n")
+            print("\nCoreDataManager > getCoreDataForPresentation() > heroToPresent[6]: \(heroToPresent[6])\n")
             return heroToPresent
         } catch let error as NSError {
             debugPrint("Error: \(error)")

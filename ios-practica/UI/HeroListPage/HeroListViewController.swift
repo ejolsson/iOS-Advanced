@@ -18,13 +18,14 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    var herosModel: [HeroModel] = [] // Oscar
+    static var herosModel: [HeroModel] = []
+    static var herosToShow: [HeroModel] = []
     var heroModel: HeroModel!
     var places: [Place] = []
     var place: Place! // w/o !, error "no initializers"
     
-    var herosCD: [HeroCD] = []
-    var heroCD: HeroCD!
+//    var herosCD: [HeroCD] = []
+//    var heroCD: HeroCD!
     
     var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
     let loginInfo = LoginViewController() // use this to get user token
@@ -71,19 +72,27 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
 //            }
 //        } // save to UserDefaults
         
-        print("herosCD check: \(herosCD)\n")
+//        print("herosToShow check: \(herosCD[0...4])\n")
         
-        if herosCD.isEmpty {
+        if HeroListViewController.herosToShow.isEmpty {
             NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] herosModelContainer, error in // hero api call
                 guard let self = self else { return }
                 
+                print("herosToShow is Empty\nherosToShow: \(HeroListViewController.herosToShow)\n")
+                
                 if let herosModelContainer = herosModelContainer {
-                    self.herosModel = herosModelContainer // assign local instance to global variable to be read and used
                     
-                    self.addLocationsToHeroModel(herosModelContainer) // location api call
+                    self.addLocationsToHeroModel(herosModelContainer) // location api call, append HeroModel
+                    
+                    print("herosModelContainer[6] = \(herosModelContainer[6])\n")
+                    
+                    HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation() // get core data, write to 'herosToShow'
+                    
+                    print("\nHeroListViewController > viewDidLoad HeroListViewController.herosToShow[6]:\n\(HeroListViewController.herosToShow[6])\n")
+                    
+                    HeroListViewController.herosModel = HeroListViewController.herosToShow // assign local instance to global variable to be read and used
                     
                     
-                    let herosToShow = CoreDataManager.getCoreDataForPresentation()
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -92,6 +101,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
         } else {
+            print("HerosCD is NOT empty\n")
             let herosToShow = CoreDataManager.getCoreDataForPresentation()
         }
 
@@ -124,14 +134,14 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     } // imported fm CoreDataEjemplo
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return herosModel.count
+        return HeroListViewController.herosModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customTableCell", for: indexPath) as! TableViewCell
         
         // updated to accept API data
-        let hero = herosModel[indexPath.row]
+        let hero = HeroListViewController.herosModel[indexPath.row]
         
         cell.iconImageView.setImage(url: hero.photo ) // need to write extension
         cell.titleLabel.text = hero.name
@@ -147,7 +157,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let hero = herosModel[indexPath.row]
+        let hero = HeroListViewController.herosModel[indexPath.row]
         let detailsView = DetailsViewController()
         detailsView.hero = hero
         navigationController?.pushViewController(detailsView, animated: true)

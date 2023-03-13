@@ -17,31 +17,11 @@ class MapViewController: UIViewController {
     
     let heroPlaces = [
         
-//        HeroModel(id: "AB3A873C-37B4-4FDE-A50F -8014D40D94FE", latitud: "39.3260685", longitud: "-4.8379791"),
-        HeroModel(id: "D13A40E5-4418-4223-9CE6-D2F9A28EBE94", name: "Goku", photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/goku1.jpg?width=300", description: "Sobran las presentaciones cuando se habla de Goku. El Saiyan fue enviado al planeta Tierra, pero hay dos versiones sobre el origen del personaje. Según una publicación especial, cuando Goku nació midieron su poder y apenas llegaba a dos unidades, siendo el Saiyan más débil. Aun así se pensaba que le bastaría para conquistar el planeta. Sin embargo, la versión más popular es que Freezer era una amenaza para su planeta natal y antes de que fuera destruido, se envió a Goku en una incubadora para salvarle.", favorite: true, latitude: 39.326, longitude: -4.83),
+        HeroModel(id: "D13A40E5-4418-4223-9CE6-D2F9A28EBE94", name: "Goku", photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/goku1.jpg?width=300", description: "I am Goku!!!.", favorite: true, latitude: 39.326, longitude: -4.83),
         HeroModel(id: "D88BE50B-913D-4EA8-AC42-04D3AF1434E3", name: "Krilin", photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/08/Krilin.jpg?width=300", description: "This is Krilin...", favorite: false, latitude: 40.0, longitude: -5.0)
-        
-//        Place(id: "AB3A873C-37B4-4FDE-A50F -8014D40D94FE", latitud: "39.3260685", longitud: "-4.8379791"),//, dateShow: "2022-09-11T00: 00:00Z", name: "Test"),
-
-//        Place(name: "España", latitude: 39.3260685, longitude: -4.8379791, image: "http://i.annihil.us/u/prod/marvel/i/mg/b/c0/553a9abceb412/portrait_incredible.jpg"),
-//        Place(id: "Bilbao", latitud: 43.2630018, longitud: -2.9350039, image: "http://i.annihil.us/u/prod/marvel/i/mg/b/c0/553a9abceb412/portrait_incredible.jpg"),
-//        Place(id: "A Coruna", latitud: 43.3709703, longitud: -8.3959425, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/06/Roshi.jpg?width=300"),
-//        Place(id: "Barcelona", latitud: 41.3828939, longitud: 2.1774322, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/06/dragon-ball-satan.jpg?width=300"),
-//        Place(id: "Pamplona", latitud: 42.8182536, longitud: -1.6440304, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/08/Krilin.jpg?width=300"),
-//        Place(id: "Malaga", latitud: 36.7213028, longitud: -4.4216366, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/goku1.jpg?width=300"),
-//        Place(id: "Las Palmas", latitud: 28.1288694, longitud: -15.4349015, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/vegetita.jpg?width=300"),
-//        Place(id: "Cadiz", latitud: 36.5297438, longitud: -6.2928976, image: "https://cdn.alfabetajuega.com/alfabetajuega/2021/01/Bulma-Dragon-Ball.jpg?width=300"),
-//        Place(id: "San Sebastian", latitud: 43.3224219, longitud: -1.9838889, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/freezer-dragon-ball-bebe-abj.jpg?width=300"),
-//        Place(id: "Alicante", latitud: 38.3436365, longitud: -0.4881708, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/06/dragon-ball-super-beerus.jpg?width=300"),
-//        Place(id: "Palma de Mallorca", latitud: 39.5695818, longitud: 2.6500745, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/09/piccolo.jpg?width=300"),
-//        Place(id: "Zaragoza", latitud: 41.6521342, longitud: -0.8809428, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/09/Por-esto-aun-Kaito-no-lo-han-resucitado.jpg?width=300"),
-//        Place(id: "Cordoba", latitud: 37.8845813, longitud: -4.7760138, image: "https://cdn.alfabetajuega.com/alfabetajuega/2019/10/Raditz.jpg?width=300"),
-//        Place(id: "Granada", latitud: 37.1734995, longitud: -3.5995337, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/05/3CD8B1C5-134E-419E-AB5D-D1440C922A7E-e1590480274537.png?width=300"),
-//        Place(id: "Valencia", latitud: 39.4697065, longitud: -0.3763353, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/01/Androide-18.jpg?width=300"),
-//        Place(id: "Seville", latitud: 37.3886303, longitud: -5.9953403, image: "https://cdn.alfabetajuega.com/alfabetajuega/2019/10/dragon-ball-androide-17.jpg?width=300"),
-//        Place(id: "Madrid", latitud: 40.4167047, longitud: -3.7035825, image: "https://cdn.alfabetajuega.com/alfabetajuega/2020/07/Trunks.jpg?width=300"),
-//        Place(id: "Salamanca", latitud: 40.9651572, longitud: -5.6640182, image: "https://wallpaperaccess.com/full/1130512.jpg"),
     ]
+    
+//    let heroPlaces = HeroListViewController.herosModel
     
     var heroLocations: [HeroModel] = []
     
@@ -70,7 +50,9 @@ class MapViewController: UIViewController {
         let annotations = heroPlaces.map { Annotation(place: $0) } // this now shows hardcoded item
         
         mapView.showAnnotations(annotations, animated: true)
-    }
+        
+        print("MapViewController > heroModel[6]: \(HeroListViewController.herosModel[6])\n")
+    } // end viewDidLoad
 
     func createAnnotation(_ place: HeroModel) {
         let annotation = MKPointAnnotation()

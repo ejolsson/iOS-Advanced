@@ -194,7 +194,7 @@ class KeychainManager {
             }
             
         } else {
-            debugPrint("An error occurred while querying user information")
+            debugPrint("An error occurred while querying user information fm Keychain")
         }
         
     } // Pedro
@@ -287,7 +287,7 @@ class KeychainManager {
                 debugPrint("La info es: \(username) - \(password)")
             }
         } else {
-            debugPrint("An error occurred while querying user information")
+            debugPrint("An error occurred while querying user information fm Keychain")
         }
     }
     
