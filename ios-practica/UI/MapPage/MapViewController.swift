@@ -15,13 +15,13 @@ class MapViewController: UIViewController {
     
     var locationManager: CLLocationManager?
     
-    let heroPlaces = [
-        
-        HeroModel(id: "D13A40E5-4418-4223-9CE6-D2F9A28EBE94", name: "Goku", photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/goku1.jpg?width=300", description: "I am Goku!!!.", favorite: true, latitude: 39.326, longitude: -4.83),
-        HeroModel(id: "D88BE50B-913D-4EA8-AC42-04D3AF1434E3", name: "Krilin", photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/08/Krilin.jpg?width=300", description: "This is Krilin...", favorite: false, latitude: 40.0, longitude: -5.0)
-    ]
+//    let heroPlaces = [
+//
+//        HeroModel(id: "D13A40E5-4418-4223-9CE6-D2F9A28EBE94", name: "Goku", photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/goku1.jpg?width=300", description: "I am Goku!!!.", favorite: true, latitude: 39.326, longitude: -4.83),
+//        HeroModel(id: "D88BE50B-913D-4EA8-AC42-04D3AF1434E3", name: "Krilin", photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/08/Krilin.jpg?width=300", description: "This is Krilin...", favorite: false, latitude: 40.0, longitude: -5.0)
+//    ]
     
-//    let heroPlaces = HeroListViewController.herosModel
+    var heroPlaces: [HeroModel] = []// = HeroListViewController.herosToShow
     
     var heroLocations: [HeroModel] = []
     
@@ -30,8 +30,8 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("\(heroPlaces)\n")
+        heroPlaces = HeroListViewController.herosToShow
+        print("\(heroPlaces[6])\n") // [nil]
         
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
@@ -51,7 +51,8 @@ class MapViewController: UIViewController {
         
         mapView.showAnnotations(annotations, animated: true)
         
-        print("MapViewController > heroModel[6]: \(HeroListViewController.herosModel[6])\n")
+        print("MapViewController > herosToShow[6]: \(HeroListViewController.herosToShow[6])\n") // gtg
+        print("MapViewController > heroPlaces[6]: \(heroPlaces[6])\n") // [nil]
     } // end viewDidLoad
 
     func createAnnotation(_ place: HeroModel) {

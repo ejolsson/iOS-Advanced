@@ -78,19 +78,22 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
             NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] herosModelContainer, error in // hero api call
                 guard let self = self else { return }
                 
-                print("herosToShow is Empty\nherosToShow: \(HeroListViewController.herosToShow)\n")
+                print("herosToShow is Empty\nherosToShow: \(HeroListViewController.herosToShow)\n...Got to Step 2.") // this should be nil everytime, or else if _.isEmpty didn't work
                 
                 if let herosModelContainer = herosModelContainer {
                     
                     self.addLocationsToHeroModel(herosModelContainer) // location api call, append HeroModel
+                    // lat/long was contained inside func above...
+                    print("herosModelContainer[6] = \(herosModelContainer[6])\n") // lat/long nil
                     
-                    print("herosModelContainer[6] = \(herosModelContainer[6])\n")
+                    sleep(2)
                     
                     HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation() // get core data, write to 'herosToShow'
                     
-                    print("\nHeroListViewController > viewDidLoad HeroListViewController.herosToShow[6]:\n\(HeroListViewController.herosToShow[6])\n")
+                    print("\nHeroListViewController > viewDidLoad HeroListViewController.herosToShow[6]:\n\(HeroListViewController.herosToShow[6])\n") // empty when above is commented out
                     
-                    HeroListViewController.herosModel = HeroListViewController.herosToShow // assign local instance to global variable to be read and used
+                    // HerosListVC L252 wrote to herosModel, need to no longer write to it. Comment out the below. Tried this and List no longer populates...
+//                    HeroListViewController.herosModel = HeroListViewController.herosToShow // assign local instance to global variable to be read and used
                     
                     
                     DispatchQueue.main.async {
@@ -134,14 +137,14 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     } // imported fm CoreDataEjemplo
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return HeroListViewController.herosModel.count
+        return HeroListViewController.herosToShow.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customTableCell", for: indexPath) as! TableViewCell
         
         // updated to accept API data
-        let hero = HeroListViewController.herosModel[indexPath.row]
+        let hero = HeroListViewController.herosToShow[indexPath.row] // try changing to herosToShow
         
         cell.iconImageView.setImage(url: hero.photo ) // need to write extension
         cell.titleLabel.text = hero.name
@@ -157,7 +160,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let hero = HeroListViewController.herosModel[indexPath.row]
+        let hero = HeroListViewController.herosToShow[indexPath.row]
         let detailsView = DetailsViewController()
         detailsView.hero = hero
         navigationController?.pushViewController(detailsView, animated: true)
@@ -215,13 +218,13 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     
-    let addLocationsToHeroModel = {(heroes: [HeroModel]) -> Void in // was updateFullItems
-        print("Step 2: let addLocationsToHeroModel\n")
+    let addLocationsToHeroModel = {(heros: [HeroModel]) -> Void in // was updateFullItems
+        print("Step 2: let addLocationsToHeroModel - start\n")
         var herosWithLocations: [HeroModel] = []
         
         let group = DispatchGroup() // https://developer.apple.com/documentation/dispatch/dispatchgroup
         
-        for hero in heroes { // loop through all heros found in api call
+        for hero in heros { // loop through all heros found in api call
             group.enter() // INDICA QUE LA OPERACIÓN COMIENZA // Apple Docs: Explicitly indicates that a block has entered the group.
             
             NetworkLayer.shared.getLocalization(token: tokenHardCode, with: hero.id) { heroLocations, error in
@@ -230,20 +233,29 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
                 if let firstLocation = heroLocations.first { // only grab first hero location
                     fullHero.latitude = Double(firstLocation.latitud)
                     fullHero.longitude = Double(firstLocation.longitud)
-                } else { // error case... put position in 0,0
+                } else {
                     fullHero.latitude = 0.0
                     fullHero.longitude = 0.0
                 }
                 herosWithLocations.append(fullHero)
                 group.leave() // INDICA QUE LA OPERACIÓN TERMINA
             }
+
         } // end hero in heros
+        print("Step 2: let addLocationsToHeroModel - end\n")
         
         group.notify(queue: .main) {
-    //        print("fullItems = \(fullItems)\n")
+            print("Step 3: addLocationsToHeroModel > group.notify - start\n")
+            print("herosWithLocations[6] = \(herosWithLocations[6])\n") // has lat/long!
+            
+            // write to herosModel or herosToPresent?
+//            HeroListViewController.herosModel = herosWithLocations
+//            print("L252: HeroListViewController.herosModel:\n \(HeroListViewController.herosModel[6])\n")
+            HeroListViewController.herosToShow = herosWithLocations
+            print("L255: HeroListViewController.herosToShow:\n \(HeroListViewController.herosToShow[6])\n")
     //            herosModel = fullItems
             // CUANDO TODAS LAS TAREAS DEL GRUPO TERMINEN, SE EJECUTA LA SIGUIENTE FUNCIÓN
-            print("Step 3: let addLocationsToHeroModel > group.notify\n")
+            print("Step 3: addLocationsToHeroModel > group.notify - end\n")
             moveToMain(herosWithLocations)
             
         }
@@ -257,13 +269,13 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
 let moveToMain = { (heros: [HeroModel]) -> Void in
     
     print("Step 4\n")
-    var herosCD: [HeroCD] // HeroCD Declared In Heros+CoreDataClass.swift
+//    var herosCD: [HeroCD] // Not used // HeroCD Declared In Heros+CoreDataClass.swift
     var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
     
     debugPrint("Receiving all the info")
     debugPrint("Hero count: \(heros.count)\n")
     
-    heros.forEach { debugPrint("Location for item \($0.id) is: [\($0.name),\($0.id),\($0.latitude!),\($0.longitude!)]") }
+    heros.forEach { debugPrint("Location for item \($0.id) is: [\($0.name),\($0.id),\($0.latitude!),\($0.longitude!)]\n") }
     
     CoreDataManager.saveApiDataToCoreData(heros) // write api data to core data, locations now added!
     
