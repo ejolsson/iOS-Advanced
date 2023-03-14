@@ -43,11 +43,11 @@ class TransformationViewController: UIViewController, UITableViewDelegate, UITab
         cell.selectionStyle = .none
         
         return cell
-    } // complete, gtg
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
-    } // complete, gtg
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { // enables transformationDetailsView viewing
         let transformation = transformations[indexPath.row]

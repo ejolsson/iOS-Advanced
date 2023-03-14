@@ -21,8 +21,6 @@ class Annotation: NSObject, MKAnnotation {
         name = place.name
         desc = place.description
         image = place.photo
-//        image = "http://i.annihil.us/u/prod/marvel/i/mg/b/c0/553a9abceb412/portrait_incredible.jpg"
-        //"https://cdn.alfabetajuega.com/alfabetajuega/2020/12/goku1.jpg?width=300" // place.photo // trying to get the picture to load
-//        dateShow = place.dateShow
+
     }
 }

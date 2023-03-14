@@ -23,10 +23,6 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     var heroModel: HeroModel!
     var places: [Place] = []
     var place: Place! // w/o !, error "no initializers"
-    
-//    var herosCD: [HeroCD] = []
-//    var heroCD: HeroCD!
-    
     var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
     let loginInfo = LoginViewController() // use this to get user token
     let keychain = KeychainManager()
@@ -71,8 +67,6 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
 //                print("Error fetching heros: ", error?.localizedDescription ?? "")
 //            }
 //        } // save to UserDefaults
-        
-//        print("herosToShow check: \(herosCD[0...4])\n")
         
         if HeroListViewController.herosToShow.isEmpty {
             NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] herosModelContainer, error in // hero api call
@@ -196,16 +190,6 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func didTapTestButton() {
-        
-        // Test functions below
-//        print("didTapLogoutButton pressed\n")
-//        print("Context = \(context)\n")
-//        print("HerosListVC > herosModel: [HeroModel] = \(herosModel)\n")
-//        print("HerosListVC > hero: Hero! = \(String(describing: heroCD ?? nil))\n")
-//        print("Token fm UserDefaults = \(String(describing: UserDefaults.standard.string(forKey: "token")))\n")
-//        print("Email fm UserDefaults = \(String(describing: UserDefaults.standard.string(forKey: "email")))\n")
-//        print("Password fm UserDefaults = \(String(describing: UserDefaults.standard.string(forKey: "password")))\n")
-        //KeyChainManager.readData(LoginViewController.userEmail)
         
         let token = LocalDataLayer.shared.getTokenFmUserDefaults()
         let email = "ejolsson@gmail.com"

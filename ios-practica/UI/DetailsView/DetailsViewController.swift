@@ -20,9 +20,9 @@ class DetailsViewController: UIViewController {
         transView.transformations = self.transformations
         
         navigationController?.pushViewController(transView, animated: true)
-    } // complete
+    }
     
-    var hero: HeroModel! // this var carries content value during navigation push...
+    var hero: HeroModel!
     var transformations: [Transformation] = []
     
     override func viewDidLoad() {

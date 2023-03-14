@@ -15,13 +15,7 @@ class MapViewController: UIViewController {
     
     var locationManager: CLLocationManager?
     
-//    let heroPlaces = [
-//
-//        HeroModel(id: "D13A40E5-4418-4223-9CE6-D2F9A28EBE94", name: "Goku", photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/goku1.jpg?width=300", description: "I am Goku!!!.", favorite: true, latitude: 39.326, longitude: -4.83),
-//        HeroModel(id: "D88BE50B-913D-4EA8-AC42-04D3AF1434E3", name: "Krilin", photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/08/Krilin.jpg?width=300", description: "This is Krilin...", favorite: false, latitude: 40.0, longitude: -5.0)
-//    ]
-    
-    var heroPlaces: [HeroModel] = []// = HeroListViewController.herosToShow
+    var heroPlaces: [HeroModel] = []
     
     var heroLocations: [HeroModel] = []
     
@@ -46,13 +40,12 @@ class MapViewController: UIViewController {
         
         mapView.register(AnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
-//        let annotations = heroLocations.map { Annotation(place: $0) }
         let annotations = heroPlaces.map { Annotation(place: $0) } // this now shows hardcoded item
         
         mapView.showAnnotations(annotations, animated: true)
         
         print("MapViewController > herosToShow[6]: \(HeroListViewController.herosToShow[6])\n") // gtg
-        print("MapViewController > heroPlaces[6]: \(heroPlaces[6])\n") // [nil]
+        print("MapViewController > heroPlaces[6]: \(heroPlaces[6])\n")
     } // end viewDidLoad
 
     func createAnnotation(_ place: HeroModel) {
@@ -66,8 +59,8 @@ class MapViewController: UIViewController {
     }
     
     func createAnnotations(_ heros: [HeroModel]) {
-//        heroLocations.forEach(createAnnotation)
-        heroPlaces.forEach(createAnnotation) // this now shows hardcoded item
+
+        heroPlaces.forEach(createAnnotation)
     }
 
     func moveToCoordinates(_ latitude: Double, _ longitude: Double) {
@@ -127,7 +120,7 @@ extension MapViewController: CLLocationManagerDelegate {
                 debugPrint("Unknow status")
             }
         }
-    } // complete
+    }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
@@ -145,6 +138,6 @@ extension MapViewController: CLLocationManagerDelegate {
         @unknown default:
             debugPrint("Unknow status")
         }
-    } // complete
+    }
     
-} // complete
+}

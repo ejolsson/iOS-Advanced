@@ -57,7 +57,6 @@ class CoreDataManager {
             
             do {
                 try context.save()
-//                print("\nsaveApiDataToCoreData successfull.\n\(heroRecFmMapping)\n")
             } catch let error {
                 debugPrint(error)
             }
