@@ -19,57 +19,7 @@ class KeychainManager {
         case unknown (OSStatus)
     }
     
-    /*
-     Pedro:
-     
-     Obtuve las siguientes 3 funciones de un video de YouTube. Fue más fácil para mí entender ya que las funciones tenían un valor de "retorno".
-     
-     Posible problema: la contraseña y el token usan el tipo de datos "data" y no la cadena. Esta podría ser la fuente de mis problemas anteriores...
-     */
-    
-    // savePassword Opt 1, credit: https://youtu.be/cQjgBIJtMbw
-    static func savePasswordInKeychain(service: String, account: String, password: Data) throws {
-        let query: [String: AnyObject] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: service as AnyObject,
-            kSecAttrAccount as String: account as AnyObject,
-            kSecValueData as String: password as AnyObject,
-        ]
-        
-        let status = SecItemAdd(
-            query as CFDictionary,
-            nil
-        )
-        
-        guard status != errSecDuplicateItem else {
-            throw KeychainError.duplicateEntry
-        }
-        
-        guard status == errSecSuccess else {
-            throw KeychainError.unknown (status)
-        }
-        
-        print("Service, account, & PASSWORD saved successfully in Keychain" )
-    }
-    
-    
-    // getPassword Opt 1, credit: https://youtu.be/cQjgBIJtMbw
-    static func getPasswordFromKeychain(service: String, account: String) -> Data? {
-        let query: [String: AnyObject] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: service as AnyObject,
-            kSecAttrAccount as String: account as AnyObject,
-            kSecReturnData as String: kCFBooleanTrue,
-            kSecMatchLimit as String: kSecMatchLimitOne
-        ]
-        
-        var result: AnyObject?
-        let status = SecItemCopyMatching(query as CFDictionary, &result)
-        
-        print("Keychain password 'get' read status: \(status)")
-        return result as? Data
-    }
-    
+
     
     // ************* TOKEN *************
     
@@ -161,43 +111,6 @@ class KeychainManager {
         return result as? Data // was String
     }
     
-    
-    
-    
-    
-    
-    
-    
-    // read password Opt 2
-    func readData(service: String, account: String) { // Pedro
-        
-        // Preparamos la consulta
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: service,
-            kSecMatchLimit as String: kSecMatchLimitOne,
-            kSecReturnAttributes as String: true,
-            kSecReturnData as String: true
-        ]
-        
-        var item: CFTypeRef?
-        
-        if SecItemCopyMatching(query as CFDictionary, &item) == noErr {
-            
-            // extraemos la información
-            if let existingItem = item as? [String: Any],
-               let username = existingItem[kSecAttrAccount as String] as? String,
-               let passwordData = existingItem[kSecValueData as String] as? Data,
-               let password = String(data: passwordData, encoding: .utf8) {
-            
-                debugPrint("La info es: \(username) - \(password)")
-            }
-            
-        } else {
-            debugPrint("An error occurred while querying user information fm Keychain")
-        }
-        
-    } // Pedro
     
     static func deleteKeychainItem(service: String, account: String) {
         let query: [String: Any] = [

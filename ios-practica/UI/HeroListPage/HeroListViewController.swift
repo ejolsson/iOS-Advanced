@@ -7,8 +7,6 @@
 
 import UIKit
 
-let tokenHardCode = "eyJraWQiOiJwcml2YXRlIiwiYWxnIjoiSFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZGVudGlmeSI6IkI4M0I1NjZCLUY2NEItNENGNi1CQzI1LUIwQTAxNkQzNkIzMiIsImVtYWlsIjoiZWpvbHNzb25AZ21haWwuY29tIiwiZXhwaXJhdGlvbiI6NjQwOTIyMTEyMDB9.fBTvAWVKbqaJoDAFvpLlO6YY5gjCPVwxJbXvCQMKiBw"
-
 struct HeroCellItem {
     let image: UIImage
     let text: String
@@ -40,15 +38,9 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         let xib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: "customTableCell")
         
-        // Get Token
-        let tokenFmUD = LocalDataLayer.shared.getTokenFmUserDefaults() // load token prior to api calls
-//        let tokenFmKC = loginInfo.getToken(account: UserDefaults.standard.string(forKey: "email") ?? "")
-        
-        let tokenRaw: () = loginInfo.getTokenSimple(account: "tokenSimple")
 
-        print("userToken: \(loginInfo.userToken)\n")
-        let tokenBig: () = keychain.readDataBigToken(username: "token-manager")
-//        let tokenString = String(decoding: tokenBig, as: UTF8.self)
+        
+
         
         
 
@@ -69,7 +61,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
 //        } // save to UserDefaults
         
         if HeroListViewController.herosToShow.isEmpty {
-            NetworkLayer.shared.fetchHeros(token: tokenFmUD) { [weak self] herosModelContainer, error in // hero api call
+            NetworkLayer.shared.fetchHeros(token: Global.tokenMaster) { [weak self] herosModelContainer, error in // hero api call
                 guard let self = self else { return }
                 
                 print("herosToShow is Empty\nherosToShow: \(HeroListViewController.herosToShow)\n...Got to Step 2.") // this should be nil everytime, or else if _.isEmpty didn't work
@@ -80,11 +72,9 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
                     // lat/long was contained inside func above...
                     print("herosModelContainer[6] = \(herosModelContainer[6])\n") // lat/long nil
                     
-                    sleep(2)
-                    
                     HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation() // get core data, write to 'herosToShow'
                     
-                    print("\nHeroListViewController > viewDidLoad HeroListViewController.herosToShow[6]:\n\(HeroListViewController.herosToShow[6])\n") // empty when above is commented out
+                    print("\nHeroListViewController > viewDidLoad HeroListViewController.herosToShow[6]:\n\(HeroListViewController.herosToShow)\n") // empty when above is commented out
                     
                     // HerosListVC L252 wrote to herosModel, need to no longer write to it. Comment out the below. Tried this and List no longer populates...
 //                    HeroListViewController.herosModel = HeroListViewController.herosToShow // assign local instance to global variable to be read and used
@@ -191,7 +181,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func didTapTestButton() {
         
-        let token = LocalDataLayer.shared.getTokenFmUserDefaults()
+        let token = Global.tokenMaster
         let email = "ejolsson@gmail.com"
 
         loginInfo.deleteKeychainItem(service: "token mgmt", account: email) //pass
@@ -211,7 +201,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         for hero in heros { // loop through all heros found in api call
             group.enter() // INDICA QUE LA OPERACIÓN COMIENZA // Apple Docs: Explicitly indicates that a block has entered the group.
             
-            NetworkLayer.shared.getLocalization(token: tokenHardCode, with: hero.id) { heroLocations, error in
+            NetworkLayer.shared.getLocalization(token: Global.tokenMaster, with: hero.id) { heroLocations, error in
                 var fullHero = hero // instantiate hero, using the " hero loop index"
                 // use if let due to case when lat/long nil
                 if let firstLocation = heroLocations.first { // only grab first hero location

@@ -42,6 +42,7 @@
 		4AB8985429A52D04009CE481 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB8985329A52D04009CE481 /* CoreDataManager.swift */; };
 		4AB8985629A53737009CE481 /* Heros+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB8985529A53737009CE481 /* Heros+CoreDataClass.swift */; };
 		4AB8985829A538A7009CE481 /* Hero+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB8985729A538A7009CE481 /* Hero+CoreDataProperties.swift */; };
+		4AE057B429C07F17008BA10A /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE057B329C07F17008BA10A /* Global.swift */; };
 		4AE84F022997EE03002384E6 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F012997EE03002384E6 /* Place.swift */; };
 		4AE84F042997EF3F002384E6 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F032997EF3F002384E6 /* Annotation.swift */; };
 		4AE84F062997F0F4002384E6 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F052997F0F4002384E6 /* AnnotationView.swift */; };
@@ -109,6 +110,7 @@
 		4AB8985329A52D04009CE481 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		4AB8985529A53737009CE481 /* Heros+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Heros+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4AB8985729A538A7009CE481 /* Hero+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hero+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4AE057B329C07F17008BA10A /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		4AE84F012997EE03002384E6 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		4AE84F032997EF3F002384E6 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		4AE84F052997F0F4002384E6 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		4A1B0778295B666A00BDFB1F /* ios-practica */ = {
 			isa = PBXGroup;
 			children = (
+				4AE057B229C07EDE008BA10A /* Global */,
 				4AB8984F29A52703009CE481 /* CoreData */,
 				4A1B07C1295B7CE400BDFB1F /* Models */,
 				4A1B07C7295C36ED00BDFB1F /* Managers */,
@@ -328,6 +331,14 @@
 				4AB8985729A538A7009CE481 /* Hero+CoreDataProperties.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		4AE057B229C07EDE008BA10A /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				4AE057B329C07F17008BA10A /* Global.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 		4AFE5D84295E273600CD1184 /* LoginPage */ = {
@@ -511,6 +522,7 @@
 				4A26A2B4296C0201008EE2E6 /* DetailsViewController.swift in Sources */,
 				4AE84F042997EF3F002384E6 /* Annotation.swift in Sources */,
 				4A1B07B9295B6D3B00BDFB1F /* MapViewController.swift in Sources */,
+				4AE057B429C07F17008BA10A /* Global.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,11 +19,11 @@ final class LocalDataLayer {
     
     func saveTokenToUserDefaults(token: String) {
         return UserDefaults.standard.set(token, forKey: Self.token)
-    }
+    } // used in LoginViewController.swift Ln 43
     
     func saveEmailToUserDefaults(email: String) {
         return UserDefaults.standard.set(email, forKey: Self.email)
-    }
+    } // used in LoginViewController.swift Ln 42
 
     func getTokenFmUserDefaults() -> String {
         return UserDefaults.standard.string(forKey: Self.token) ?? ""

@@ -10,7 +10,7 @@ import UIKit
 class LoginViewController: UIViewController {
 
     public var userEmail: String = ""
-    public var userToken: String = ""
+    public var userToken: String = "" // only used for print statements, delete this...
     
     let keychain = KeychainManager()
     
@@ -19,9 +19,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     
     @IBAction func loginButtonTapped(_ sender: Any) {
-        
-        userEmail = emailTextField.text ?? "" // not used-------------!
-        var userToken: String = ""
         
         guard let email = emailTextField.text, !email.isEmpty else {
             print("No email provided")
@@ -44,13 +41,10 @@ class LoginViewController: UIViewController {
                 self.keychain.saveDataBigToken(token: token)
                 self.keychain.readDataBigToken(username: "token-manager")
                 
-                self.savePassword(account: email, password: password)
-                
                 print("Token valid during login")
                 print("User email = \(email)")
                 print("User token = \(token)")
                 
-                userToken = token
                 
                 DispatchQueue.main.async {
                     UIApplication
@@ -146,27 +140,27 @@ class LoginViewController: UIViewController {
         userToken = token
     }
     
-    
-    func savePassword(account: String, password: String) {
-        do {
-            try KeychainManager.savePasswordInKeychain(service: "password mgmt", account: account, password: password.data(using: .utf8) ?? Data()
-            )
-        }
-        catch {
-            print("savePassword error: \(error)\n")
-        }
-    }
-
-    func getPassword(account: String) {
-        guard let data = KeychainManager.getPasswordFromKeychain(service: "password mgmt", account: account)
-        else {
-            print("Failed to read password from Keychain\n")
-            return
-        }
-        
-        let password = String(decoding: data, as: UTF8.self)
-        print("Read password from Keychain: \(password)\n")
-    }
+    // commenting out funcs below as underlying code was removed...
+//    func savePassword(account: String, password: String) {
+//        do {
+//            try KeychainManager.savePasswordInKeychain(service: "password mgmt", account: account, password: password.data(using: .utf8) ?? Data()
+//            )
+//        }
+//        catch {
+//            print("savePassword error: \(error)\n")
+//        }
+//    }
+//
+//    func getPassword(account: String) {
+//        guard let data = KeychainManager.getPasswordFromKeychain(service: "password mgmt", account: account)
+//        else {
+//            print("Failed to read password from Keychain\n")
+//            return
+//        }
+//
+//        let password = String(decoding: data, as: UTF8.self)
+//        print("Read password from Keychain: \(password)\n")
+//    }
     
     
 //    func saveBigTokenSimple(token: String) {

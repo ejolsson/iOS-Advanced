@@ -80,7 +80,7 @@ class CoreDataManager {
                                description: $0.desc ?? "",
                                favorite: $0.favorite)
             }
-            print("\nCoreDataManager > getCoreDataForPresentation() > heroToPresent[6]: \(heroToPresent[6])\n")
+//            print("\nCoreDataManager > getCoreDataForPresentation() > heroToPresent[6]: \(heroToPresent)\n")
             return heroToPresent
         } catch let error as NSError {
             debugPrint("Error: \(error)")

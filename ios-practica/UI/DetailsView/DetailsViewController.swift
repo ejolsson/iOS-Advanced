@@ -36,7 +36,7 @@ class DetailsViewController: UIViewController {
         heroDescLabel.text = hero.description
         //heroDescLabel.sizeToFit() // attempting to align text to top of label
         
-        let token = LocalDataLayer.shared.getTokenFmUserDefaults()
+        let token = Global.tokenMaster
         
         NetworkLayer
             .shared
