@@ -145,6 +145,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let hero = HeroListViewController.herosToShow[indexPath.row]
+//        let hero = HeroListViewController.herosModel[indexPath.row]
         let detailsView = DetailsViewController()
         detailsView.hero = hero
         navigationController?.pushViewController(detailsView, animated: true)
@@ -172,7 +173,8 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         UserDefaults.standard.set(false, forKey: "login status") // set login status
         print("Login status: \(UserDefaults.standard.bool(forKey: "login status"))\n")
         
-        loginInfo.deleteKeychainItem(service: "token mgmt", account: UserDefaults.standard.string(forKey: "email") ?? "")
+//        loginInfo.deleteKeychainItem(service: "token mgmt", account: UserDefaults.standard.string(forKey: "email") ?? "")
+        KeychainManager.deleteBigToken()
         
         self.present(loginVC, animated: true) // modal pop up, works, not secure/effective
 //        window?.rootViewController = LoginViewController()
@@ -181,14 +183,8 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func didTapTestButton() {
         
-        let token = Global.tokenMaster
-        let email = "ejolsson@gmail.com"
-
-        loginInfo.deleteKeychainItem(service: "token mgmt", account: email) //pass
-        loginInfo.deleteKeychainItem(service: "password mgmt", account: email) // fail
-        loginInfo.deleteKeychainItem(service: "password mgmt", account: "ejolsson@gmail.com") //fail
-        loginInfo.deleteKeychainItem(service: "password mgmt", account: "tokenSimple") // pass
-        loginInfo.deleteKeychainItem(service: "", account: "tokenSimple") // fail
+//        KeychainManager.saveDataBigToken(token: Global.tokenMaster)
+        KeychainManager.readBigToken()
     }
 
     
