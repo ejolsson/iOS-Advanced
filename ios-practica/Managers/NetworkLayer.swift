@@ -193,6 +193,8 @@ final class NetworkLayer {
         
         // added token parameter since not hardcoded
         
+        print("Starting getHeroes api call...\n")
+        
         guard let url = URL(string: "https://dragonball.keepcoding.education/api/heros/all") else {
             completion([], NetworkError.malformedURL)
             return

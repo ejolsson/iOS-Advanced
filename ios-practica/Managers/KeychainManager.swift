@@ -28,7 +28,7 @@ class KeychainManager {
         ]
         
         if (SecItemDelete(query as CFDictionary)) == noErr {
-            debugPrint("User info deleted successfully\n")
+            debugPrint("Token deleted from Keychain successfully\n")
         } else {
             debugPrint("deleteKeychainItem error\n")
         }
@@ -65,7 +65,7 @@ class KeychainManager {
     static func saveDataBigToken(token: String) {
         
         let token = token
-        print("saveDataBigToken has token to be: \(token)\n")
+
         // Preparamos los atributos necesarios
         let attributes: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -74,7 +74,7 @@ class KeychainManager {
         ]
 
         if SecItemAdd(attributes as CFDictionary, nil) == noErr {
-            debugPrint("User info saved successfully")
+            debugPrint("Token saved to Keychain successfully. Token = \(token)\n")
         } else {
             debugPrint("Error saving user info")
         }
@@ -82,6 +82,10 @@ class KeychainManager {
     }
     
     static func readBigToken() -> String? {
+        
+        if Global.tokenMaster.isEmpty {
+            print("tokenMaster is empty\n")
+        }
         
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -96,11 +100,12 @@ class KeychainManager {
         if SecItemCopyMatching(query as CFDictionary, &item) == noErr {
             
             if let existingItem = item as? [String: Any],
-               let key = existingItem[kSecAttrAccount as String] as? String,
+//               let key = existingItem[kSecAttrAccount as String] as? String, //Immutable value 'kev' was never used: consider replacing with ' ' or removing it
                let tokenData = existingItem[kSecValueData as String] as? Data,
                let token = String(data: tokenData, encoding: .utf8) {
                 
-                debugPrint("Reading Token: \(key) - \(token)")
+                debugPrint("Reading token fm Keychain: \(token)")
+                Global.tokenMaster = token
                 return token
             }
         }

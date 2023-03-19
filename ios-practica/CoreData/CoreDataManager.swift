@@ -6,10 +6,12 @@
 //
 
 import CoreData
+import Foundation
 
 class CoreDataManager {
     
     private let modelName: String
+//    let coreDataManager: CoreDataManager
     
     init(modelName: String) {
         self.modelName = modelName
@@ -41,6 +43,7 @@ class CoreDataManager {
     
     static func saveApiDataToCoreData(_ herosSendToMapping: [HeroModel]) {
         
+        print("Starting saveApiDataToCoreData...")
         var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
         
         herosSendToMapping.forEach { heroSendToMapping in
@@ -61,10 +64,13 @@ class CoreDataManager {
                 debugPrint(error)
             }
         } // end herosSendToMapping.forEach
+//        print("Output fm: saveApiDataToCoreData > herosSendToMapping\n \(herosSendToMapping)\n")
     } // end saveApiDataToCoreData
     
     // code credit: PracticaResueltalOSAvanzado
     static func getCoreDataForPresentation() -> [HeroModel] {
+        
+        print("\nStarting getCoreDataForPresentation...\n")
         
         let context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
         
@@ -78,9 +84,13 @@ class CoreDataManager {
                                name: $0.name ?? "",
                                photo: $0.photo ?? "",
                                description: $0.desc ?? "",
-                               favorite: $0.favorite)
+                               favorite: $0.favorite,
+                               latitude: $0.latitude,
+                               longitude: $0.longitude)
             }
-//            print("\nCoreDataManager > getCoreDataForPresentation() > heroToPresent[6]: \(heroToPresent)\n")
+//            print("\nCoreDataManager > getCoreDataForPresentation() > heroToPresent: \(heroToPresent)\n") // no need to use this line since L66 in HLVC prings "herosToShow"
+            NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil)
+//            dataIsLoadedIntoCDNotification()
             return heroToPresent
         } catch let error as NSError {
             debugPrint("Error: \(error)")
@@ -88,4 +98,11 @@ class CoreDataManager {
         }
     } // end getCoreDataForPresentation()
     
-} // end CoreDataManager
+    static func deleteCoreData() {
+//        var herosToDelete =
+    }
+    
+    func dataIsLoadedIntoCDNotification() {
+        NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil)
+    }
+} // end clall CoreDataManager

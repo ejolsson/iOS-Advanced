@@ -30,22 +30,23 @@ class LoginViewController: UIViewController {
             return
         }
         
-        
         NetworkLayer.shared.login(email: email, password: password) { token, error in
             if let token = token {
                 
                 // Toggle line below for ease of logging in during testing
-                LocalDataLayer.shared.saveEmailToUserDefaults(email: email)
-                LocalDataLayer.shared.saveTokenToUserDefaults(token: token)
+//                LocalDataLayer.shared.saveEmailToUserDefaults(email: email)
+//                LocalDataLayer.shared.saveTokenToUserDefaults(token: token)
                 KeychainManager.deleteBigToken()
                 KeychainManager.saveDataBigToken(token: token)
 //                self.keychain.readDataBigToken(username: "token-manager")
-                KeychainManager.readBigToken()
+//                KeychainManager.readBigToken()
+                Global.loginStatus = true
+                Global.tokenMaster = token
                 
                 print("Token valid during login")
-                print("User email = \(email)")
-                print("User token = \(token)")
-                
+                print("Email used for API call: \(email)")
+                print("Token returned from API call: \(token)")
+                print("Global.loginStatus: \(Global.loginStatus)\n\n")
                 
                 DispatchQueue.main.async {
                     UIApplication
@@ -56,12 +57,12 @@ class LoginViewController: UIViewController {
                         .rootViewController = TabBarController()
                 }
             } else {
-                print("Login error: ", error?.localizedDescription ?? "")
+                print("Login error: ", error?.localizedDescription ?? "\n")
             }
         }
         
-        UserDefaults.standard.set(true, forKey: "login status") // set login status
-        print("Login status: \(UserDefaults.standard.bool(forKey: "login status"))\n")
+//        UserDefaults.standard.set(true, forKey: "login status") // set login status
+//        print("Login status: \(UserDefaults.standard.bool(forKey: "login status"))\n")
         
     }
     

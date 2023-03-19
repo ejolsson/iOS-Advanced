@@ -38,7 +38,15 @@ final class LocalDataLayer {
 
     
     func isUserLoggedIn() -> Bool {
-        return !getTokenFmUserDefaults().isEmpty
+//        return !getTokenFmUserDefaults().isEmpty
+        return !KeychainManager.readBigToken()!.isEmpty
+//        return ((KeychainManager.readBigToken()?.isEmpty) == nil)
+        
+//        if Global.loginStatus == true {
+//            return true
+//        } else {
+//            return false
+//        }
     }
 
 
