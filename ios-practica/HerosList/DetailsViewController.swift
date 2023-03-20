@@ -26,8 +26,9 @@ class DetailsViewController: UIViewController {
     var transformations: [Transformation] = []
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        print("hero =\(String(describing: hero))\n")
+
         title = hero.name
         transformationButton.alpha = 0
         

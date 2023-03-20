@@ -11,7 +11,6 @@ import Foundation
 class CoreDataManager {
     
     private let modelName: String
-//    let coreDataManager: CoreDataManager
     
     init(modelName: String) {
         self.modelName = modelName
@@ -63,9 +62,8 @@ class CoreDataManager {
             } catch let error {
                 debugPrint(error)
             }
-        } // end herosSendToMapping.forEach
-//        print("Output fm: saveApiDataToCoreData > herosSendToMapping\n \(herosSendToMapping)\n")
-    } // end saveApiDataToCoreData
+        }
+    }
     
     // code credit: PracticaResueltalOSAvanzado
     static func getCoreDataForPresentation() -> [HeroModel] {
@@ -88,21 +86,44 @@ class CoreDataManager {
                                latitude: $0.latitude,
                                longitude: $0.longitude)
             }
-//            print("\nCoreDataManager > getCoreDataForPresentation() > heroToPresent: \(heroToPresent)\n") // no need to use this line since L66 in HLVC prings "herosToShow"
+
             NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil)
-//            dataIsLoadedIntoCDNotification()
+
             return heroToPresent
         } catch let error as NSError {
             debugPrint("Error: \(error)")
             return []
         }
-    } // end getCoreDataForPresentation()
+    }
+    
+    static func readCoreDataInCDFormat() -> [HeroCD] {
+        let heroFetch: NSFetchRequest<HeroCD> = HeroCD.fetchRequest()
+        var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
+        
+        do {
+            let result = try context.fetch(heroFetch)
+            return result
+        } catch let error as NSError {
+            debugPrint("Error -> \(error)")
+            return []
+        }
+    } // credit Pedro solution // CHECK CLASS EXAMPLE FOR PROPER CREDIT
     
     static func deleteCoreData() {
-//        var herosToDelete =
+        var herosToDelete = CoreDataManager.readCoreDataInCDFormat()
+        var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
+        
+        print("Core Data inventory check of heros: \(herosToDelete.count)\n")
+        herosToDelete.forEach { heroToDelete in
+            
+            // Method A
+            context.delete(heroToDelete)
+            AppDelegate.sharedAppDelegate.coreDataManager.saveContext()
+            
+
+            
+        }
+        herosToDelete = CoreDataManager.readCoreDataInCDFormat()
+        print("Core Data inventory check of heros: \(herosToDelete.count)\n")
     }
-    
-    func dataIsLoadedIntoCDNotification() {
-        NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil)
-    }
-} // end clall CoreDataManager
+}

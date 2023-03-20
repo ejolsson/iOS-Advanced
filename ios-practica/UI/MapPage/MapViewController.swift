@@ -25,7 +25,6 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         heroPlaces = HeroListViewController.herosToShow
-//        print("\(heroPlaces[6])\n") // [nil]
         
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
@@ -44,9 +43,7 @@ class MapViewController: UIViewController {
         
         mapView.showAnnotations(annotations, animated: true)
         
-//        print("MapViewController > herosToShow[6]: \(HeroListViewController.herosToShow[6])\n") // gtg
-//        print("MapViewController > heroPlaces[6]: \(heroPlaces[6])\n")
-    } // end viewDidLoad
+    }
 
     func createAnnotation(_ place: HeroModel) {
         let annotation = MKPointAnnotation()

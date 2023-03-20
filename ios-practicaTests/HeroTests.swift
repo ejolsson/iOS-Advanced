@@ -10,12 +10,12 @@ import XCTest
 
 final class HeroTests: XCTestCase {
 
-    var hero: Hero!
+    var hero: HeroModel!
     
     override func setUp() {
         super.setUp()
         
-        hero = Hero(id: "1",
+        hero = HeroModel(id: "1",
                       name: "Goku",
                       photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/goku1.jpg?width=300", // any valid url
                       description: "Correct description",

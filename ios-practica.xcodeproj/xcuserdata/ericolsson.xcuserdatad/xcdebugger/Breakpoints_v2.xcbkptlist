@@ -94,8 +94,8 @@
             filePath = "ios-practica/UI/MapPage/MapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "createAnnotations(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -208,22 +208,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C4F7741F-89D9-4783-8248-E6C7FE5FD500"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ios-practica/HerosList/HeroListViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A82798F9-58BD-4356-9565-46387D426F13"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -231,8 +215,8 @@
             filePath = "ios-practica/CoreData/CoreDataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "getCoreDataForPresentation()"
             landmarkType = "7">
          </BreakpointContent>

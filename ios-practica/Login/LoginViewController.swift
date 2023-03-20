@@ -10,8 +10,6 @@ import UIKit
 class LoginViewController: UIViewController {
 
     public var userEmail: String = ""
-    public var userToken: String = "" // only used for print statements, delete this...
-    
     let keychain = KeychainManager()
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -33,13 +31,8 @@ class LoginViewController: UIViewController {
         NetworkLayer.shared.login(email: email, password: password) { token, error in
             if let token = token {
                 
-                // Toggle line below for ease of logging in during testing
-//                LocalDataLayer.shared.saveEmailToUserDefaults(email: email)
-//                LocalDataLayer.shared.saveTokenToUserDefaults(token: token)
                 KeychainManager.deleteBigToken()
                 KeychainManager.saveDataBigToken(token: token)
-//                self.keychain.readDataBigToken(username: "token-manager")
-//                KeychainManager.readBigToken()
                 Global.loginStatus = true
                 Global.tokenMaster = token
                 
@@ -60,14 +53,9 @@ class LoginViewController: UIViewController {
                 print("Login error: ", error?.localizedDescription ?? "\n")
             }
         }
-        
-//        UserDefaults.standard.set(true, forKey: "login status") // set login status
-//        print("Login status: \(UserDefaults.standard.bool(forKey: "login status"))\n")
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
 }
