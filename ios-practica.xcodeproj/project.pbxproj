@@ -246,6 +246,7 @@
 			children = (
 				4A1B0779295B666A00BDFB1F /* AppDelegate.swift */,
 				4A1B077B295B666A00BDFB1F /* SceneDelegate.swift */,
+				4A927F9129AB85140041F80F /* VcSelector.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -272,7 +273,6 @@
 		4A1B07B2295B6C7500BDFB1F /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				4A1B07B3295B6CE300BDFB1F /* TabBarController.swift */,
 				4A1B07B4295B6CE300BDFB1F /* TabBarController.xib */,
 			);
 			path = TabBar;
@@ -289,7 +289,6 @@
 		4A1B07BC295B794200BDFB1F /* TableCellView */ = {
 			isa = PBXGroup;
 			children = (
-				4A1B07BD295B79A400BDFB1F /* TableViewCell.swift */,
 				4A1B07BE295B79A400BDFB1F /* TableViewCell.xib */,
 			);
 			path = TableCellView;
@@ -307,7 +306,6 @@
 		4A223123297351BD004A7CE7 /* TransformationDetails */ = {
 			isa = PBXGroup;
 			children = (
-				4A223124297351ED004A7CE7 /* TransformationDetailViewController.swift */,
 				4A223125297351ED004A7CE7 /* TransformationDetailViewController.xib */,
 			);
 			path = TransformationDetails;
@@ -325,7 +323,6 @@
 			isa = PBXGroup;
 			children = (
 				4A223123297351BD004A7CE7 /* TransformationDetails */,
-				4A968456296EA6730020A804 /* TransformationsViewController.swift */,
 				4A968457296EA6730020A804 /* TransformationViewController.xib */,
 			);
 			path = Transformations;
@@ -357,7 +354,6 @@
 				4A075BDE29C86AA600E21759 /* View */,
 				4A075BDF29C86AC500E21759 /* ViewModel */,
 				4A075BE029C86AD000E21759 /* ViewController */,
-				4A927F9129AB85140041F80F /* VcSelector.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -366,11 +362,10 @@
 			isa = PBXGroup;
 			children = (
 				4A9B892C29C84DF5007A0B5C /* Models */,
+				4AD59C2B29C9F950004FAB75 /* View */,
 				4A1B07BC295B794200BDFB1F /* TableCellView */,
 				4A968455296E9C210020A804 /* Transformations */,
-				4A26A2B6296C0E32008EE2E6 /* Transformation.swift */,
 				4A1B07AC295B679000BDFB1F /* HeroListViewController.swift */,
-				4A26A2B2296C0201008EE2E6 /* DetailsViewController.swift */,
 				4A26A2B3296C0201008EE2E6 /* DetailsViewController.xib */,
 			);
 			path = HerosList;
@@ -425,6 +420,10 @@
 		4AD59C2429C9F128004FAB75 /* Transformations */ = {
 			isa = PBXGroup;
 			children = (
+				4AD59C2729C9F7AA004FAB75 /* Model */,
+				4AD59C2829C9F7B2004FAB75 /* View */,
+				4AD59C2929C9F7BD004FAB75 /* ViewModel */,
+				4AD59C2A29C9F7CC004FAB75 /* ViewController */,
 			);
 			path = Transformations;
 			sourceTree = "<group>";
@@ -432,6 +431,7 @@
 		4AD59C2529C9F138004FAB75 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				4A26A2B2296C0201008EE2E6 /* DetailsViewController.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -439,8 +439,48 @@
 		4AD59C2629C9F158004FAB75 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				4A1B07B3295B6CE300BDFB1F /* TabBarController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		4AD59C2729C9F7AA004FAB75 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4A26A2B6296C0E32008EE2E6 /* Transformation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4AD59C2829C9F7B2004FAB75 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4AD59C2929C9F7BD004FAB75 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4AD59C2A29C9F7CC004FAB75 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A968456296EA6730020A804 /* TransformationsViewController.swift */,
+				4A223124297351ED004A7CE7 /* TransformationDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4AD59C2B29C9F950004FAB75 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A1B07BD295B79A400BDFB1F /* TableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4AE057B229C07EDE008BA10A /* Global */ = {
