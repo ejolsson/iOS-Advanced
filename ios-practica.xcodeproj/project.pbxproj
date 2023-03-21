@@ -34,8 +34,6 @@
 		4A26A2B8296C0ECB008EE2E6 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26A2B6296C0E32008EE2E6 /* Transformation.swift */; };
 		4A927F9229AB85140041F80F /* VcSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A927F9129AB85140041F80F /* VcSelector.swift */; };
 		4A9316BC299A52EF00E49AA5 /* CustomMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */; };
-		4A9316C0299A84E100E49AA5 /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9316BE299A84E100E49AA5 /* LogoutViewController.swift */; };
-		4A9316C1299A84E100E49AA5 /* LogoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9316BF299A84E100E49AA5 /* LogoutViewController.xib */; };
 		4A968458296EA6730020A804 /* TransformationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968456296EA6730020A804 /* TransformationsViewController.swift */; };
 		4A968459296EA6730020A804 /* TransformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A968457296EA6730020A804 /* TransformationViewController.xib */; };
 		4A9B892D29C84E1C007A0B5C /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F012997EE03002384E6 /* Place.swift */; };
@@ -49,6 +47,13 @@
 		4AB8985829A538A7009CE481 /* Hero+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB8985729A538A7009CE481 /* Hero+CoreDataProperties.swift */; };
 		4AC6B21529C30C3800DD5919 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC6B21429C30C3800DD5919 /* LoginView.swift */; };
 		4AD59C1429C9E43B004FAB75 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59C1329C9E43B004FAB75 /* LoginViewModel.swift */; };
+		4AD59C1729C9EBEC004FAB75 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59C1629C9EBEC004FAB75 /* MapViewModel.swift */; };
+		4AD59C1829C9EBEC004FAB75 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59C1629C9EBEC004FAB75 /* MapViewModel.swift */; };
+		4AD59C1929C9EBEC004FAB75 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59C1629C9EBEC004FAB75 /* MapViewModel.swift */; };
+		4AD59C1A29C9EC2E004FAB75 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07B7295B6D3B00BDFB1F /* MapViewController.swift */; };
+		4AD59C1B29C9EC2E004FAB75 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07B7295B6D3B00BDFB1F /* MapViewController.swift */; };
+		4AD59C1C29C9EC34004FAB75 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F032997EF3F002384E6 /* Annotation.swift */; };
+		4AD59C1D29C9EC34004FAB75 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F032997EF3F002384E6 /* Annotation.swift */; };
 		4AE057B429C07F17008BA10A /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE057B329C07F17008BA10A /* Global.swift */; };
 		4AE84F022997EE03002384E6 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F012997EE03002384E6 /* Place.swift */; };
 		4AE84F042997EF3F002384E6 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F032997EF3F002384E6 /* Annotation.swift */; };
@@ -56,7 +61,6 @@
 		4AE84F092997F4D7002384E6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE84F082997F4D7002384E6 /* Kingfisher */; };
 		4AE84F0B2998CDF3002384E6 /* Callout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F0A2998CDF3002384E6 /* Callout.swift */; };
 		4AED4C27299E1E5C005F4393 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AED4C26299E1E5C005F4393 /* KeychainManager.swift */; };
-		4AFE5D83295D7DD200CD1184 /* LocalDataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFE5D82295D7DD200CD1184 /* LocalDataLayer.swift */; };
 		4AFE5D87295E276900CD1184 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFE5D85295E276900CD1184 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,8 +112,6 @@
 		4A65362629BA7F3D00A55A1C /* Heros v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Heros v2.xcdatamodel"; sourceTree = "<group>"; };
 		4A927F9129AB85140041F80F /* VcSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VcSelector.swift; sourceTree = "<group>"; };
 		4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarker.swift; sourceTree = "<group>"; };
-		4A9316BE299A84E100E49AA5 /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
-		4A9316BF299A84E100E49AA5 /* LogoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoutViewController.xib; sourceTree = "<group>"; };
 		4A968456296EA6730020A804 /* TransformationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationsViewController.swift; sourceTree = "<group>"; };
 		4A968457296EA6730020A804 /* TransformationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransformationViewController.xib; sourceTree = "<group>"; };
 		4A9B892E29C84E7B007A0B5C /* HeroCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCellModel.swift; sourceTree = "<group>"; };
@@ -120,13 +122,13 @@
 		4AB8985729A538A7009CE481 /* Hero+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hero+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4AC6B21429C30C3800DD5919 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4AD59C1329C9E43B004FAB75 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		4AD59C1629C9EBEC004FAB75 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		4AE057B329C07F17008BA10A /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		4AE84F012997EE03002384E6 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		4AE84F032997EF3F002384E6 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		4AE84F052997F0F4002384E6 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		4AE84F0A2998CDF3002384E6 /* Callout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callout.swift; sourceTree = "<group>"; };
 		4AED4C26299E1E5C005F4393 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		4AFE5D82295D7DD200CD1184 /* LocalDataLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataLayer.swift; sourceTree = "<group>"; };
 		4AFE5D85295E276900CD1184 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,12 +205,16 @@
 		4A1B0778295B666A00BDFB1F /* ios-practica */ = {
 			isa = PBXGroup;
 			children = (
+				4A1B07A9295B668F00BDFB1F /* App */,
 				4AE057B229C07EDE008BA10A /* Global */,
+				4A1B07C7295C36ED00BDFB1F /* Managers */,
 				4AB8984F29A52703009CE481 /* CoreData */,
+				4AD59C2629C9F158004FAB75 /* TabBar */,
 				4AC6B21329C30C1B00DD5919 /* Login */,
 				4AC6B21629C3CA4600DD5919 /* HerosList */,
-				4A1B07C7295C36ED00BDFB1F /* Managers */,
-				4A1B07A9295B668F00BDFB1F /* App */,
+				4AD59C2529C9F138004FAB75 /* Details */,
+				4AD59C2429C9F128004FAB75 /* Transformations */,
+				4AD59C1529C9EB3F004FAB75 /* MapPage */,
 				4A1B07AA295B669A00BDFB1F /* UI */,
 				4A1B0782295B666C00BDFB1F /* Assets.xcassets */,
 				4A1B0784295B666C00BDFB1F /* LaunchScreen.storyboard */,
@@ -251,7 +257,6 @@
 				4A1B07B2295B6C7500BDFB1F /* TabBar */,
 				4A1B07AB295B66DC00BDFB1F /* HeroListPage */,
 				4A1B07BB295B762D00BDFB1F /* MapPage */,
-				4A9316BD299A84A700E49AA5 /* LogoutPage */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -276,30 +281,24 @@
 		4A1B07BB295B762D00BDFB1F /* MapPage */ = {
 			isa = PBXGroup;
 			children = (
-				4A1B07B7295B6D3B00BDFB1F /* MapViewController.swift */,
 				4A1B07B8295B6D3B00BDFB1F /* MapViewController.xib */,
-				4AE84F032997EF3F002384E6 /* Annotation.swift */,
-				4AE84F052997F0F4002384E6 /* AnnotationView.swift */,
-				4AE84F0A2998CDF3002384E6 /* Callout.swift */,
-				4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */,
 			);
 			path = MapPage;
 			sourceTree = "<group>";
 		};
-		4A1B07BC295B794200BDFB1F /* TableCell */ = {
+		4A1B07BC295B794200BDFB1F /* TableCellView */ = {
 			isa = PBXGroup;
 			children = (
 				4A1B07BD295B79A400BDFB1F /* TableViewCell.swift */,
 				4A1B07BE295B79A400BDFB1F /* TableViewCell.xib */,
 			);
-			path = TableCell;
+			path = TableCellView;
 			sourceTree = "<group>";
 		};
 		4A1B07C7295C36ED00BDFB1F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				4A1B07C8295C372F00BDFB1F /* NetworkLayer.swift */,
-				4AFE5D82295D7DD200CD1184 /* LocalDataLayer.swift */,
 				4AED4C26299E1E5C005F4393 /* KeychainManager.swift */,
 			);
 			path = Managers;
@@ -322,15 +321,6 @@
 			path = LoginPage;
 			sourceTree = "<group>";
 		};
-		4A9316BD299A84A700E49AA5 /* LogoutPage */ = {
-			isa = PBXGroup;
-			children = (
-				4A9316BE299A84E100E49AA5 /* LogoutViewController.swift */,
-				4A9316BF299A84E100E49AA5 /* LogoutViewController.xib */,
-			);
-			path = LogoutPage;
-			sourceTree = "<group>";
-		};
 		4A968455296E9C210020A804 /* Transformations */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,7 +335,6 @@
 			isa = PBXGroup;
 			children = (
 				4A1B07C2295B7D1E00BDFB1F /* HeroModel.swift */,
-				4AE84F012997EE03002384E6 /* Place.swift */,
 				4A9B892E29C84E7B007A0B5C /* HeroCellModel.swift */,
 			);
 			path = Models;
@@ -377,7 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				4A9B892C29C84DF5007A0B5C /* Models */,
-				4A1B07BC295B794200BDFB1F /* TableCell */,
+				4A1B07BC295B794200BDFB1F /* TableCellView */,
 				4A968455296E9C210020A804 /* Transformations */,
 				4A26A2B6296C0E32008EE2E6 /* Transformation.swift */,
 				4A1B07AC295B679000BDFB1F /* HeroListViewController.swift */,
@@ -385,6 +374,73 @@
 				4A26A2B3296C0201008EE2E6 /* DetailsViewController.xib */,
 			);
 			path = HerosList;
+			sourceTree = "<group>";
+		};
+		4AD59C1529C9EB3F004FAB75 /* MapPage */ = {
+			isa = PBXGroup;
+			children = (
+				4AD59C1E29C9ECC7004FAB75 /* Model */,
+				4AD59C2229C9ED5D004FAB75 /* View */,
+				4AD59C1F29C9ED20004FAB75 /* ViewModel */,
+				4AD59C2329C9EEB2004FAB75 /* ViewController */,
+			);
+			path = MapPage;
+			sourceTree = "<group>";
+		};
+		4AD59C1E29C9ECC7004FAB75 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4AE84F012997EE03002384E6 /* Place.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4AD59C1F29C9ED20004FAB75 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4AD59C1629C9EBEC004FAB75 /* MapViewModel.swift */,
+				4AE84F032997EF3F002384E6 /* Annotation.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4AD59C2229C9ED5D004FAB75 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4AE84F052997F0F4002384E6 /* AnnotationView.swift */,
+				4AE84F0A2998CDF3002384E6 /* Callout.swift */,
+				4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4AD59C2329C9EEB2004FAB75 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A1B07B7295B6D3B00BDFB1F /* MapViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4AD59C2429C9F128004FAB75 /* Transformations */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Transformations;
+			sourceTree = "<group>";
+		};
+		4AD59C2529C9F138004FAB75 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		4AD59C2629C9F158004FAB75 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		4AE057B229C07EDE008BA10A /* Global */ = {
@@ -514,7 +570,6 @@
 				4A1B07BA295B6D3B00BDFB1F /* MapViewController.xib in Resources */,
 				4AB60C8A29C8717700B1C50C /* LoginViewController.xib in Resources */,
 				4A968459296EA6730020A804 /* TransformationViewController.xib in Resources */,
-				4A9316C1299A84E100E49AA5 /* LogoutViewController.xib in Resources */,
 				4A26A2B5296C0201008EE2E6 /* DetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -544,7 +599,6 @@
 				4AFE5D87295E276900CD1184 /* LoginViewController.swift in Sources */,
 				4A1B07AE295B679000BDFB1F /* HeroListViewController.swift in Sources */,
 				4A1B077A295B666A00BDFB1F /* AppDelegate.swift in Sources */,
-				4A9316C0299A84E100E49AA5 /* LogoutViewController.swift in Sources */,
 				4A1B077C295B666A00BDFB1F /* SceneDelegate.swift in Sources */,
 				4A968458296EA6730020A804 /* TransformationsViewController.swift in Sources */,
 				4A1B07C3295B7D1E00BDFB1F /* HeroModel.swift in Sources */,
@@ -552,6 +606,7 @@
 				4A1B07B5295B6CE300BDFB1F /* TabBarController.swift in Sources */,
 				4AE84F022997EE03002384E6 /* Place.swift in Sources */,
 				4AB8985229A52771009CE481 /* Heros.xcdatamodeld in Sources */,
+				4AD59C1729C9EBEC004FAB75 /* MapViewModel.swift in Sources */,
 				4AED4C27299E1E5C005F4393 /* KeychainManager.swift in Sources */,
 				4A927F9229AB85140041F80F /* VcSelector.swift in Sources */,
 				4A1B07BF295B79A400BDFB1F /* TableViewCell.swift in Sources */,
@@ -561,7 +616,6 @@
 				4A9B892F29C84E7B007A0B5C /* HeroCellModel.swift in Sources */,
 				4AB8985429A52D04009CE481 /* CoreDataManager.swift in Sources */,
 				4AB8985629A53737009CE481 /* Heros+CoreDataClass.swift in Sources */,
-				4AFE5D83295D7DD200CD1184 /* LocalDataLayer.swift in Sources */,
 				4AE84F062997F0F4002384E6 /* AnnotationView.swift in Sources */,
 				4AE84F0B2998CDF3002384E6 /* Callout.swift in Sources */,
 				4AC6B21529C30C3800DD5919 /* LoginView.swift in Sources */,
@@ -581,8 +635,11 @@
 				4A9B893029C84E7B007A0B5C /* HeroCellModel.swift in Sources */,
 				4A26A2B8296C0ECB008EE2E6 /* Transformation.swift in Sources */,
 				4A22312029730BD0004A7CE7 /* HeroTests.swift in Sources */,
+				4AD59C1829C9EBEC004FAB75 /* MapViewModel.swift in Sources */,
 				4A223122297313C6004A7CE7 /* TransformationTests.swift in Sources */,
 				4A9B892D29C84E1C007A0B5C /* Place.swift in Sources */,
+				4AD59C1D29C9EC34004FAB75 /* Annotation.swift in Sources */,
+				4AD59C1B29C9EC2E004FAB75 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +650,9 @@
 				4A1B079B295B666C00BDFB1F /* ios_practicaUITests.swift in Sources */,
 				4A9B893129C84E7B007A0B5C /* HeroCellModel.swift in Sources */,
 				4A1B079D295B666C00BDFB1F /* ios_practicaUITestsLaunchTests.swift in Sources */,
+				4AD59C1A29C9EC2E004FAB75 /* MapViewController.swift in Sources */,
+				4AD59C1C29C9EC34004FAB75 /* Annotation.swift in Sources */,
+				4AD59C1929C9EBEC004FAB75 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

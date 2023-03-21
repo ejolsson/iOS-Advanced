@@ -38,4 +38,8 @@ class LoginViewModel: NSObject {
             }
         }
     }
+    
+    static func isUserLoggedIn() -> Bool {
+        return !KeychainManager.readBigToken()!.isEmpty
+    }
 }

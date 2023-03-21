@@ -18,9 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // window?.rootViewController = TabBarController()
         
         // enable condidtional logic based on login status
-        if LocalDataLayer.shared.isUserLoggedIn() {// == true
+        if LoginViewModel.isUserLoggedIn() {
+//        if LocalDataLayer.shared.isUserLoggedIn() {
             window?.rootViewController = TabBarController()
-//            window?.rootViewController = MapViewController()
         } else {
             window?.rootViewController = LoginViewController()
         }
