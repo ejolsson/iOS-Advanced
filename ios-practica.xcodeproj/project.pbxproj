@@ -48,6 +48,7 @@
 		4AB8985629A53737009CE481 /* Heros+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB8985529A53737009CE481 /* Heros+CoreDataClass.swift */; };
 		4AB8985829A538A7009CE481 /* Hero+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB8985729A538A7009CE481 /* Hero+CoreDataProperties.swift */; };
 		4AC6B21529C30C3800DD5919 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC6B21429C30C3800DD5919 /* LoginView.swift */; };
+		4AD59C1429C9E43B004FAB75 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59C1329C9E43B004FAB75 /* LoginViewModel.swift */; };
 		4AE057B429C07F17008BA10A /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE057B329C07F17008BA10A /* Global.swift */; };
 		4AE84F022997EE03002384E6 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F012997EE03002384E6 /* Place.swift */; };
 		4AE84F042997EF3F002384E6 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F032997EF3F002384E6 /* Annotation.swift */; };
@@ -118,6 +119,7 @@
 		4AB8985529A53737009CE481 /* Heros+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Heros+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4AB8985729A538A7009CE481 /* Hero+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hero+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4AC6B21429C30C3800DD5919 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		4AD59C1329C9E43B004FAB75 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4AE057B329C07F17008BA10A /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		4AE84F012997EE03002384E6 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		4AE84F032997EF3F002384E6 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		4A075BDF29C86AC500E21759 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4AD59C1329C9E43B004FAB75 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 		4A075BE029C86AD000E21759 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4AFE5D85295E276900CD1184 /* LoginViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -364,7 +368,6 @@
 				4A075BDE29C86AA600E21759 /* View */,
 				4A075BDF29C86AC500E21759 /* ViewModel */,
 				4A075BE029C86AD000E21759 /* ViewController */,
-				4AFE5D85295E276900CD1184 /* LoginViewController.swift */,
 				4A927F9129AB85140041F80F /* VcSelector.swift */,
 			);
 			path = Login;
@@ -545,6 +548,7 @@
 				4A1B077C295B666A00BDFB1F /* SceneDelegate.swift in Sources */,
 				4A968458296EA6730020A804 /* TransformationsViewController.swift in Sources */,
 				4A1B07C3295B7D1E00BDFB1F /* HeroModel.swift in Sources */,
+				4AD59C1429C9E43B004FAB75 /* LoginViewModel.swift in Sources */,
 				4A1B07B5295B6CE300BDFB1F /* TabBarController.swift in Sources */,
 				4AE84F022997EE03002384E6 /* Place.swift in Sources */,
 				4AB8985229A52771009CE481 /* Heros.xcdatamodeld in Sources */,

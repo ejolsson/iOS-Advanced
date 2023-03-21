@@ -1,33 +1,17 @@
 //
-//  LoginViewController.swift
+//  LoginViewModel.swift
 //  ios-practica
 //
-//  Created by Eric Olsson on 12/29/22.
+//  Created by Eric Olsson on 3/21/23.
 //
 
+import Foundation
 import UIKit
 
-class LoginViewController: UIViewController {
-
-    public var userEmail: String = ""
-    let keychain = KeychainManager()
+class LoginViewModel: NSObject {
     
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
-    
-    @IBAction func loginButtonTapped(_ sender: Any) {
-        
-        guard let email = emailTextField.text, !email.isEmpty else {
-            print("No email provided")
-            return
-        }
-        
-        guard let password = passwordTextField.text, !password.isEmpty else {
-            print("No password provided")
-            return
-        }
-        
+    func userLogin(email: String, password: String) {
+     
         NetworkLayer.shared.login(email: email, password: password) { token, error in
             if let token = token {
                 
@@ -53,9 +37,5 @@ class LoginViewController: UIViewController {
                 print("Login error: ", error?.localizedDescription ?? "\n")
             }
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 }
