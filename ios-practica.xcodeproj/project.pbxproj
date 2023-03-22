@@ -158,6 +158,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A00855D29CB166700500178 /* TransformationDetail */ = {
+			isa = PBXGroup;
+			children = (
+				4A00855E29CB168900500178 /* View */,
+				4A00855F29CB169600500178 /* ViewController */,
+			);
+			path = TransformationDetail;
+			sourceTree = "<group>";
+		};
+		4A00855E29CB168900500178 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A223125297351ED004A7CE7 /* TransformationDetailViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A00855F29CB169600500178 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A223124297351ED004A7CE7 /* TransformationDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4A00856029CB16BC00500178 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A26A2B2296C0201008EE2E6 /* DetailsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4A00856129CB17BA00500178 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4A0401A629CB15300054AD1A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A26A2B3296C0201008EE2E6 /* DetailsViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4A075BDE29C86AA600E21759 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +263,7 @@
 				4AC6B21629C3CA4600DD5919 /* HerosList */,
 				4AD59C2529C9F138004FAB75 /* Details */,
 				4AD59C2429C9F128004FAB75 /* Transformations */,
+				4A00855D29CB166700500178 /* TransformationDetail */,
 				4AD59C1529C9EB3F004FAB75 /* MapPage */,
 				4A1B0782295B666C00BDFB1F /* Assets.xcassets */,
 				4A1B0784295B666C00BDFB1F /* LaunchScreen.storyboard */,
@@ -268,23 +317,6 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		4A223123297351BD004A7CE7 /* TransformationDetails */ = {
-			isa = PBXGroup;
-			children = (
-				4A223125297351ED004A7CE7 /* TransformationDetailViewController.xib */,
-			);
-			path = TransformationDetails;
-			sourceTree = "<group>";
-		};
-		4A968455296E9C210020A804 /* Transformations */ = {
-			isa = PBXGroup;
-			children = (
-				4A223123297351BD004A7CE7 /* TransformationDetails */,
-				4A968457296EA6730020A804 /* TransformationViewController.xib */,
-			);
-			path = Transformations;
-			sourceTree = "<group>";
-		};
 		4A9B892C29C84DF5007A0B5C /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,9 +353,7 @@
 				4A9B892C29C84DF5007A0B5C /* Models */,
 				4AD59C2B29C9F950004FAB75 /* View */,
 				4A1B07BC295B794200BDFB1F /* TableCellView */,
-				4A968455296E9C210020A804 /* Transformations */,
 				4A1B07AC295B679000BDFB1F /* HeroListViewController.swift */,
-				4A26A2B3296C0201008EE2E6 /* DetailsViewController.xib */,
 			);
 			path = HerosList;
 			sourceTree = "<group>";
@@ -389,7 +419,9 @@
 		4AD59C2529C9F138004FAB75 /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				4A26A2B2296C0201008EE2E6 /* DetailsViewController.swift */,
+				4A0401A629CB15300054AD1A /* View */,
+				4A00856129CB17BA00500178 /* ViewModel */,
+				4A00856029CB16BC00500178 /* ViewController */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -414,6 +446,7 @@
 		4AD59C2829C9F7B2004FAB75 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4A968457296EA6730020A804 /* TransformationViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -429,7 +462,6 @@
 			isa = PBXGroup;
 			children = (
 				4A968456296EA6730020A804 /* TransformationsViewController.swift */,
-				4A223124297351ED004A7CE7 /* TransformationDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

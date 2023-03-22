@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="ios_practica" customModuleProvider="target">
+            <connections>
+                <outlet property="emailTextField" destination="yF3-Ae-fi9" id="PcX-bp-jkI"/>
+                <outlet property="loginButton" destination="67f-on-mHY" id="llT-vE-bde"/>
+                <outlet property="passwordTextField" destination="dvw-X9-wKA" id="90e-dd-9XU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="fondo3" translatesAutoresizingMaskIntoConstraints="NO" id="XO7-Gh-vtI">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                </imageView>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yF3-Ae-fi9" userLabel="Email">
+                    <rect key="frame" x="76.666666666666686" y="255" width="240" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="NqA-LD-bkN"/>
+                        <constraint firstAttribute="height" constant="34" id="RUA-Md-BFm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dvw-X9-wKA" userLabel="Password">
+                    <rect key="frame" x="76.666666666666686" y="329" width="240" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="LkA-MX-av7"/>
+                        <constraint firstAttribute="width" constant="240" id="VBM-KW-HH9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67f-on-mHY" userLabel="Login">
+                    <rect key="frame" x="159" y="403" width="75" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="V45-fN-DgT"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Login"/>
+                    <connections>
+                        <action selector="loginButtonTapped:" destination="-1" eventType="touchUpInside" id="qkY-7g-oYD"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemGray2Color"/>
+            <constraints>
+                <constraint firstItem="XO7-Gh-vtI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5SJ-fV-lkz"/>
+                <constraint firstItem="67f-on-mHY" firstAttribute="top" secondItem="dvw-X9-wKA" secondAttribute="bottom" constant="40" id="AMy-9P-SNV"/>
+                <constraint firstItem="yF3-Ae-fi9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Lm9-94-duE"/>
+                <constraint firstItem="XO7-Gh-vtI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="NQy-Cb-yNZ"/>
+                <constraint firstItem="67f-on-mHY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Pvr-Yd-xvU"/>
+                <constraint firstItem="XO7-Gh-vtI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="WtN-OL-svK"/>
+                <constraint firstItem="dvw-X9-wKA" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-80" id="c60-ur-hYo"/>
+                <constraint firstItem="dvw-X9-wKA" firstAttribute="top" secondItem="yF3-Ae-fi9" secondAttribute="bottom" constant="40" id="dwG-oK-wnY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XO7-Gh-vtI" secondAttribute="trailing" id="jdN-we-7U8"/>
+                <constraint firstAttribute="bottom" secondItem="XO7-Gh-vtI" secondAttribute="bottom" id="kyW-pm-xz4"/>
+                <constraint firstItem="dvw-X9-wKA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yv9-an-IIj"/>
+            </constraints>
+            <point key="canvasLocation" x="139.69465648854961" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="fondo3" width="1080" height="1920"/>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
