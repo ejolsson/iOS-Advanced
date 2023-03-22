@@ -16,7 +16,6 @@
 		4A1B07AE295B679000BDFB1F /* HeroListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07AC295B679000BDFB1F /* HeroListViewController.swift */; };
 		4A1B07AF295B679000BDFB1F /* HeroListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1B07AD295B679000BDFB1F /* HeroListViewController.xib */; };
 		4A1B07B5295B6CE300BDFB1F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07B3295B6CE300BDFB1F /* TabBarController.swift */; };
-		4A1B07B6295B6CE300BDFB1F /* TabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1B07B4295B6CE300BDFB1F /* TabBarController.xib */; };
 		4A1B07B9295B6D3B00BDFB1F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07B7295B6D3B00BDFB1F /* MapViewController.swift */; };
 		4A1B07BA295B6D3B00BDFB1F /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1B07B8295B6D3B00BDFB1F /* MapViewController.xib */; };
 		4A1B07BF295B79A400BDFB1F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07BD295B79A400BDFB1F /* TableViewCell.swift */; };
@@ -55,6 +54,7 @@
 		4AD59C1C29C9EC34004FAB75 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F032997EF3F002384E6 /* Annotation.swift */; };
 		4AD59C1D29C9EC34004FAB75 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F032997EF3F002384E6 /* Annotation.swift */; };
 		4AE057B429C07F17008BA10A /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE057B329C07F17008BA10A /* Global.swift */; };
+		4AE6E8D929CB061F0087522D /* TabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6E8D829CB061F0087522D /* TabBarController.xib */; };
 		4AE84F022997EE03002384E6 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F012997EE03002384E6 /* Place.swift */; };
 		4AE84F042997EF3F002384E6 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F032997EF3F002384E6 /* Annotation.swift */; };
 		4AE84F062997F0F4002384E6 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE84F052997F0F4002384E6 /* AnnotationView.swift */; };
@@ -95,7 +95,6 @@
 		4A1B07AC295B679000BDFB1F /* HeroListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroListViewController.swift; sourceTree = "<group>"; };
 		4A1B07AD295B679000BDFB1F /* HeroListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroListViewController.xib; sourceTree = "<group>"; };
 		4A1B07B3295B6CE300BDFB1F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		4A1B07B4295B6CE300BDFB1F /* TabBarController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarController.xib; sourceTree = "<group>"; };
 		4A1B07B7295B6D3B00BDFB1F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4A1B07B8295B6D3B00BDFB1F /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		4A1B07BD295B79A400BDFB1F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -124,6 +123,7 @@
 		4AD59C1329C9E43B004FAB75 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4AD59C1629C9EBEC004FAB75 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		4AE057B329C07F17008BA10A /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		4AE6E8D829CB061F0087522D /* TabBarController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarController.xib; sourceTree = "<group>"; };
 		4AE84F012997EE03002384E6 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		4AE84F032997EF3F002384E6 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		4AE84F052997F0F4002384E6 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
@@ -162,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				4AC6B21429C30C3800DD5919 /* LoginView.swift */,
+				4AB60C8929C8717700B1C50C /* LoginViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,7 +216,6 @@
 				4AD59C2529C9F138004FAB75 /* Details */,
 				4AD59C2429C9F128004FAB75 /* Transformations */,
 				4AD59C1529C9EB3F004FAB75 /* MapPage */,
-				4A1B07AA295B669A00BDFB1F /* UI */,
 				4A1B0782295B666C00BDFB1F /* Assets.xcassets */,
 				4A1B0784295B666C00BDFB1F /* LaunchScreen.storyboard */,
 				4A1B0787295B666C00BDFB1F /* Info.plist */,
@@ -251,41 +251,6 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		4A1B07AA295B669A00BDFB1F /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				4A8F52CC29C86E0F00905B7C /* LoginPage */,
-				4A1B07B2295B6C7500BDFB1F /* TabBar */,
-				4A1B07AB295B66DC00BDFB1F /* HeroListPage */,
-				4A1B07BB295B762D00BDFB1F /* MapPage */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		4A1B07AB295B66DC00BDFB1F /* HeroListPage */ = {
-			isa = PBXGroup;
-			children = (
-				4A1B07AD295B679000BDFB1F /* HeroListViewController.xib */,
-			);
-			path = HeroListPage;
-			sourceTree = "<group>";
-		};
-		4A1B07B2295B6C7500BDFB1F /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				4A1B07B4295B6CE300BDFB1F /* TabBarController.xib */,
-			);
-			path = TabBar;
-			sourceTree = "<group>";
-		};
-		4A1B07BB295B762D00BDFB1F /* MapPage */ = {
-			isa = PBXGroup;
-			children = (
-				4A1B07B8295B6D3B00BDFB1F /* MapViewController.xib */,
-			);
-			path = MapPage;
-			sourceTree = "<group>";
-		};
 		4A1B07BC295B794200BDFB1F /* TableCellView */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,14 +274,6 @@
 				4A223125297351ED004A7CE7 /* TransformationDetailViewController.xib */,
 			);
 			path = TransformationDetails;
-			sourceTree = "<group>";
-		};
-		4A8F52CC29C86E0F00905B7C /* LoginPage */ = {
-			isa = PBXGroup;
-			children = (
-				4AB60C8929C8717700B1C50C /* LoginViewController.xib */,
-			);
-			path = LoginPage;
 			sourceTree = "<group>";
 		};
 		4A968455296E9C210020A804 /* Transformations */ = {
@@ -402,6 +359,7 @@
 		4AD59C2229C9ED5D004FAB75 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4A1B07B8295B6D3B00BDFB1F /* MapViewController.xib */,
 				4AE84F052997F0F4002384E6 /* AnnotationView.swift */,
 				4AE84F0A2998CDF3002384E6 /* Callout.swift */,
 				4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */,
@@ -440,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				4A1B07B3295B6CE300BDFB1F /* TabBarController.swift */,
+				4AE6E8D829CB061F0087522D /* TabBarController.xib */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -478,6 +437,7 @@
 		4AD59C2B29C9F950004FAB75 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4A1B07AD295B679000BDFB1F /* HeroListViewController.xib */,
 				4A1B07BD295B79A400BDFB1F /* TableViewCell.swift */,
 			);
 			path = View;
@@ -603,12 +563,12 @@
 			files = (
 				4A1B07AF295B679000BDFB1F /* HeroListViewController.xib in Resources */,
 				4A1B07C0295B79A400BDFB1F /* TableViewCell.xib in Resources */,
-				4A1B07B6295B6CE300BDFB1F /* TabBarController.xib in Resources */,
 				4A1B0786295B666C00BDFB1F /* LaunchScreen.storyboard in Resources */,
 				4A223127297351ED004A7CE7 /* TransformationDetailViewController.xib in Resources */,
 				4A1B0783295B666C00BDFB1F /* Assets.xcassets in Resources */,
 				4A1B07BA295B6D3B00BDFB1F /* MapViewController.xib in Resources */,
 				4AB60C8A29C8717700B1C50C /* LoginViewController.xib in Resources */,
+				4AE6E8D929CB061F0087522D /* TabBarController.xib in Resources */,
 				4A968459296EA6730020A804 /* TransformationViewController.xib in Resources */,
 				4A26A2B5296C0201008EE2E6 /* DetailsViewController.xib in Resources */,
 			);
