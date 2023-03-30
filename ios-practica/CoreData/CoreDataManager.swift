@@ -116,12 +116,8 @@ class CoreDataManager {
         print("Core Data inventory check of heros: \(herosToDelete.count)\n")
         herosToDelete.forEach { heroToDelete in
             
-            // Method A
             context.delete(heroToDelete)
             AppDelegate.sharedAppDelegate.coreDataManager.saveContext()
-            
-
-            
         }
         herosToDelete = CoreDataManager.readCoreDataInCDFormat()
         print("Core Data inventory check of heros: \(herosToDelete.count)\n")

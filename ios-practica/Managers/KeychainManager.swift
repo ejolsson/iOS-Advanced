@@ -20,7 +20,7 @@ class KeychainManager {
     }
 
     
-    static func deleteBigToken() {
+    static func deleteToken() {
        
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,

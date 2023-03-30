@@ -34,6 +34,9 @@
 		4A26A2B5296C0201008EE2E6 /* DetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A26A2B3296C0201008EE2E6 /* DetailsView.xib */; };
 		4A26A2B7296C0E32008EE2E6 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26A2B6296C0E32008EE2E6 /* Transformation.swift */; };
 		4A26A2B8296C0ECB008EE2E6 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26A2B6296C0E32008EE2E6 /* Transformation.swift */; };
+		4A3825C629CB2EB100CF50C2 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3825C529CB2EB100CF50C2 /* DetailsViewModel.swift */; };
+		4A3825C729CB2EB100CF50C2 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3825C529CB2EB100CF50C2 /* DetailsViewModel.swift */; };
+		4A3825C829CB2EB100CF50C2 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3825C529CB2EB100CF50C2 /* DetailsViewModel.swift */; };
 		4A927F9229AB85140041F80F /* VcSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A927F9129AB85140041F80F /* VcSelector.swift */; };
 		4A9316BC299A52EF00E49AA5 /* CustomMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */; };
 		4A968458296EA6730020A804 /* TransformationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968456296EA6730020A804 /* TransformationsViewController.swift */; };
@@ -112,6 +115,7 @@
 		4A26A2B2296C0201008EE2E6 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		4A26A2B3296C0201008EE2E6 /* DetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsView.xib; sourceTree = "<group>"; };
 		4A26A2B6296C0E32008EE2E6 /* Transformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
+		4A3825C529CB2EB100CF50C2 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		4A65362629BA7F3D00A55A1C /* Heros v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Heros v2.xcdatamodel"; sourceTree = "<group>"; };
 		4A927F9129AB85140041F80F /* VcSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VcSelector.swift; sourceTree = "<group>"; };
 		4A9316BB299A52EF00E49AA5 /* CustomMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarker.swift; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 		4A00856129CB17BA00500178 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4A3825C529CB2EB100CF50C2 /* DetailsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -668,6 +673,7 @@
 				4AB8985829A538A7009CE481 /* Hero+CoreDataProperties.swift in Sources */,
 				4A26A2B4296C0201008EE2E6 /* DetailsViewController.swift in Sources */,
 				4AE84F042997EF3F002384E6 /* Annotation.swift in Sources */,
+				4A3825C629CB2EB100CF50C2 /* DetailsViewModel.swift in Sources */,
 				4A1B07B9295B6D3B00BDFB1F /* MapViewController.swift in Sources */,
 				4AE057B429C07F17008BA10A /* Global.swift in Sources */,
 			);
@@ -684,6 +690,7 @@
 				4A00856629CB2B7200500178 /* HeroViewModel.swift in Sources */,
 				4AD59C1829C9EBEC004FAB75 /* MapViewModel.swift in Sources */,
 				4A223122297313C6004A7CE7 /* TransformationTests.swift in Sources */,
+				4A3825C729CB2EB100CF50C2 /* DetailsViewModel.swift in Sources */,
 				4A9B892D29C84E1C007A0B5C /* Place.swift in Sources */,
 				4AD59C1D29C9EC34004FAB75 /* Annotation.swift in Sources */,
 				4AD59C1B29C9EC2E004FAB75 /* MapViewController.swift in Sources */,
@@ -697,6 +704,7 @@
 				4A1B079B295B666C00BDFB1F /* ios_practicaUITests.swift in Sources */,
 				4A00856729CB2B7200500178 /* HeroViewModel.swift in Sources */,
 				4A9B893129C84E7B007A0B5C /* HeroCellModel.swift in Sources */,
+				4A3825C829CB2EB100CF50C2 /* DetailsViewModel.swift in Sources */,
 				4A1B079D295B666C00BDFB1F /* ios_practicaUITestsLaunchTests.swift in Sources */,
 				4AD59C1A29C9EC2E004FAB75 /* MapViewController.swift in Sources */,
 				4AD59C1C29C9EC34004FAB75 /* Annotation.swift in Sources */,
@@ -855,6 +863,7 @@
 				DEVELOPMENT_TEAM = 4578H3T55F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ios-practica/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "DragonBall Heroes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -882,6 +891,7 @@
 				DEVELOPMENT_TEAM = 4578H3T55F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ios-practica/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "DragonBall Heroes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

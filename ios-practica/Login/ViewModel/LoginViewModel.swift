@@ -15,7 +15,7 @@ class LoginViewModel: NSObject {
         NetworkLayer.shared.login(email: email, password: password) { token, error in
             if let token = token {
                 
-                KeychainManager.deleteBigToken()
+                KeychainManager.deleteToken()
                 KeychainManager.saveDataBigToken(token: token)
                 Global.loginStatus = true
                 Global.tokenMaster = token
