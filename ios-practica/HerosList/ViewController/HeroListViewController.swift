@@ -40,7 +40,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         let xib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: "customTableCell")
         
-        addNotfication() // moved this before network call, to better place the observer...
+//        addNotfication() // moved this before network call, to better place the observer... // Exp: comment out, leave at bottom
         
         if Global.heroDataLocallyStored == false {
             // TODO: - Call API
@@ -67,10 +67,10 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
 //                            group.notify
 //                                moveToMain (héros.forEach)
 //                                    saveApiDataToCoreData
-//                                    getCoreDataForPresentation
+//                                    getCoreDataForPresentation // has notif.post..
 
                     DispatchQueue.main.async {
-//                        self.tableView.reloadData() // coment this out, use Notif below to trigger refresh
+//                        self.tableView.reloadData() // coment this out, use Notif below to trigger refresh /// ver that worked used this /// Experiment 1 - No dice
                         NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil)
                         print("HLVC > VDL > Net...fetchHeros > NotificationCenter.default.post...data.is.loaded.into.CD\n")
                     }
@@ -81,6 +81,10 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             print("herosToShow is NOT empty\n")
         }
+        
+        HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation() // Experiment 2 - No dice
+        
+        self.tableView.reloadData() // Experiment 3
         
         addNotfication() // Notif..addObserv.."data.is.loaded"
 
@@ -175,7 +179,8 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func didTapAuxButton() {
         
-        self.tableView.reloadData()
+        NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil) // This notification works to refersh the UI!!
+//        self.tableView.reloadData()
 //        KeychainManager.deleteToken()
 //        CoreDataManager.deleteCoreData()
     }

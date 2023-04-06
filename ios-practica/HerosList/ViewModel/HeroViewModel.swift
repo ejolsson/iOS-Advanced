@@ -78,7 +78,7 @@ let moveToMain2 = { (heros: [HeroModel]) -> Void in
     print("Starting moveToMain2... heros.forEach... saveApiDatatoCoreData")
     var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
 
-    debugPrint("moveToMain hero count: \(heros.count)\n")
+    debugPrint("moveToMain2 hero count: \(heros.count)\n")
 
     CoreDataManager.saveApiDataToCoreData(heros) // write api data to core data
 

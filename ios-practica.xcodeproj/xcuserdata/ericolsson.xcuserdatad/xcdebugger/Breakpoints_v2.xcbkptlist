@@ -30,8 +30,8 @@
             filePath = "ios-practica/HerosList/ViewController/HeroListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "refreshHeroList(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -40,7 +40,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E3973251-B527-41BE-859C-5E4B6142A2F8"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios-practica/CoreData/CoreDataManager.swift"
