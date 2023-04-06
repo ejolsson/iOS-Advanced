@@ -182,7 +182,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil) // This notification works to refersh the UI!!
 //        self.tableView.reloadData()
 //        KeychainManager.deleteToken()
-//        CoreDataManager.deleteCoreData()
+//        CoreDataManager.deleteCoreData() 
     }
     
     @IBAction func didTapLogoutButton() {
