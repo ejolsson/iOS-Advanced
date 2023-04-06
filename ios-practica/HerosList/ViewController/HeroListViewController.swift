@@ -40,14 +40,6 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         let xib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: "customTableCell")
         
-        addNotfication() // moved this before network call, to better place the observer... // Exp: comment out, leave at bottom
-        
-        if Global.heroDataLocallyStored == false {
-            // TODO: - Call API
-            
-            // TODO: - Save API data to CO
-        }
-        
         print("\nInitial check for heroes in CD...")
         HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation()
         print("Core Data inventory check of herosToShow: \(HeroListViewController.herosToShow.count)\n")
@@ -55,8 +47,6 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         if HeroListViewController.herosToShow.isEmpty {
             
             print("herosToShow.isEmpty == true... make api calls\n")
-
-//            heroViewModel.getCompleteHero(token: Global.tokenMaster)
             
             NetworkLayer.shared.fetchHeros(token: Global.tokenMaster) { [weak self] herosModelContainer, error in
                 guard let self = self else { return }
@@ -71,9 +61,6 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
 //                                    getCoreDataForPresentation // has notif.post..
 
                     DispatchQueue.main.async {
-//                        self.tableView.reloadData() // coment this out, use Notif below to trigger refresh /// ver that worked used this /// Experiment 1 - No dice
-                        print("Will attempt: HLVC > VDL > Net...fetchHeros > NotificationCenter.default.post...data.is.loaded.into.CD\n")
-                        NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil)
                     }
                 } else {
                     print("Error fetching heros: ", error?.localizedDescription ?? "")
@@ -82,12 +69,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             print("herosToShow is NOT empty\n")
         }
-        
-//        HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation() // Experiment 2 - No dice
-        
-//        self.tableView.reloadData() // Experiment 3
-        
-//        addNotfication() // Notif..addObserv.."data.is.loaded"
+        addNotfication() 
 
     } // End viewDidLoad
     
@@ -140,7 +122,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.iconImageView.setImage(url: hero.photo )
         cell.titleLabel.text = hero.name
-        cell.descriptionLabel.text = hero.description // connected label to TableViewCell
+        cell.descriptionLabel.text = hero.description
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
                 
@@ -232,9 +214,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         group.notify(queue: .main) {
             debugPrint("herosWithLocations count (Should be 18): \(herosWithLocations.count)")
 
-//            HeroListViewController.herosToShow = herosWithLocations // suspect not necessary given moveToMain, suspicion correct
             debugPrint("L227: HeroListViewController.herosToShow.count (Should be 18): \(HeroListViewController.herosToShow.count)\n")
-//            debugPrint("L230: Global.herosToShowG.count (Should be 18): \(Global.herosToShowG.count)\n")
 
             moveToMain2(herosWithLocations) //... contains: saveApiDataToCoreData
         }
@@ -254,8 +234,6 @@ let moveToMain = { (heros: [HeroModel]) -> Void in
 
     HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation()
     
-//    Global.herosToShowG = CoreDataManager.getCoreDataForPresentation() // CD->heroModel
-//    print("Global.herosToShowG.count (post moveToMain2) = \(Global.herosToShowG.count)\n")
 } // move to HeroViewModel
 
 extension UIImageView {
