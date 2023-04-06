@@ -18,6 +18,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     static var herosModel: [HeroModel] = []
     static var herosToShow: [HeroModel] = []
+//    let heroViewModel = HeroViewModel()
     var heroModel: HeroModel!
     var places: [Place] = []
     var place: Place! // w/o !, error "no initializers"
@@ -28,7 +29,8 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureItems() // load bar buttons
+//        configureItems() // load bar buttons
+        configureItems2() // load bar buttons
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -37,6 +39,8 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         
         let xib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: "customTableCell")
+        
+        addNotfication() // moved this before network call, to better place the observer...
         
         if Global.heroDataLocallyStored == false {
             // TODO: - Call API
@@ -50,20 +54,25 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         if HeroListViewController.herosToShow.isEmpty {
             
             print("herosToShow.isEmpty == true... make api calls\n")
+
+//            heroViewModel.getCompleteHero(token: Global.tokenMaster)
+            
             NetworkLayer.shared.fetchHeros(token: Global.tokenMaster) { [weak self] herosModelContainer, error in
                 guard let self = self else { return }
-                
+
                 if let herosModelContainer = herosModelContainer {
-                    
+
                     self.addLocationsToHeroModel(herosModelContainer) // saveToCD nested
 //                        for hero in heros
 //                            group.notify
 //                                moveToMain (héros.forEach)
 //                                    saveApiDataToCoreData
 //                                    getCoreDataForPresentation
-                    
+
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
+//                        self.tableView.reloadData() // coment this out, use Notif below to trigger refresh
+                        NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil)
+                        print("HLVC > VDL > Net...fetchHeros > NotificationCenter.default.post...data.is.loaded.into.CD\n")
                     }
                 } else {
                     print("Error fetching heros: ", error?.localizedDescription ?? "")
@@ -73,7 +82,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
             print("herosToShow is NOT empty\n")
         }
         
-        addNotfication()
+        addNotfication() // Notif..addObserv.."data.is.loaded"
 
     } // End viewDidLoad
     
@@ -89,7 +98,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @objc
     func refreshHeroList(_ notification: Notification) {
-        print("Core Data tasks complete, refereshing UI...")
+        print("Core Data tasks complete, self.tableView.reloadData()...")
         self.tableView.reloadData()
     }
     
@@ -154,12 +163,29 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         )
     } // logout & test buttons
     
+    private func configureItems2() {
+        self.navigationItem.rightBarButtonItems = [ UIBarButtonItem(
+            title: "Logout", image: UIImage(named: ""), target: self, action: #selector(didTapLogoutButton) // person.cirle, ipad.and.arrow.forward, images: marker-blue, exit,
+        ),
+                                                    UIBarButtonItem(
+                                                        title: "aux", image: UIImage(systemName: "play"), target: self, action: #selector(didTapAuxButton)
+                                                    )
+        ]
+    } // logout & test buttons
+    
+    @IBAction func didTapAuxButton() {
+        
+        self.tableView.reloadData()
+//        KeychainManager.deleteToken()
+//        CoreDataManager.deleteCoreData()
+    }
+    
     @IBAction func didTapLogoutButton() {
         
 //        var window: UIWindow?
         let loginVC = LoginViewController()
         
-        KeychainManager.deleteBigToken()
+        KeychainManager.deleteToken()
         Global.loginStatus = false
         print("Global.loginStatus: \(Global.loginStatus)\n\n")
         
@@ -171,18 +197,19 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
 //        VcSelector.updateRootVC() // call vc selector
     }
 
+/// move to HeroViewModel
     let addLocationsToHeroModel = {(heros: [HeroModel]) -> Void in
         print("\nStarting addLocationsToHeroModel...\n")
         var herosWithLocations: [HeroModel] = []
-        
+
         let group = DispatchGroup() // https://developer.apple.com/documentation/dispatch/dispatchgroup
-        
+
         for hero in heros {
             group.enter() // Apple Docs: Explicitly indicates that a block has entered the group.
-            
+
             NetworkLayer.shared.getLocalization(token: Global.tokenMaster, with: hero.id) { heroLocations, error in
                 var fullHero = hero
-                
+
                 if let firstLocation = heroLocations.first { // only grab first hero location
                     fullHero.latitude = Double(firstLocation.latitud)
                     fullHero.longitude = Double(firstLocation.longitud)
@@ -194,30 +221,35 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
                 group.leave() // indicates the operation will termianate
             }
         }
-        
+
         group.notify(queue: .main) {
             debugPrint("herosWithLocations count (Should be 18): \(herosWithLocations.count)")
-            
-            HeroListViewController.herosToShow = herosWithLocations
+
+//            HeroListViewController.herosToShow = herosWithLocations // suspect not necessary given moveToMain, suspicion correct
             debugPrint("L227: HeroListViewController.herosToShow.count (Should be 18): \(HeroListViewController.herosToShow.count)\n")
-            
-            moveToMain(herosWithLocations) //... contains: saveApiDataToCoreData
+//            debugPrint("L230: Global.herosToShowG.count (Should be 18): \(Global.herosToShowG.count)\n")
+
+            moveToMain2(herosWithLocations) //... contains: saveApiDataToCoreData
         }
     } // end addLocationsToHeroModel
 
 } // end class HeroListVC
 
+/// move to HeroViewModel
 let moveToMain = { (heros: [HeroModel]) -> Void in
-    
+
     print("Starting moveToMain... heros.forEach... saveApiDatatoCoreData")
     var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
-    
+
     debugPrint("Hero count: \(heros.count)")
-    
+
     CoreDataManager.saveApiDataToCoreData(heros) // write api data to core data
-    
+
     HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation()
-}
+    
+//    Global.herosToShowG = CoreDataManager.getCoreDataForPresentation() // CD->heroModel
+//    print("Global.herosToShowG.count (post moveToMain2) = \(Global.herosToShowG.count)\n")
+} // move to HeroViewModel
 
 extension UIImageView {
     

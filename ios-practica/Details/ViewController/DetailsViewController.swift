@@ -38,26 +38,37 @@ class DetailsViewController: UIViewController {
         
         let token = Global.tokenMaster
         
-        NetworkLayer
-            .shared
-            .fetchTransformations(token: token, heroId: hero.id) { [weak self] allTrans, error in
-                guard let self = self else { return }
-                
-                if let allTrans = allTrans {
-                    
-                    self.transformations = allTrans
-                    
-                    print("Transformation count: ", allTrans.count)
-                    
-                    if !self.transformations.isEmpty {
-                        DispatchQueue.main.async {
-                            self.transformationButton.alpha = 1
-                        }
-                    }
-                } else {
-                    print("Error fetching transformations: ", error?.localizedDescription ?? "")
-                }
+        transformations = DetailsViewModel.fetchTransformations(hero: hero) // 3/31 made the func return a value and assign to transformtions
+        
+        DetailsViewModel.showTransformationButton(transformations: transformations)
+        
+        // try pulling out this logic from api call below. Given transformtions is populated, (timing aside) might work?...
+        if !self.transformations.isEmpty {
+            DispatchQueue.main.async {
+                self.transformationButton.alpha = 1
             }
+        }
+        
+//        NetworkLayer
+//            .shared
+//            .fetchTransformations(token: token, heroId: hero.id) { [weak self] allTrans, error in
+//                guard let self = self else { return }
+//
+//                if let allTrans = allTrans {
+//
+//                    self.transformations = allTrans
+//
+//                    print("Transformation count: ", allTrans.count)
+//
+//                    if !self.transformations.isEmpty {
+//                        DispatchQueue.main.async {
+//                            self.transformationButton.alpha = 1
+//                        }
+//                    }
+//                } else {
+//                    print("Error fetching transformations: ", error?.localizedDescription ?? "")
+//                }
+//            }
         }
 
 }

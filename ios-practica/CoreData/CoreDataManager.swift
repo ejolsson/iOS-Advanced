@@ -87,7 +87,9 @@ class CoreDataManager {
                                longitude: $0.longitude)
             }
 
+            // let system know data is received, refresh UI
             NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil)
+            print("NotificationCenter.default.post...data.is.loaded.into.CD\n")
 
             return heroToPresent
         } catch let error as NSError {
