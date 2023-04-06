@@ -69,7 +69,8 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             print("herosToShow is NOT empty\n")
         }
-        addNotfication() 
+        
+        addNotfication()
 
     } // End viewDidLoad
     
@@ -223,18 +224,18 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
 } // end class HeroListVC
 
 /// move to HeroViewModel
-let moveToMain = { (heros: [HeroModel]) -> Void in
-
-    print("Starting moveToMain... heros.forEach... saveApiDatatoCoreData")
-    var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
-
-    debugPrint("Hero count: \(heros.count)")
-
-    CoreDataManager.saveApiDataToCoreData(heros) // write api data to core data
-
-    HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation()
-    
-} // move to HeroViewModel
+//let moveToMain = { (heros: [HeroModel]) -> Void in
+//
+//    print("Starting moveToMain... heros.forEach... saveApiDatatoCoreData")
+//    var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
+//
+//    debugPrint("Hero count: \(heros.count)")
+//
+//    CoreDataManager.saveApiDataToCoreData(heros) // write api data to core data
+//
+//    HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation()
+//    
+//} // move to HeroViewModel
 
 extension UIImageView {
     
