@@ -70,22 +70,69 @@ class HeroViewModel: NSObject {
         }
     } // end addLocationsToHeroModel
     
+    // below not in use yet
+    func addLocationsToHeroModelFunc (heros: [HeroModel]) -> Void {
+        print("\nStarting addLocationsToHeroModelFunc...\n")
+        var herosWithLocations: [HeroModel] = []
+        
+        let group = DispatchGroup() // https://developer.apple.com/documentation/dispatch/dispatchgroup
+        
+        for hero in heros {
+            group.enter() // Apple Docs: Explicitly indicates that a block has entered the group.
+            
+            NetworkLayer.shared.getLocalization(token: Global.tokenMaster, with: hero.id) { heroLocations, error in
+                var fullHero = hero
+                
+                if let firstLocation = heroLocations.first { // only grab first hero location
+                    fullHero.latitude = Double(firstLocation.latitud)
+                    fullHero.longitude = Double(firstLocation.longitud)
+                } else {
+                    fullHero.latitude = 0.0
+                    fullHero.longitude = 0.0
+                }
+                herosWithLocations.append(fullHero)
+                group.leave() // indicates the operation will termianate
+            }
+        }
+        
+        group.notify(queue: .main) {
+            
+            HeroListViewController.herosToShow = herosWithLocations
+            moveToMain2(herosWithLocations) //... contains: saveApiDataToCoreData
+        }
+    }
+    
+    
+    // below not in use yet
+    func moveToMainFunc (heros: [HeroModel]) -> Void {
+        
+        print("Starting movetoMainFunc... heros.forEach... saveApiDatatoCoreData")
+        
+        var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
+
+        debugPrint("moveToMain2 hero count: \(heros.count)\n")
+
+        CoreDataManager.saveApiDataToCoreData(heros) // write api data to core data
+
+        HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation()
+        
+        NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil) // wait unti everything is done
+    } // copied fm moveToMain2, minus some comments
     
 }
 
-// had some issue w/ partial loading...
+// In use, works
 let moveToMain2 = { (heros: [HeroModel]) -> Void in
 
     print("Starting moveToMain2... heros.forEach... saveApiDatatoCoreData")
+    
     var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
 
     debugPrint("moveToMain2 hero count: \(heros.count)\n")
 
     CoreDataManager.saveApiDataToCoreData(heros) // write api data to core data
 
-    HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation() // CD->heroModel
+    HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation()
     
     NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil) // wait unti everything is done
-//    Global.herosToShowG = CoreDataManager.getCoreDataForPresentation() // CD->heroModel
-//    print("Global.herosToShowG.count (post moveToMain2) = \(Global.herosToShowG.count)\n")
 }

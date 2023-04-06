@@ -7,11 +7,6 @@
 
 import UIKit
 
-struct HeroCellItem {
-    let image: UIImage
-    let text: String
-}
-
 class HeroListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
@@ -188,7 +183,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
 /// move to HeroViewModel
-    let addLocationsToHeroModel = {(heros: [HeroModel]) -> Void in
+    let addLocationsToHeroModel = {(heros: [HeroModel]) -> Void in // used in HLVC L56
         print("\nStarting addLocationsToHeroModel...\n")
         var herosWithLocations: [HeroModel] = []
 
@@ -223,19 +218,6 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
 
 } // end class HeroListVC
 
-/// move to HeroViewModel
-//let moveToMain = { (heros: [HeroModel]) -> Void in
-//
-//    print("Starting moveToMain... heros.forEach... saveApiDatatoCoreData")
-//    var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
-//
-//    debugPrint("Hero count: \(heros.count)")
-//
-//    CoreDataManager.saveApiDataToCoreData(heros) // write api data to core data
-//
-//    HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation()
-//    
-//} // move to HeroViewModel
 
 extension UIImageView {
     
@@ -269,3 +251,7 @@ extension UIBarButtonItem {
     }
 }
 
+struct HeroCellItem {
+    let image: UIImage
+    let text: String
+}
