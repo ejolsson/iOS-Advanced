@@ -88,7 +88,7 @@ class CoreDataManager {
             }
 
             // let system know data is received, refresh UI
-            NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil) // try tharwting until later. Early notification could null out follow on one.. Or just leave it as a refresh would be needed if data is already in core data
             print("NotificationCenter.default.post...data.is.loaded.into.CD\n")
 
             return heroToPresent

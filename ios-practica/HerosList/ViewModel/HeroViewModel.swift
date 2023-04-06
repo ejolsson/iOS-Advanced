@@ -35,6 +35,7 @@ class HeroViewModel: NSObject {
         }
     }
     
+    // below not in use yet
     let addLocationsToHeroModel = {(heros: [HeroModel]) -> Void in
         print("\nStarting addLocationsToHeroModel...\n")
         var herosWithLocations: [HeroModel] = []
@@ -83,6 +84,8 @@ let moveToMain2 = { (heros: [HeroModel]) -> Void in
     CoreDataManager.saveApiDataToCoreData(heros) // write api data to core data
 
     HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation() // CD->heroModel
+    
+    NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil) // wait unti everything is done
 //    Global.herosToShowG = CoreDataManager.getCoreDataForPresentation() // CD->heroModel
 //    print("Global.herosToShowG.count (post moveToMain2) = \(Global.herosToShowG.count)\n")
 }

@@ -7,49 +7,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "14839DDB-D046-4FD0-9E7C-8AEA4149008C"
+            uuid = "DA82DF46-9993-46EA-ABD4-7002D503DD00"
             shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ios-practica/Details/ViewController/DetailsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AC203454-C17D-48FC-B06C-72B9C772E3C3"
-            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios-practica/HerosList/ViewController/HeroListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "refreshHeroList(_:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E3973251-B527-41BE-859C-5E4B6142A2F8"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ios-practica/CoreData/CoreDataManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "getCoreDataForPresentation()"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DA82DF46-9993-46EA-ABD4-7002D503DD00 - 5690741d6d845998"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_practica.HeroListViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "ios-practica"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ericolsson/Library/CloudStorage/OneDrive-Personal/Documents/School/%F0%9F%91%A8%F0%9F%8F%BB%E2%80%8D%F0%9F%92%BB%E2%98%81%EF%B8%8F/adv-ios-project/ios-practica/ios-practica/HerosList/ViewController/HeroListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "2020">
+               </Location>
+               <Location
+                  uuid = "DA82DF46-9993-46EA-ABD4-7002D503DD00 - 5690741d6d845998"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_practica.HeroListViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "ios-practica"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ericolsson/Library/CloudStorage/OneDrive-Personal/Documents/School/%F0%9F%91%A8%F0%9F%8F%BB%E2%80%8D%F0%9F%92%BB%E2%98%81%EF%B8%8F/adv-ios-project/ios-practica/ios-practica/HerosList/ViewController/HeroListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "2044">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
