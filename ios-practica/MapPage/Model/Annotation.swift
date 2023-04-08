@@ -14,13 +14,11 @@ class Annotation: NSObject, MKAnnotation {
     let name: String
     let desc: String
     let image: String
-//    let dateShow: String
     
     init(place: HeroModel) {
         coordinate = CLLocationCoordinate2D(latitude: Double(place.latitude ?? 0.0) , longitude:   Double(place.longitude ?? 0.0) )
         name = place.name
         desc = place.description
         image = place.photo
-
     }
 }

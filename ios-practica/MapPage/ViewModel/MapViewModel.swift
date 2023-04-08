@@ -6,3 +6,18 @@
 //
 
 import Foundation
+
+class MapViewModel: NSObject {
+    
+    let heroViewModel = HeroViewModel()
+    var heroPlaces: [HeroModel] = []
+    
+    let latitude = 40.4155
+    let longitude = -3.7074
+    
+
+    
+
+    
+    
+}

@@ -16,6 +16,7 @@ class MapViewController: UIViewController {
     var locationManager: CLLocationManager?
     
     let heroViewModel = HeroViewModel()
+    let mapViewModel = MapViewModel()
     var heroPlaces: [HeroModel] = []
     
     let latitude = 40.4155
@@ -30,22 +31,27 @@ class MapViewController: UIViewController {
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.delegate = self
         
-        mapView.delegate = self
-        
-        mapView.showsUserLocation = true
-        mapView.mapType = .standard
-        
-        moveToCoordinates(self.latitude, self.longitude)
-        
-        mapView.register(AnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        
-        let annotations = heroPlaces.map { Annotation(place: $0) } // this now shows hardcoded item
-        
-        mapView.showAnnotations(annotations, animated: true)
-        
+        configureMapView()
+        configureAnnotations()
     }
 
+    func configureMapView() {
+        
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.mapType = .standard
+        mapView.register(AnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+    }
+    
+    func configureAnnotations() {
+        
+        moveToCoordinates(self.latitude, self.longitude)
+        let annotations = heroPlaces.map { Annotation(place: $0) } // this now shows hardcoded item
+        mapView.showAnnotations(annotations, animated: true)
+    }
+    
     func createAnnotation(_ place: HeroModel) {
+      
         let annotation = MKPointAnnotation()
         
         annotation.coordinate = CLLocationCoordinate2D(latitude: Double(place.latitude ?? 0.0), longitude: Double(place.longitude ?? 0.0))
@@ -64,25 +70,21 @@ class MapViewController: UIViewController {
         
         let center = CLLocationCoordinate2D(latitude: latitude,
                                             longitude: longitude)
-        
         let span = MKCoordinateSpan(latitudeDelta: 40,
                                     longitudeDelta: 60)
-        
         let region = MKCoordinateRegion(center: center,
                                         span: span)
         
         mapView.setRegion(region, animated: true)
-        
     }
 }
 
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
         debugPrint("annotation -> \(annotation)")
-        
         let id = MKMapViewDefaultAnnotationViewReuseIdentifier
-        
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: id)
         
         if let annotation = annotation as? Annotation {
@@ -92,7 +94,6 @@ extension MapViewController: MKMapViewDelegate {
             
             return annotationView
         }
-        
         return nil
     }
 }
@@ -136,5 +137,4 @@ extension MapViewController: CLLocationManagerDelegate {
             debugPrint("Unknow status")
         }
     }
-    
 }
