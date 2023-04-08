@@ -63,7 +63,7 @@ final class NetworkLayer {
         task.resume()
     } // opt 1
     
-    func fetchHeros(token: String?, completion: @escaping ([HeroModel]?, Error?) -> Void) {
+    func fetchHeroes(token: String?, completion: @escaping ([HeroModel]?, Error?) -> Void) {
         
         guard let url = URL(string: "https://dragonball.keepcoding.education/api/heros/all") else {
             completion(nil, NetworkError.malformedURL)
@@ -89,12 +89,12 @@ final class NetworkLayer {
                 return
             }
             
-            guard let heros = try? JSONDecoder().decode([HeroModel].self, from: data) else {
+            guard let heroes = try? JSONDecoder().decode([HeroModel].self, from: data) else {
                 completion(nil, NetworkError.decodingFailed)
                 return
             }
             
-            completion(heros, nil)
+            completion(heroes, nil)
         }
         
         task.resume()
@@ -145,7 +145,7 @@ final class NetworkLayer {
         task.resume()
     } // Opt 1, Used in: DetailsVC, Purpose: api call, grab data, Oscar style
         
-    func getLocalization(token: String?, with id: String, completion: @escaping ([Place], Error?) -> Void) {
+    func fetchLocations(token: String?, with id: String, completion: @escaping ([Place], Error?) -> Void) {
         
         guard let url = URL(string: "https://dragonball.keepcoding.education/api/heros/locations") else {
             completion([], NetworkError.malformedURL)

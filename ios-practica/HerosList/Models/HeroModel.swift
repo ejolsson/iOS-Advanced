@@ -13,6 +13,6 @@ struct HeroModel: Codable {
     let photo: String
     let description: String
     let favorite: Bool
-    var latitude: Double? // optional since values not present in heros api call
+    var latitude: Double? // optional since values not present in heroes api call
     var longitude: Double?
 }

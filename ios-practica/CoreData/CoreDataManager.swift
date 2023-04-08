@@ -36,16 +36,16 @@ class CoreDataManager {
         do {
             try managedContext.save()
         } catch let error as NSError {
-            debugPrint("Error during saving context \(error)")
+            debugPrint("Error during saving context \(error)\n")
         }
     } // not used
     
-    static func saveApiDataToCoreData(_ herosSendToMapping: [HeroModel]) {
+    static func saveApiDataToCoreData(_ heroesSendToMapping: [HeroModel]) {
         
         print("Starting saveApiDataToCoreData...")
         let context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
         
-        herosSendToMapping.forEach { heroSendToMapping in
+        heroesSendToMapping.forEach { heroSendToMapping in
         
             let heroRecFmMapping = HeroCD(context: context)
             
@@ -108,16 +108,16 @@ class CoreDataManager {
     }
     
     static func deleteCoreData() {
-        var herosToDelete = CoreDataManager.readCoreDataInCDFormat()
+        var heroesToDelete = CoreDataManager.readCoreDataInCDFormat()
         let context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
         
-        print("Core Data inventory check of heros: \(herosToDelete.count)\n")
-        herosToDelete.forEach { heroToDelete in
+        print("Core Data inventory check of heroes: \(heroesToDelete.count)\n")
+        heroesToDelete.forEach { heroToDelete in
             
             context.delete(heroToDelete)
             AppDelegate.sharedAppDelegate.coreDataManager.saveContext()
         }
-        herosToDelete = CoreDataManager.readCoreDataInCDFormat()
-        print("Core Data inventory check of heros: \(herosToDelete.count)\n")
+        heroesToDelete = CoreDataManager.readCoreDataInCDFormat()
+        print("Core Data inventory check of heroes: \(heroesToDelete.count)\n")
     }
 }

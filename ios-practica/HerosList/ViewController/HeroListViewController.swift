@@ -12,7 +12,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     let heroViewModel = HeroViewModel()
-    static var herosToShow: [HeroModel] = []
+//    static var herosToShow: [HeroModel] = []
     var place: Place! // needed for location api call & parsing
     
     override func viewDidLoad() {
@@ -23,12 +23,12 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.delegate = self
         tableView.dataSource = self
         
-        navigationItem.title = "Heros"
+        navigationItem.title = "Heroes"
         
         let xib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: "customTableCell")
 
-        heroViewModel.checkForExistingHeros()
+        heroViewModel.checkForExistingHeroes()
         
         addNotfication()
 
@@ -46,7 +46,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @objc
     func refreshHeroList(_ notification: Notification) {
-        print("Core Data tasks complete, self.tableView.reloadData()...")
+        print("Core Data tasks complete, self.tableView.reloadData()...\n")
         self.tableView.reloadData()
     }
     
@@ -72,12 +72,12 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return HeroViewModel.herosToShow2.count
+        return HeroViewModel.heroesShow.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customTableCell", for: indexPath) as! TableViewCell
-        let hero = HeroViewModel.herosToShow2[indexPath.row]
+        let hero = HeroViewModel.heroesShow[indexPath.row]
         
         cell.iconImageView.setImage(url: hero.photo )
         cell.titleLabel.text = hero.name
@@ -94,7 +94,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let hero = HeroViewModel.herosToShow2[indexPath.row]
+        let hero = HeroViewModel.heroesShow[indexPath.row]
         let detailsView = DetailsViewController()
         detailsView.hero = hero
         navigationController?.pushViewController(detailsView, animated: true)
@@ -130,7 +130,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         
         let loginVC = LoginViewController()
         
-        KeychainManager.deleteToken()
+        KeychainManager.deleteTokenFmKC()
         Global.loginStatus = false
         print("Global.loginStatus: \(Global.loginStatus)\n\n")
         

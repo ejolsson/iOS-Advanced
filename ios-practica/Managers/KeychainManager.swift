@@ -15,7 +15,7 @@ class KeychainManager {
         case unknown (OSStatus)
     }
 
-    static func deleteToken() {
+    static func deleteTokenFmKC() {
        
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -29,7 +29,7 @@ class KeychainManager {
         }
     }
     
-    static func saveDataBigToken(token: String) {
+    static func saveTokenInKC(token: String) {
         
         let token = token
 
@@ -47,7 +47,7 @@ class KeychainManager {
         
     }
     
-    static func readBigToken() -> String? {
+    static func getTokenFmKC() -> String? {
         
         if Global.tokenMaster.isEmpty {
             print("tokenMaster is empty\n")
