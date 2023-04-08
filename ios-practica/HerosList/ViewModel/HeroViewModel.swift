@@ -81,7 +81,7 @@ class HeroViewModel: NSObject {
         
         print("Starting movetoMainFunc... heros.forEach... saveApiDatatoCoreData")
         
-        var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
+//        var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
 
         debugPrint("moveToMain2 hero count: \(heros.count)\n")
 

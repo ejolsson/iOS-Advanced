@@ -43,7 +43,7 @@ class CoreDataManager {
     static func saveApiDataToCoreData(_ herosSendToMapping: [HeroModel]) {
         
         print("Starting saveApiDataToCoreData...")
-        var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
+        let context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
         
         herosSendToMapping.forEach { heroSendToMapping in
         
@@ -96,7 +96,7 @@ class CoreDataManager {
     
     static func readCoreDataInCDFormat() -> [HeroCD] {
         let heroFetch: NSFetchRequest<HeroCD> = HeroCD.fetchRequest()
-        var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
+        let context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
         
         do {
             let result = try context.fetch(heroFetch)
@@ -109,7 +109,7 @@ class CoreDataManager {
     
     static func deleteCoreData() {
         var herosToDelete = CoreDataManager.readCoreDataInCDFormat()
-        var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
+        let context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
         
         print("Core Data inventory check of heros: \(herosToDelete.count)\n")
         herosToDelete.forEach { heroToDelete in

@@ -36,7 +36,7 @@ class DetailsViewController: UIViewController {
         heroTitleLabel.text = hero.name
         heroDescLabel.text = hero.description
         
-        let token = Global.tokenMaster
+//        let token = Global.tokenMaster
         
         transformations = DetailsViewModel.fetchTransformations(hero: hero) // 3/31 made the func return a value and assign to transformtions
         
