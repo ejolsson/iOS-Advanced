@@ -11,7 +11,9 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
+    let heroViewModel = HeroViewModel()
     static var herosToShow: [HeroModel] = []
+    var place: Place! // needed for location api call & parsing
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,34 +28,8 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         
         let xib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: "customTableCell")
-        
-        // TODO: Move 3 lines below to HeroViewModel
-        print("\nInitial check for heroes in CD...")
-        HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation()
-        print("Core Data inventory check of herosToShow: \(HeroListViewController.herosToShow.count)\n")
-        
-//        heroViewModel.checkForExistingHeros()
-        
-        if HeroListViewController.herosToShow.isEmpty {
-            
-            print("herosToShow.isEmpty == true... make api calls\n")
-            
-            NetworkLayer.shared.fetchHeros(token: Global.tokenMaster) { [weak self] herosModelContainer, error in
-                guard let self = self else { return }
 
-                if let herosModelContainer = herosModelContainer {
-
-                    self.addLocationsToHeroModel(herosModelContainer) // saveToCD
-
-                    DispatchQueue.main.async {
-                    }
-                } else {
-                    print("Error fetching heros: ", error?.localizedDescription ?? "")
-                }
-            }
-        } else {
-            print("herosToShow is NOT empty\n")
-        }
+        heroViewModel.checkForExistingHeros()
         
         addNotfication()
 
@@ -97,14 +73,12 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return HeroListViewController.herosToShow.count
+        return HeroViewModel.herosToShow2.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customTableCell", for: indexPath) as! TableViewCell
-        
-        // updated to accept API data
-            let hero = HeroListViewController.herosToShow[indexPath.row]
+        let hero = HeroViewModel.herosToShow2[indexPath.row]
         
         cell.iconImageView.setImage(url: hero.photo )
         cell.titleLabel.text = hero.name
@@ -120,7 +94,8 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let hero = HeroListViewController.herosToShow[indexPath.row]
+
+        let hero = HeroViewModel.herosToShow2[indexPath.row]
         let detailsView = DetailsViewController()
         detailsView.hero = hero
         navigationController?.pushViewController(detailsView, animated: true)
@@ -150,12 +125,10 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         
         print("\nAux button pressed\n")
         NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil)
-//        self.tableView.reloadData()
     }
     
     @IBAction func didTapLogoutButton() {
         
-//        var window: UIWindow?
         let loginVC = LoginViewController()
         
         KeychainManager.deleteToken()
@@ -165,44 +138,9 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         // Delete heros in CD
         CoreDataManager.deleteCoreData()
         
-        self.present(loginVC, animated: true) // modal pop up, works, not secure/effective
-//        window?.rootViewController = LoginViewController()
-//        VcSelector.updateRootVC() // call vc selector
+        loginVC.isModalInPresentation = true // prevent swipe away
+        self.present(loginVC, animated: true)
     }
-
-/// move to HeroViewModel
-    let addLocationsToHeroModel = {(heros: [HeroModel]) -> Void in // used in HLVC L56
-        print("\nStarting addLocationsToHeroModel...\n")
-        var herosWithLocations: [HeroModel] = []
-
-        let group = DispatchGroup() // https://developer.apple.com/documentation/dispatch/dispatchgroup
-
-        for hero in heros {
-            group.enter() // Apple Docs: Explicitly indicates that a block has entered the group.
-
-            NetworkLayer.shared.getLocalization(token: Global.tokenMaster, with: hero.id) { heroLocations, error in
-                var fullHero = hero
-
-                if let firstLocation = heroLocations.first { // only grab first hero location
-                    fullHero.latitude = Double(firstLocation.latitud)
-                    fullHero.longitude = Double(firstLocation.longitud)
-                } else {
-                    fullHero.latitude = 0.0
-                    fullHero.longitude = 0.0
-                }
-                herosWithLocations.append(fullHero)
-                group.leave() // indicates the operation will termianate
-            }
-        }
-
-        group.notify(queue: .main) {
-            debugPrint("herosWithLocations count (Should be 18): \(herosWithLocations.count)")
-
-            debugPrint("L227: HeroListViewController.herosToShow.count (Should be 18): \(HeroListViewController.herosToShow.count)\n")
-
-            moveToMain2(herosWithLocations) //... contains: saveApiDataToCoreData
-        }
-    } // end addLocationsToHeroModel
 
 } // end class HeroListVC
 

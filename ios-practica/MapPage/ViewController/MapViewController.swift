@@ -15,6 +15,7 @@ class MapViewController: UIViewController {
     
     var locationManager: CLLocationManager?
     
+    let heroViewModel = HeroViewModel()
     var heroPlaces: [HeroModel] = []
     
     let latitude = 40.4155
@@ -22,7 +23,8 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        heroPlaces = HeroListViewController.herosToShow
+
+        heroPlaces = HeroViewModel.herosToShow2
         
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
