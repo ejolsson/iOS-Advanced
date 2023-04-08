@@ -35,7 +35,7 @@ class MapViewController: UIViewController {
         mapView.showsUserLocation = true
         mapView.mapType = .standard
         
-        moveToCoordinates(self.latitude, self.longitude)//(40.4155, 3.7074)//(0,0) // removed ".self" and made no difference
+        moveToCoordinates(self.latitude, self.longitude)
         
         mapView.register(AnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         

@@ -18,8 +18,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        configureItems() // load bar buttons
-        configureItems2() // load bar buttons
+        configureItems()
         
         tableView.delegate = self
         tableView.dataSource = self

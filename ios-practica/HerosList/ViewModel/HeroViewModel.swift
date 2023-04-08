@@ -40,7 +40,6 @@ class HeroViewModel: NSObject {
                 addLocationsToHeroModelFunc(heros: herosModelContainer)
                 
                 DispatchQueue.main.async {
-                    // self.heroListViewController.tableView.reloadData()
                 }
             } else {
                 print("Error fetching heros: ", error?.localizedDescription ?? "")
