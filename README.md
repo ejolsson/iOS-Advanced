@@ -1,6 +1,6 @@
 **Advance-iOS-Project**
 
-Bootcamp project involving MVVM architecture, CoreData, login using Keychain, map functionality, API connections, and testing.
+Bootcamp project involving MVVM architecture, CoreData, NotificationCenter, login, Keychain, map functionality, API connections, and testing.
 
 The objective of this practice is to put into practice the contents seen in the module. Create an iOS project using: Storyboard or .xib, Core Data and tests.
 

@@ -52,7 +52,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     private func showError() {
         let alert = UIAlertController(title: "Warning!", message: "Message", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] action in // ⚠️ was [weak self] Variable 'self' was written to, but never read
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in // [weak self] action in
             switch action.style{
                 case .default:
                 print("default")
