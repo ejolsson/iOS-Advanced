@@ -44,7 +44,6 @@ class Callout: UIView {
     private func setupSubtitle() {
         subtitleLabel.font = UIFont.systemFont(ofSize: 14)
         subtitleLabel.textColor = .gray
-//        subtitleLabel.text = "Show details"
         subtitleLabel.text = annotation.desc
         
         subtitleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDetails)))

@@ -108,7 +108,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Logout", image: UIImage(named: ""), target: self, action: #selector(didTapLogoutButton)
         )
-    } // logout & test buttons
+    }
     
     private func configureItems2() {
         self.navigationItem.rightBarButtonItems = [ UIBarButtonItem(
@@ -134,14 +134,13 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         Global.loginStatus = false
         print("Global.loginStatus: \(Global.loginStatus)\n\n")
         
-        // Delete heros in CD
         CoreDataManager.deleteCoreData()
         
         loginVC.isModalInPresentation = true // prevent swipe away
         self.present(loginVC, animated: true)
     }
 
-} // end class HeroListVC
+}
 
 
 extension UIImageView {

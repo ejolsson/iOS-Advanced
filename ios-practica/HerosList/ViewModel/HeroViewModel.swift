@@ -80,8 +80,6 @@ class HeroViewModel: NSObject {
     func moveToMainFunc (heros: [HeroModel]) -> Void {
         
         print("Starting movetoMainFunc... heros.forEach... saveApiDatatoCoreData")
-        
-//        var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
 
         debugPrint("moveToMain2 hero count: \(heros.count)\n")
 
@@ -91,5 +89,4 @@ class HeroViewModel: NSObject {
         
         NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil) // wait unti everything is done, send notif for UI refresh
     }
-    
 }

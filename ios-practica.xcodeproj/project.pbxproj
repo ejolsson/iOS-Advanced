@@ -45,7 +45,6 @@
 		4A5D6B0F29DF313500C5939D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB8985329A52D04009CE481 /* CoreDataManager.swift */; };
 		4A5D6B1029DF314200C5939D /* TabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6E8D829CB061F0087522D /* TabBarView.xib */; };
 		4A5D6B1129DF314200C5939D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07B3295B6CE300BDFB1F /* TabBarController.swift */; };
-		4A5D6B1229DF314900C5939D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC6B21429C30C3800DD5919 /* LoginView.swift */; };
 		4A5D6B1329DF314900C5939D /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB60C8929C8717700B1C50C /* LoginView.xib */; };
 		4A5D6B1429DF314E00C5939D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59C1329C9E43B004FAB75 /* LoginViewModel.swift */; };
 		4A5D6B1529DF315700C5939D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFE5D85295E276900CD1184 /* LoginViewController.swift */; };
@@ -84,7 +83,6 @@
 		4A5D6B3629DF31DE00C5939D /* HeroListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1B07AD295B679000BDFB1F /* HeroListView.xib */; };
 		4A5D6B3729DF31E900C5939D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59C1329C9E43B004FAB75 /* LoginViewModel.swift */; };
 		4A5D6B3829DF31E900C5939D /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB60C8929C8717700B1C50C /* LoginView.xib */; };
-		4A5D6B3929DF31E900C5939D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC6B21429C30C3800DD5919 /* LoginView.swift */; };
 		4A5D6B3A29DF31E900C5939D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFE5D85295E276900CD1184 /* LoginViewController.swift */; };
 		4A5D6B3B29DF31F900C5939D /* TabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6E8D829CB061F0087522D /* TabBarView.xib */; };
 		4A5D6B3C29DF31F900C5939D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07B3295B6CE300BDFB1F /* TabBarController.swift */; };
@@ -106,7 +104,6 @@
 		4AB8985229A52771009CE481 /* Heros.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4AB8985029A52771009CE481 /* Heros.xcdatamodeld */; };
 		4AB8985429A52D04009CE481 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB8985329A52D04009CE481 /* CoreDataManager.swift */; };
 		4AB8985629A53737009CE481 /* Heros+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB8985529A53737009CE481 /* Heros+CoreDataClass.swift */; };
-		4AC6B21529C30C3800DD5919 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC6B21429C30C3800DD5919 /* LoginView.swift */; };
 		4AD59C1429C9E43B004FAB75 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59C1329C9E43B004FAB75 /* LoginViewModel.swift */; };
 		4AD59C1729C9EBEC004FAB75 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59C1629C9EBEC004FAB75 /* MapViewModel.swift */; };
 		4AD59C1829C9EBEC004FAB75 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59C1629C9EBEC004FAB75 /* MapViewModel.swift */; };
@@ -178,7 +175,6 @@
 		4AB8985129A52771009CE481 /* Heros.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Heros.xcdatamodel; sourceTree = "<group>"; };
 		4AB8985329A52D04009CE481 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		4AB8985529A53737009CE481 /* Heros+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Heros+CoreDataClass.swift"; sourceTree = "<group>"; };
-		4AC6B21429C30C3800DD5919 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4AD59C1329C9E43B004FAB75 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4AD59C1629C9EBEC004FAB75 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		4AE057B329C07F17008BA10A /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -287,7 +283,6 @@
 		4A075BDE29C86AA600E21759 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4AC6B21429C30C3800DD5919 /* LoginView.swift */,
 				4AB60C8929C8717700B1C50C /* LoginView.xib */,
 			);
 			path = View;
@@ -739,7 +734,6 @@
 				4AB8985629A53737009CE481 /* Heros+CoreDataClass.swift in Sources */,
 				4AE84F062997F0F4002384E6 /* AnnotationView.swift in Sources */,
 				4AE84F0B2998CDF3002384E6 /* Callout.swift in Sources */,
-				4AC6B21529C30C3800DD5919 /* LoginView.swift in Sources */,
 				4A26A2B4296C0201008EE2E6 /* DetailsViewController.swift in Sources */,
 				4AE84F042997EF3F002384E6 /* Annotation.swift in Sources */,
 				4A3825C629CB2EB100CF50C2 /* DetailsViewModel.swift in Sources */,
@@ -757,7 +751,6 @@
 				4A5D6B2429DF31A200C5939D /* TransformationDetailViewController.swift in Sources */,
 				4A1B07C4295B7D7C00BDFB1F /* HeroModel.swift in Sources */,
 				4A26A2B8296C0ECB008EE2E6 /* Transformation.swift in Sources */,
-				4A5D6B1229DF314900C5939D /* LoginView.swift in Sources */,
 				4A5D6B0A29DF311C00C5939D /* NetworkLayer.swift in Sources */,
 				4A5D6B2A29DF31BF00C5939D /* Callout.swift in Sources */,
 				4A22312029730BD0004A7CE7 /* HeroTests.swift in Sources */,
@@ -811,7 +804,6 @@
 				4A5D6B4529DF321300C5939D /* SceneDelegate.swift in Sources */,
 				4AD59C1A29C9EC2E004FAB75 /* MapViewController.swift in Sources */,
 				4A5D6B2629DF31A300C5939D /* TransformationDetailViewController.swift in Sources */,
-				4A5D6B3929DF31E900C5939D /* LoginView.swift in Sources */,
 				4A5D6B2F29DF31C000C5939D /* Callout.swift in Sources */,
 				4A5D6B2029DF319500C5939D /* TransformationsViewController.swift in Sources */,
 				4A5D6B3229DF31DE00C5939D /* TableViewCell.swift in Sources */,

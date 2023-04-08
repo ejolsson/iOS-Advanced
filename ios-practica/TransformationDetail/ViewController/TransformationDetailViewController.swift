@@ -8,7 +8,6 @@
 import UIKit
 
 class TransformationDetailViewController: UIViewController {
-
     
     @IBOutlet weak var transformationImageView: UIImageView!
     @IBOutlet weak var transformationNameLabel: UILabel!    

@@ -24,12 +24,12 @@ class TransformationViewController: UIViewController, UITableViewDelegate, UITab
         print("\(transformations.count)")
         
         let xib = UINib(nibName: "TableViewCell", bundle: nil)
-        tableView.register(xib, forCellReuseIdentifier: "customTableCell") // TableViewCell or customTableCell
-    } // complete
+        tableView.register(xib, forCellReuseIdentifier: "customTableCell")
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transformations.count
-    } // complete, gtg
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customTableCell", for: indexPath) as! TableViewCell
@@ -59,5 +59,4 @@ class TransformationViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         // empty
     }
-    
 }

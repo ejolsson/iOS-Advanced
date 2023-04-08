@@ -14,10 +14,5 @@ class MapViewModel: NSObject {
     
     let latitude = 40.4155
     let longitude = -3.7074
-    
-
-    
-
-    
-    
+     
 }
