@@ -14,8 +14,6 @@
 		4A1B077C295B666A00BDFB1F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B077B295B666A00BDFB1F /* SceneDelegate.swift */; };
 		4A1B0783295B666C00BDFB1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A1B0782295B666C00BDFB1F /* Assets.xcassets */; };
 		4A1B0786295B666C00BDFB1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A1B0784295B666C00BDFB1F /* LaunchScreen.storyboard */; };
-		4A1B079B295B666C00BDFB1F /* ios_practicaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B079A295B666C00BDFB1F /* ios_practicaUITests.swift */; };
-		4A1B079D295B666C00BDFB1F /* ios_practicaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B079C295B666C00BDFB1F /* ios_practicaUITestsLaunchTests.swift */; };
 		4A1B07AE295B679000BDFB1F /* HeroListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07AC295B679000BDFB1F /* HeroListViewController.swift */; };
 		4A1B07AF295B679000BDFB1F /* HeroListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1B07AD295B679000BDFB1F /* HeroListView.xib */; };
 		4A1B07B5295B6CE300BDFB1F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B07B3295B6CE300BDFB1F /* TabBarController.swift */; };
@@ -164,8 +162,6 @@
 		4A1B0787295B666C00BDFB1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A1B078C295B666C00BDFB1F /* ios-practicaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-practicaTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A1B0796295B666C00BDFB1F /* ios-practicaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-practicaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A1B079A295B666C00BDFB1F /* ios_practicaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_practicaUITests.swift; sourceTree = "<group>"; };
-		4A1B079C295B666C00BDFB1F /* ios_practicaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_practicaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4A1B07AC295B679000BDFB1F /* HeroListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroListViewController.swift; sourceTree = "<group>"; };
 		4A1B07AD295B679000BDFB1F /* HeroListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroListView.xib; sourceTree = "<group>"; };
 		4A1B07B3295B6CE300BDFB1F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -330,7 +326,6 @@
 			children = (
 				4A1B0778295B666A00BDFB1F /* ios-practica */,
 				4A1B078F295B666C00BDFB1F /* ios-practicaTests */,
-				4A1B0799295B666C00BDFB1F /* ios-practicaUITests */,
 				4A1B0777295B666A00BDFB1F /* Products */,
 				4A5D6B4729DF356600C5939D /* Frameworks */,
 			);
@@ -374,15 +369,6 @@
 				4A223121297313C6004A7CE7 /* TransformationTests.swift */,
 			);
 			path = "ios-practicaTests";
-			sourceTree = "<group>";
-		};
-		4A1B0799295B666C00BDFB1F /* ios-practicaUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4A1B079A295B666C00BDFB1F /* ios_practicaUITests.swift */,
-				4A1B079C295B666C00BDFB1F /* ios_practicaUITestsLaunchTests.swift */,
-			);
-			path = "ios-practicaUITests";
 			sourceTree = "<group>";
 		};
 		4A1B07A9295B668F00BDFB1F /* App */ = {
@@ -827,7 +813,6 @@
 				4A5D6B4129DF320800C5939D /* NetworkLayer.swift in Sources */,
 				4A5D6B3429DF31DE00C5939D /* HeroModel.swift in Sources */,
 				4A5D6B3329DF31DE00C5939D /* HeroListViewController.swift in Sources */,
-				4A1B079B295B666C00BDFB1F /* ios_practicaUITests.swift in Sources */,
 				4A5D6B3F29DF31F900C5939D /* Hero+CoreDataProperties.swift in Sources */,
 				4A00856729CB2B7200500178 /* HeroViewModel.swift in Sources */,
 				4A5D6B1C29DF317E00C5939D /* DetailsViewController.swift in Sources */,
@@ -842,7 +827,6 @@
 				4A5D6B2D29DF31C000C5939D /* CustomMarker.swift in Sources */,
 				4A5D6B3A29DF31E900C5939D /* LoginViewController.swift in Sources */,
 				4A5D6B2B29DF31C000C5939D /* AnnotationView.swift in Sources */,
-				4A1B079D295B666C00BDFB1F /* ios_practicaUITestsLaunchTests.swift in Sources */,
 				4A5D6B3E29DF31F900C5939D /* Heros+CoreDataClass.swift in Sources */,
 				4A5D6B4029DF320000C5939D /* Heros.xcdatamodeld in Sources */,
 				4A5D6B2E29DF31C000C5939D /* Place.swift in Sources */,

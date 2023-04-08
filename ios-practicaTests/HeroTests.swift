@@ -16,10 +16,12 @@ final class HeroTests: XCTestCase {
         super.setUp()
         
         hero = HeroModel(id: "1",
-                      name: "Goku",
-                      photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/goku1.jpg?width=300", // any valid url
-                      description: "Correct description",
-                      favorite: true)
+                         name: "Goku",
+                         photo: "https://cdn.alfabetajuega.com/alfabetajuega/2020/12/goku1.jpg?width=300", // any valid url
+                         description: "Correct description",
+                         favorite: true,
+                         latitude: 36.8415268,
+                         longitude: -2.4746262)
     }
 
     override func tearDown()  {
@@ -53,11 +55,25 @@ final class HeroTests: XCTestCase {
         XCTAssertNotNil(hero.description)
         XCTAssertEqual(hero.description, "Correct description")
         XCTAssertNotEqual(hero.description, "Some other description")
+        XCTAssertNoThrow(hero.description, "")
     } // pass
     
     func testHeroFav() {
         XCTAssertNotNil(hero.favorite)
         XCTAssertEqual(hero.favorite, true)
     } // pass
+    
+    func testHeroLatitude() {
+        XCTAssertNotNil(hero.latitude)
+        XCTAssertEqual(hero.latitude, 36.8415268)
+        XCTAssertNotEqual(hero.latitude, 36.84999)
+        XCTAssertNoThrow(hero.latitude, "")
+    } // pass
 
+    func testHeroLongitude() {
+        XCTAssertNotNil(hero.longitude)
+        XCTAssertEqual(hero.longitude, -2.4746262)
+        XCTAssertNotEqual(hero.longitude, -2.4746264)
+        XCTAssertNoThrow(hero.longitude, "")
+    } // pass
 } // pass
