@@ -15,11 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        // window?.rootViewController = TabBarController()
-        
         // enable condidtional logic based on login status
         if LoginViewModel.isUserLoggedIn() {
-//        if LocalDataLayer.shared.isUserLoggedIn() {
             window?.rootViewController = TabBarController()
         } else {
             window?.rootViewController = LoginViewController()

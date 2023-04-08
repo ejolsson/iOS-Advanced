@@ -98,7 +98,7 @@ final class NetworkLayer {
         }
         
         task.resume()
-    } // Opt 1, Used in: HerosListVC, Purpose: api call, grab hero data
+    } // used
   
     func fetchTransformations(token: String?, heroId: String?, completion: @escaping ([Transformation]?, Error?) -> Void) {
                 
@@ -144,91 +144,7 @@ final class NetworkLayer {
         
         task.resume()
     } // Opt 1, Used in: DetailsVC, Purpose: api call, grab data, Oscar style
-    
-    func fetchLocations (token: String?, heroId: String?, completion: @escaping ([Place]?, Error?) -> Void) {
         
-        guard let url = URL(string: "https://dragonball.keepcoding.education/api/heros/locations") else {
-            completion(nil, NetworkError.malformedURL)
-            return
-        }
-        
-        var urlComponents = URLComponents()
-        urlComponents.queryItems = [URLQueryItem(name: "id", value: heroId ?? "")]
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.setValue("Bearer \(token ?? "")", forHTTPHeaderField: "Authorization")
-        urlRequest.httpBody = urlComponents.query?.data(using: .utf8)
-        
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            guard error == nil else {
-                completion(nil, error)
-                return
-            }
-            
-            guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-                let statusCode = (response as? HTTPURLResponse)?.statusCode
-                completion(nil, NetworkError.statusCode(code: statusCode))
-                print("Error loading URL: Status error --> ", (response as? HTTPURLResponse)?.statusCode ?? -1)
-                return
-            }
-            
-            guard let data = data else {
-                completion(nil, NetworkError.noData)
-                return
-            }
-                       
-            guard let places = try? JSONDecoder().decode([Place].self, from: data) else {
-                completion(nil, NetworkError.decodingFailed)
-                return
-            }
-            
-            completion(places, nil)
-        }
-        
-        task.resume()
-    } // adapted fm fetchtransformations
-    
-    func getHeroes(token: String?, completion: @escaping ([HeroModel], Error?) -> Void) {
-        
-        // added token parameter since not hardcoded
-        
-        print("Starting getHeroes api call...\n")
-        
-        guard let url = URL(string: "https://dragonball.keepcoding.education/api/heros/all") else {
-            completion([], NetworkError.malformedURL)
-            return
-        }
-        
-        var urlComponents = URLComponents()
-        urlComponents.queryItems = [URLQueryItem(name: "name", value: "")]
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.setValue("Bearer \(token ?? "")", forHTTPHeaderField: "Authorization")
-        urlRequest.httpBody = urlComponents.query?.data(using: .utf8)
-        
-        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            guard error == nil else {
-                completion([], NetworkError.unknown)
-                return
-            }
-            
-            guard let data = data else {
-                completion([], NetworkError.noData)
-                return
-            }
-            
-            guard let response = try? JSONDecoder().decode([HeroModel].self, from: data) else {
-                completion([], NetworkError.decodingFailed)
-                return
-            }
-            completion(response, nil)
-        }
-        
-        task.resume()
-    } // Opt 2
-    
     func getLocalization(token: String?, with id: String, completion: @escaping ([Place], Error?) -> Void) {
         
         guard let url = URL(string: "https://dragonball.keepcoding.education/api/heros/locations") else {

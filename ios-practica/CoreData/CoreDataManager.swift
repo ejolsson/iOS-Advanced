@@ -105,7 +105,7 @@ class CoreDataManager {
             debugPrint("Error -> \(error)")
             return []
         }
-    } // credit Pedro solution // CHECK CLASS EXAMPLE FOR PROPER CREDIT
+    }
     
     static func deleteCoreData() {
         var herosToDelete = CoreDataManager.readCoreDataInCDFormat()
