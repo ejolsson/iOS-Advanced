@@ -23,9 +23,9 @@ class KeychainManager {
         ]
         
         if (SecItemDelete(query as CFDictionary)) == noErr {
-            debugPrint("Token deleted from Keychain successfully\n")
+            print("Token deleted from Keychain successfully\n")
         } else {
-            debugPrint("deleteKeychainItem error\n")
+            print("deleteKeychainItem error\n")
         }
     }
     
@@ -40,9 +40,9 @@ class KeychainManager {
         ]
 
         if SecItemAdd(attributes as CFDictionary, nil) == noErr {
-            debugPrint("Token saved to Keychain successfully. Token = \(token)\n")
+            print("Token saved to Keychain successfully. Token = \(token)\n")
         } else {
-            debugPrint("Error saving user info")
+            print("Error saving user info")
         }
         
     }
@@ -70,13 +70,13 @@ class KeychainManager {
                let tokenData = existingItem[kSecValueData as String] as? Data,
                let token = String(data: tokenData, encoding: .utf8) {
                 
-                debugPrint("Reading token fm Keychain: \(token)")
+                print("Reading token fm Keychain: \(token)")
                 Global.tokenMaster = token
                 return token
             }
         }
         
-        debugPrint("An error occurred while querying user information fm Keychain")
+        print("An error occurred while querying user information fm Keychain")
         return ""
     }
     

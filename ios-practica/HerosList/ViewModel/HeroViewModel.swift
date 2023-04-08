@@ -16,7 +16,7 @@ class HeroViewModel: NSObject {
 
         HeroViewModel.heroesShow = CoreDataManager.getCoreDataForPresentation()
         
-        print("Core  inventory check of heroesToShow: \(HeroViewModel.heroesShow.count)\n")
+        print("CoreData inventory check of heroes: \(HeroViewModel.heroesShow.count)\n")
         
         if HeroViewModel.heroesShow.isEmpty {
             
@@ -35,7 +35,7 @@ class HeroViewModel: NSObject {
             
             if let heroesModelContainer = heroesModelContainer {
                 
-                addLocationsToHeroModelFunc(heroes: heroesModelContainer)
+                addLocationsToHeroes(heroes: heroesModelContainer)
                 
                 DispatchQueue.main.async {
                 }
@@ -45,8 +45,8 @@ class HeroViewModel: NSObject {
         }
     }
     
-    func addLocationsToHeroModelFunc (heroes: [HeroModel]) -> Void {
-        print("\nStarting addLocationsToHeroModelFunc...\n")
+    func addLocationsToHeroes (heroes: [HeroModel]) -> Void {
+        print("\nStarting addLocationsToHeroes...\n")
         var heroesWithLocations: [HeroModel] = []
         
         let group = DispatchGroup()
@@ -71,18 +71,18 @@ class HeroViewModel: NSObject {
         
         group.notify(queue: .main) { //[self] in // try commenting out [self] in
             
-            self.moveToMainFunc(heroes: heroesWithLocations)
+            self.saveThenReadToCoreData(heroes: heroesWithLocations)
         }
     }
     
-    func moveToMainFunc (heroes: [HeroModel]) -> Void {
+    func saveThenReadToCoreData (heroes: [HeroModel]) -> Void {
         
-        print("Starting movetoMainFunc... heroes.forEach... saveApiDatatoCoreData\n")
-        print("moveToMain2 hero count: \(heroes.count)\n")
+        print("Starting saveThenReadToCoreData\n")
+        print("Hero count: \(heroes.count)\n")
 
         CoreDataManager.saveApiDataToCoreData(heroes) // write api data to core data
 
-        HeroViewModel.heroesShow = CoreDataManager.getCoreDataForPresentation()
+        HeroViewModel.heroesShow = CoreDataManager.getCoreDataForPresentation() // read from Core Data to present in UI
         
         NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil) // wait unti everything is done, send notif for UI refresh
     }

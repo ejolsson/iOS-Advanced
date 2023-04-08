@@ -57,7 +57,7 @@ class Callout: UIView {
     }
     
     @objc func showDetails() {
-        debugPrint("Showing the details")
+        print("Showing the details")
     }
     
     private func setupImageView() {

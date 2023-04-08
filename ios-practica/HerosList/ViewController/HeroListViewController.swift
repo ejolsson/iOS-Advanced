@@ -64,7 +64,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
                 print("destructive")
                 
             @unknown default:
-                debugPrint("unknown")
+                print("unknown")
             }
         }))
         

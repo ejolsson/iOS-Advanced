@@ -34,7 +34,7 @@ class DetailsViewModel: NSObject {
                     if !transformations.isEmpty {
                         DispatchQueue.main.async {
                             print("transformation NOT empty \n")
-                            print("transformation: \(transformations)")
+//                            print("transformation: \(transformations)")
 //                            detailsViewController.transformationButton.alpha = 1
                             transformationButton?.alpha = 1
                         }
