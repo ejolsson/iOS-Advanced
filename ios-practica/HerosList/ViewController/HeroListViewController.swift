@@ -11,15 +11,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    static var herosModel: [HeroModel] = []
     static var herosToShow: [HeroModel] = []
-//    let heroViewModel = HeroViewModel()
-    var heroModel: HeroModel!
-    var places: [Place] = []
-    var place: Place! // w/o !, error "no initializers"
-    var context = AppDelegate.sharedAppDelegate.coreDataManager.managedContext
-    let loginInfo = LoginViewController() // use this to get user token
-    let keychain = KeychainManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +27,12 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         let xib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: "customTableCell")
         
+        // TODO: Move 3 lines below to HeroViewModel
         print("\nInitial check for heroes in CD...")
         HeroListViewController.herosToShow = CoreDataManager.getCoreDataForPresentation()
         print("Core Data inventory check of herosToShow: \(HeroListViewController.herosToShow.count)\n")
+        
+//        heroViewModel.checkForExistingHeros()
         
         if HeroListViewController.herosToShow.isEmpty {
             
@@ -48,12 +43,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
 
                 if let herosModelContainer = herosModelContainer {
 
-                    self.addLocationsToHeroModel(herosModelContainer) // saveToCD nested
-//                        for hero in heros
-//                            group.notify
-//                                moveToMain (héros.forEach)
-//                                    saveApiDataToCoreData
-//                                    getCoreDataForPresentation // has notif.post..
+                    self.addLocationsToHeroModel(herosModelContainer) // saveToCD
 
                     DispatchQueue.main.async {
                     }
@@ -148,7 +138,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     
     private func configureItems2() {
         self.navigationItem.rightBarButtonItems = [ UIBarButtonItem(
-            title: "Logout", image: UIImage(named: ""), target: self, action: #selector(didTapLogoutButton) // person.cirle, ipad.and.arrow.forward, images: marker-blue, exit,
+            title: "Logout", image: UIImage(named: ""), target: self, action: #selector(didTapLogoutButton)
         ),
                                                     UIBarButtonItem(
                                                         title: "aux", image: UIImage(systemName: "play"), target: self, action: #selector(didTapAuxButton)
@@ -159,10 +149,8 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func didTapAuxButton() {
         
         print("\nAux button pressed\n")
-        NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil) // This notification works to refersh the UI!!
+        NotificationCenter.default.post(name: Notification.Name("data.is.loaded.into.CD"), object: nil)
 //        self.tableView.reloadData()
-//        KeychainManager.deleteToken()
-//        CoreDataManager.deleteCoreData() 
     }
     
     @IBAction func didTapLogoutButton() {
