@@ -77,7 +77,7 @@ class HeroViewModel: NSObject {
     
     func saveThenReadToCoreData (heroes: [HeroModel]) -> Void {
         
-        print("Starting saveThenReadToCoreData\n")
+        print("Starting saveThenReadToCoreData...\n")
         print("Hero count: \(heroes.count)\n")
 
         CoreDataManager.saveApiDataToCoreData(heroes) // write api data to core data

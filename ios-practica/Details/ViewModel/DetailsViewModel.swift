@@ -11,7 +11,6 @@ import UIKit
 class DetailsViewModel: NSObject {
     
     static var transformations: [Transformation] = []
-//    var hero: HeroModel!
     
     static func fetchTransformations(hero: HeroModel!) -> [Transformation] {
 

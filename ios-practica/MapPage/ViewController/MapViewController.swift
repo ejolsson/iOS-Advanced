@@ -16,7 +16,6 @@ class MapViewController: UIViewController {
     var locationManager: CLLocationManager?
     
     let heroViewModel = HeroViewModel()
-    let mapViewModel = MapViewModel()
     var heroPlaces: [HeroModel] = []
     
     let latitude = 40.4155

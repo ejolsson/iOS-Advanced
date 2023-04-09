@@ -25,5 +25,4 @@ class TransformationDetailViewController: UIViewController {
         transformationDescLabel.text = transformation.description
         transformationDescLabel.sizeToFit()
     }
-
 }

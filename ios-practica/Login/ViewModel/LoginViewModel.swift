@@ -15,7 +15,7 @@ class LoginViewModel: NSObject {
         NetworkLayer.shared.login(email: email, password: password) { token, error in
             if let token = token {
                 
-                KeychainManager.deleteTokenFmKC()
+                KeychainManager.deleteTokenInKC()
                 KeychainManager.saveTokenInKC(token: token)
                 Global.loginStatus = true
                 Global.token = token
@@ -40,6 +40,6 @@ class LoginViewModel: NSObject {
     }
     
     static func isUserLoggedIn() -> Bool {
-        return !KeychainManager.getTokenFmKC()!.isEmpty
+        return !KeychainManager.getTokenInKC()!.isEmpty
     }
 }

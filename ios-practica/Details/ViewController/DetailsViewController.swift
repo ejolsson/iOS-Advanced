@@ -8,7 +8,6 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
-
     
     @IBOutlet weak var heroImageView: UIImageView!
     @IBOutlet weak var heroTitleLabel: UILabel!

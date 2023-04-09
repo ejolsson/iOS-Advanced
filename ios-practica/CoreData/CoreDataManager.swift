@@ -38,7 +38,7 @@ class CoreDataManager {
         } catch let error as NSError {
             debugPrint("Error during saving context \(error)\n")
         }
-    } // not used
+    }
     
     static func saveApiDataToCoreData(_ heroesSendToMapping: [HeroModel]) {
         

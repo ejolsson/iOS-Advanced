@@ -8,6 +8,7 @@
 import MapKit
 
 class AnnotationView: MKMarkerAnnotationView {
+    
     override var annotation: MKAnnotation? {
         willSet {
             guard let value = newValue as? Annotation else { return }

@@ -30,7 +30,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         
         addNotfication()
 
-    } // End viewDidLoad
+    }
     
     func addNotfication() {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshHeroList(_:)), name: NSNotification.Name("data.is.loaded.into.CD"), object: nil)
@@ -116,7 +116,7 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
                                                         title: "aux", image: UIImage(systemName: "play"), target: self, action: #selector(didTapAuxButton)
                                                     )
         ]
-    } // logout & test buttons
+    }
     
     @IBAction func didTapAuxButton() {
         
@@ -128,13 +128,13 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         
         let loginVC = LoginViewController()
         
-        KeychainManager.deleteTokenFmKC()
+        KeychainManager.deleteTokenInKC()
         Global.loginStatus = false
         print("Global.loginStatus: \(Global.loginStatus)\n\n")
         
         CoreDataManager.deleteCoreData()
         
-        loginVC.isModalInPresentation = true // prevent swipe away
+        loginVC.isModalInPresentation = true // prevent user from swiping away
         self.present(loginVC, animated: true)
     }
 
