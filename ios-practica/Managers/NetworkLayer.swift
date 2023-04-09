@@ -61,7 +61,7 @@ final class NetworkLayer {
         }
         
         task.resume()
-    } // opt 1
+    }
     
     func fetchHeroes(token: String?, completion: @escaping ([HeroModel]?, Error?) -> Void) {
         
@@ -98,7 +98,7 @@ final class NetworkLayer {
         }
         
         task.resume()
-    } // used
+    }
   
     func fetchTransformations(token: String?, heroId: String?, completion: @escaping ([Transformation]?, Error?) -> Void) {
                 
@@ -143,7 +143,7 @@ final class NetworkLayer {
         }
         
         task.resume()
-    } // Opt 1, Used in: DetailsVC, Purpose: api call, grab data, Oscar style
+    }
         
     func fetchLocations(token: String?, with id: String, completion: @escaping ([Place], Error?) -> Void) {
         
@@ -181,5 +181,5 @@ final class NetworkLayer {
         }
         
         task.resume()
-    } // Opt 2
+    }
 }

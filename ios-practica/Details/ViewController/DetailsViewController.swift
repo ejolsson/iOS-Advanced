@@ -17,7 +17,7 @@ class DetailsViewController: UIViewController {
     
     @IBAction func transformationsButtonTapped(_ sender: Any) {
         let transView = TransformationViewController()
-        transView.transformations = self.transformations
+        transView.transformations = DetailsViewModel.transformations
         
         navigationController?.pushViewController(transView, animated: true)
     }
@@ -30,43 +30,23 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
 
         title = hero.name
-        transformationButton.alpha = 0
+        transformationButton.alpha = 0 // 0 = invisible
         
         heroImageView.setImage(url: hero.photo )
         heroTitleLabel.text = hero.name
         heroDescLabel.text = hero.description
         
-        transformations = DetailsViewModel.fetchTransformations(hero: hero) // 3/31 made the func return a value and assign to transformtions
+        transformations = DetailsViewModel.fetchTransformations(hero: hero)
         
-        DetailsViewModel.showTransformationButton(transformations: transformations)
-        
-        // try pulling out this logic from api call below. Given transformtions is populated, (timing aside) might work?...
-        if !self.transformations.isEmpty {
-            DispatchQueue.main.async {
-                self.transformationButton.alpha = 1
-            }
-        }
-        
-//        NetworkLayer
-//            .shared
-//            .fetchTransformations(token: token, heroId: hero.id) { [weak self] allTrans, error in
-//                guard let self = self else { return }
-//
-//                if let allTrans = allTrans {
-//
-//                    self.transformations = allTrans
-//
-//                    print("Transformation count: ", allTrans.count)
-//
-//                    if !self.transformations.isEmpty {
-//                        DispatchQueue.main.async {
-//                            self.transformationButton.alpha = 1
-//                        }
-//                    }
-//                } else {
-//                    print("Error fetching transformations: ", error?.localizedDescription ?? "")
-//                }
-//            }
-        }
+        addNotfication()
+    }
 
+    func addNotfication() {
+        NotificationCenter.default.addObserver(self, selector: #selector(configureTransformationButton(_:)), name: NSNotification.Name("transformations.are.ready"), object: nil)
+    }
+    
+    @objc
+    func configureTransformationButton(_ notification: Notification) {
+        self.transformationButton.alpha = 1 // 1 = button fully visible
+    }
 }

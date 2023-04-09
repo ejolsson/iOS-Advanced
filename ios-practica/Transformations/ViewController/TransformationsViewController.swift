@@ -21,7 +21,7 @@ class TransformationViewController: UIViewController, UITableViewDelegate, UITab
         
         navigationItem.title = "Transformations"
         
-        print("\(transformations.count)")
+        print("TransformationVC transformation count: \(transformations.count)")
         
         let xib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: "customTableCell")
@@ -34,11 +34,11 @@ class TransformationViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customTableCell", for: indexPath) as! TableViewCell
         
-        let hero = transformations[indexPath.row]
+        let transformation = transformations[indexPath.row]
         
-        cell.iconImageView.setImage(url: hero.photo)
-        cell.titleLabel.text = hero.name
-        cell.descriptionLabel.text = hero.description
+        cell.iconImageView.setImage(url: transformation.photo)
+        cell.titleLabel.text = transformation.name
+        cell.descriptionLabel.text = transformation.description
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
         
