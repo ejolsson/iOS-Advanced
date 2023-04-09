@@ -12,8 +12,6 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     let heroViewModel = HeroViewModel()
-//    static var herosToShow: [HeroModel] = []
-    var place: Place! // needed for location api call & parsing
     
     override func viewDidLoad() {
         super.viewDidLoad()

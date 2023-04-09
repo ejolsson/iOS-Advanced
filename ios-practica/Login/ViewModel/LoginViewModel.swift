@@ -18,7 +18,7 @@ class LoginViewModel: NSObject {
                 KeychainManager.deleteTokenFmKC()
                 KeychainManager.saveTokenInKC(token: token)
                 Global.loginStatus = true
-                Global.tokenMaster = token
+                Global.token = token
                 
                 print("Token valid during login")
                 print("Email used for API call: \(email)")

@@ -49,8 +49,8 @@ class KeychainManager {
     
     static func getTokenFmKC() -> String? {
         
-        if Global.tokenMaster.isEmpty {
-            print("tokenMaster is empty\n")
+        if Global.token.isEmpty {
+            print("Global.token is empty\n")
         }
         
         let query: [String: Any] = [
@@ -71,7 +71,7 @@ class KeychainManager {
                let token = String(data: tokenData, encoding: .utf8) {
                 
                 print("Reading token fm Keychain: \(token)")
-                Global.tokenMaster = token
+                Global.token = token
                 return token
             }
         }

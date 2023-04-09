@@ -21,7 +21,7 @@ class HeroViewModel: NSObject {
         if HeroViewModel.heroesShow.isEmpty {
             
             print("heroesShow.isEmpty... make api calls\n")
-            getCompleteHero(token: Global.tokenMaster)
+            getCompleteHero(token: Global.token)
             
         } else {
             print("heroesShow is NOT empty\n")
@@ -30,7 +30,7 @@ class HeroViewModel: NSObject {
     
     func getCompleteHero(token: String) {
         
-        NetworkLayer.shared.fetchHeroes(token: Global.tokenMaster) { [weak self] heroesModelContainer, error in
+        NetworkLayer.shared.fetchHeroes(token: Global.token) { [weak self] heroesModelContainer, error in
             guard let self = self else { return }
             
             if let heroesModelContainer = heroesModelContainer {
@@ -54,7 +54,7 @@ class HeroViewModel: NSObject {
         for hero in heroes {
             group.enter()
             
-            NetworkLayer.shared.fetchLocations(token: Global.tokenMaster, with: hero.id) { heroLocations, error in
+            NetworkLayer.shared.fetchLocations(token: Global.token, with: hero.id) { heroLocations, error in
                 var fullHero = hero
                 
                 if let firstLocation = heroLocations.first { // only grab first hero location
