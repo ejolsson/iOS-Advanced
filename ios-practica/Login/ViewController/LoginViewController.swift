@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, LoginViewModelDelegate {
  
     let loginViewModel = LoginViewModel()
     
@@ -18,11 +18,13 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonTapped(_ sender: Any) {
         
         guard let email = emailTextField.text, !email.isEmpty else {
+            loginDidFailWithError(error: "No email provided")
             print("No email provided")
             return
         }
         
         guard let password = passwordTextField.text, !password.isEmpty else {
+            loginDidFailWithError(error: "No password provided")
             print("No password provided")
             return
         }
@@ -32,5 +34,15 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginViewModel.delegate = self
+    }
+    
+    func loginDidFailWithError(error: String) {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: "Login error", message: error, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 }

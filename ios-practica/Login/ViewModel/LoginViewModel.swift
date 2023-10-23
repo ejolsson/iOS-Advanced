@@ -8,7 +8,13 @@
 import Foundation
 import UIKit
 
+protocol LoginViewModelDelegate: AnyObject {
+    func loginDidFailWithError(error: String)
+}
+
 class LoginViewModel: NSObject {
+    
+    weak var delegate: LoginViewModelDelegate?
     
     func userLogin(email: String, password: String) {
      
@@ -35,6 +41,12 @@ class LoginViewModel: NSObject {
                 }
             } else {
                 print("Login error: ", error?.localizedDescription ?? "\n")
+                // TODO: Error message to user
+                
+                if let errorDesc = error?.localizedDescription {
+                    print("Login error: ", errorDesc)
+                    self.delegate?.loginDidFailWithError(error: errorDesc)
+                }
             }
         }
     }
