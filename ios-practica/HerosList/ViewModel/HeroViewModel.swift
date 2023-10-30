@@ -7,13 +7,21 @@
 
 import Foundation
 
+protocol HeroViewModelDelegate: AnyObject {
+    func didStartLoadingData()
+    func didFinishLoadingData()
+}
 class HeroViewModel: NSObject {
+    
+    weak var delegate: HeroViewModelDelegate?
     
     static var heroesShow: [HeroModel] = []
     var place: Place! // needed for location api call & parsing
     
     func checkForExistingHeroes () {
 
+        delegate?.didStartLoadingData()
+        
         HeroViewModel.heroesShow = CoreDataManager.getCoreDataForPresentation()
         
         print("CoreData inventory check of heroes: \(HeroViewModel.heroesShow.count)\n")
@@ -25,6 +33,7 @@ class HeroViewModel: NSObject {
             
         } else {
             print("heroesShow is NOT empty\n")
+            delegate?.didFinishLoadingData()
         }
     }
     
@@ -38,6 +47,7 @@ class HeroViewModel: NSObject {
                 addLocationsToHeroes(heroes: heroesModelContainer)
                 
                 DispatchQueue.main.async {
+                    self.delegate?.didFinishLoadingData()
                 }
             } else {
                 print("Error fetching hereos: ", error?.localizedDescription ?? "")

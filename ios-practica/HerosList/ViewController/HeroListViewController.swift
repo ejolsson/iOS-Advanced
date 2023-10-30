@@ -12,11 +12,16 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     let heroViewModel = HeroViewModel()
+
+    var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        heroViewModel.delegate = self
+        
         configureItems()
+        configureSpinner()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -108,6 +113,25 @@ class HeroListViewController: UIViewController, UITableViewDelegate, UITableView
         )
     }
     
+    func configureSpinner() {
+        spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(spinner)
+        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        spinner.hidesWhenStopped = true
+    }
+    
+    func showSpinner() {
+        spinner.startAnimating()
+        tableView.isUserInteractionEnabled = false
+    }
+    
+    func hideSpinner() {
+        spinner.stopAnimating()
+        tableView.isUserInteractionEnabled = true
+    }
+    
     private func configureItems2() {
         self.navigationItem.rightBarButtonItems = [ UIBarButtonItem(
             title: "Logout", image: UIImage(named: ""), target: self, action: #selector(didTapLogoutButton)
@@ -170,6 +194,17 @@ extension UIBarButtonItem {
     func addTargetForAction(target: AnyObject, action: Selector) {
         self.target = target
         self.action = action
+    }
+}
+
+extension HeroListViewController: HeroViewModelDelegate {
+    
+    func didStartLoadingData() {
+        showSpinner()
+    }
+    
+    func didFinishLoadingData() {
+        hideSpinner()
     }
 }
 
